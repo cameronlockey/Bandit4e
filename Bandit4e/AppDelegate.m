@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
+#import "CharacterList.h"
+
 
 @implementation AppDelegate
 
@@ -14,12 +17,34 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+-(void)customizeAppearance
+{
+	// UINavigationBar
+	UIImage *navBar = [[UIImage imageNamed:@"navBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
+	[[UINavigationBar appearance] setTitleTextAttributes: @{
+						 UITextAttributeTextColor : [UIColor whiteColor],
+				   UITextAttributeTextShadowColor : [UIColor colorWithRed:0.03 green:0.06 blue:0.09 alpha:1.0],
+				  UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0,-1)],
+							  UITextAttributeFont :	[UIFont fontWithName:@"League Gothic" size:27]}];
+	
+	// UIBarButtonItems
+	UIImage *barButtonImage = [[UIImage imageNamed:@"barButtonSquare.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+	
+	UIImage *barDoneButtonImage = [[UIImage imageNamed:@"barDoneButtonSquare.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barDoneButtonImage forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundImage:barDoneButtonImage forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+	[self customizeAppearance];
+	
+    UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
+	CharacterList *characterList = (CharacterList*)navigationController.topViewController;
+	characterList.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 

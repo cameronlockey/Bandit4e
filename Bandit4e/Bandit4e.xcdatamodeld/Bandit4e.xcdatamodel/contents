@@ -1,4 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Character" representedClassName="Character" syncable="YES">
+        <attribute name="actionPoints" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="bloodiedValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="classname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentHp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentPp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="currentSurges" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="experience" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="failedSaves" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="gold" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxHp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxPp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="maxSurges" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="milestones" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="race" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="saveAtStart" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="saveModifier" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="surgeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="tempHp" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="usesPp" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="conditions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Condition" inverseName="character" inverseEntity="Condition" syncable="YES"/>
+        <relationship name="notes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Note" inverseName="character" inverseEntity="Note" syncable="YES"/>
+        <relationship name="reminders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Reminder" inverseName="character" inverseEntity="Reminder" syncable="YES"/>
+    </entity>
+    <entity name="Condition" representedClassName="Condition" syncable="YES">
+        <attribute name="damageAmount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="damageType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="turns" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="character" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="conditions" inverseEntity="Character" syncable="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES">
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="character" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="notes" inverseEntity="Character" syncable="YES"/>
+    </entity>
+    <entity name="Reminder" representedClassName="Reminder" syncable="YES">
+        <attribute name="showAtStart" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="character" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="reminders" inverseEntity="Character" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Character" positionX="126" positionY="-208" width="110" height="420"/>
+        <element name="Condition" positionX="367" positionY="-219" width="128" height="133"/>
+        <element name="Note" positionX="385" positionY="-63" width="128" height="73"/>
+        <element name="Reminder" positionX="405" positionY="29" width="128" height="88"/>
+    </elements>
 </model>
