@@ -20,27 +20,28 @@
 -(void)customizeAppearance
 {
 	// UINavigationBar
-	UIImage *navBar = [[UIImage imageNamed:@"navBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-	[[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
+	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
 	[[UINavigationBar appearance] setTitleTextAttributes: @{
-						 UITextAttributeTextColor : [UIColor whiteColor],
-				   UITextAttributeTextShadowColor : [UIColor colorWithRed:0.03 green:0.06 blue:0.09 alpha:1.0],
-				  UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetMake(0,-1)],
-							  UITextAttributeFont :	[UIFont fontWithName:@"League Gothic" size:27]}];
+						 NSForegroundColorAttributeName : [UIColor whiteColor],
+									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:27]}];
+
+	// UIToolbar
+	[[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
 	
 	// UIBarButtonItems
-	UIImage *barButtonImage = [[UIImage imageNamed:@"barButtonSquare.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-	
-	UIImage *barDoneButtonImage = [[UIImage imageNamed:@"barDoneButtonSquare.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setBackgroundImage:barDoneButtonImage forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
-	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setBackgroundImage:barDoneButtonImage forState:UIControlStateNormal style:UIBarButtonItemStyleDone barMetrics:UIBarMetricsDefault];
+	[[UIBarButtonItem appearance] setTitleTextAttributes: @{
+						 NSForegroundColorAttributeName : [UIColor whiteColor],
+									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:20]}
+												forState:UIControlStateNormal];
+
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self customizeAppearance];
+	
+	
 	
     UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
 	CharacterList *characterList = (CharacterList*)navigationController.topViewController;

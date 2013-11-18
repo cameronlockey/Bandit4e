@@ -31,6 +31,7 @@
 		7E464C8016D947B700C37390 /* barDoneButtonSquare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E464C7E16D947B700C37390 /* barDoneButtonSquare@2x.png */; };
 		7E464C8316D94A5E00C37390 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E464C8216D94A5E00C37390 /* Constants.m */; };
 		7E464C8616D978C200C37390 /* Gold.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E464C8516D978C200C37390 /* Gold.m */; };
+		7E4CBFA71837FF0F00F684C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CBFA61837FF0F00F684C3 /* Main.storyboard */; };
 		7E74437D16C86A7700CD314A /* tabEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E74437316C86A7700CD314A /* tabEdit@2x.png */; };
 		7E74437E16C86A7700CD314A /* tabEdit.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E74437416C86A7700CD314A /* tabEdit.png */; };
 		7E74437F16C86A7700CD314A /* tabConditions@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E74437516C86A7700CD314A /* tabConditions@2x.png */; };
@@ -57,7 +58,7 @@
 		7ED04E3416738FA000BABBA1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED04E3316738FA000BABBA1 /* Default-568h@2x.png */; };
 		7ED04E3716738FA000BABBA1 /* Bandit4e.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7ED04E3516738FA000BABBA1 /* Bandit4e.xcdatamodeld */; };
 		7ED04E451673A33D00BABBA1 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED04E431673A33D00BABBA1 /* CoreDataHelper.m */; };
-		7ED04E471673BC1900BABBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED04E461673BC1900BABBA1 /* Main.storyboard */; };
+		7ED04E471673BC1900BABBA1 /* Old.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED04E461673BC1900BABBA1 /* Old.storyboard */; };
 		7ED04E4A1673BFA600BABBA1 /* CharacterList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED04E491673BFA600BABBA1 /* CharacterList.m */; };
 		7ED04E501673C09700BABBA1 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED04E4F1673C09700BABBA1 /* Note.m */; };
 		7ED04E531673C09700BABBA1 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED04E521673C09700BABBA1 /* Reminder.m */; };
@@ -121,6 +122,7 @@
 		7E464C8216D94A5E00C37390 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		7E464C8416D978C200C37390 /* Gold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gold.h; sourceTree = "<group>"; };
 		7E464C8516D978C200C37390 /* Gold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gold.m; sourceTree = "<group>"; };
+		7E4CBFA61837FF0F00F684C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7E74437316C86A7700CD314A /* tabEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabEdit@2x.png"; sourceTree = "<group>"; };
 		7E74437416C86A7700CD314A /* tabEdit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabEdit.png; sourceTree = "<group>"; };
 		7E74437516C86A7700CD314A /* tabConditions@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabConditions@2x.png"; sourceTree = "<group>"; };
@@ -154,7 +156,7 @@
 		7ED04E3616738FA000BABBA1 /* Bandit4e.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bandit4e.xcdatamodel; sourceTree = "<group>"; };
 		7ED04E431673A33D00BABBA1 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		7ED04E441673A33D00BABBA1 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
-		7ED04E461673BC1900BABBA1 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Bandit4e/Main.storyboard; sourceTree = "<group>"; };
+		7ED04E461673BC1900BABBA1 /* Old.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Old.storyboard; path = Bandit4e/Old.storyboard; sourceTree = "<group>"; };
 		7ED04E481673BFA600BABBA1 /* CharacterList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterList.h; sourceTree = "<group>"; };
 		7ED04E491673BFA600BABBA1 /* CharacterList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterList.m; sourceTree = "<group>"; };
 		7ED04E4E1673C09700BABBA1 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
@@ -280,7 +282,8 @@
 				7ED9656716F5F9BA009FDB5A /* Icon@2x.png */,
 				7ED04E2C16738F9F00BABBA1 /* AppDelegate.h */,
 				7ED04E2D16738F9F00BABBA1 /* AppDelegate.m */,
-				7ED04E461673BC1900BABBA1 /* Main.storyboard */,
+				7ED04E461673BC1900BABBA1 /* Old.storyboard */,
+				7E4CBFA61837FF0F00F684C3 /* Main.storyboard */,
 				7ED04E411673905200BABBA1 /* CoreData */,
 				7ED04E2316738F9F00BABBA1 /* Bandit4e */,
 				7ED04E421673A30900BABBA1 /* Helpers */,
@@ -491,7 +494,8 @@
 				7ED04E3016738FA000BABBA1 /* Default.png in Resources */,
 				7ED04E3216738FA000BABBA1 /* Default@2x.png in Resources */,
 				7ED04E3416738FA000BABBA1 /* Default-568h@2x.png in Resources */,
-				7ED04E471673BC1900BABBA1 /* Main.storyboard in Resources */,
+				7ED04E471673BC1900BABBA1 /* Old.storyboard in Resources */,
+				7E4CBFA71837FF0F00F684C3 /* Main.storyboard in Resources */,
 				7ED4A0A41673D36400376255 /* BSKeyboardControls.strings in Resources */,
 				7E74437D16C86A7700CD314A /* tabEdit@2x.png in Resources */,
 				7E74437E16C86A7700CD314A /* tabEdit.png in Resources */,
@@ -656,6 +660,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -669,6 +674,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

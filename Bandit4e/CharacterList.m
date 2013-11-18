@@ -36,10 +36,11 @@
     [super viewDidLoad];
 	
 	self.title = @"CHARACTERS";
- 
+	
+	self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	
-	//self.tableView.rowHeight = 80;
+	self.tableView.rowHeight = 80;
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]];
 }
 
@@ -215,7 +216,7 @@
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    return NO;
 }
 
 
