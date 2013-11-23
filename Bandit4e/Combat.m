@@ -114,7 +114,13 @@
 	
 	
 	// Place the image
-	characterImageView.image = [[UIImage alloc] initWithData:character.photo];
+	UIImage *characterPhoto;
+	if (character.photo != nil)
+		characterPhoto = [[UIImage alloc] initWithData:character.photo];
+	else
+		characterPhoto = [UIImage imageNamed:@"noPhoto.png"];
+	
+	characterImageView.image = characterPhoto;
 	characterImageView.contentMode = UIViewContentModeScaleAspectFill;
 	characterImageView.layer.borderColor = [[UIColor colorWithWhite:0.5 alpha:0.5] CGColor];
 	characterImageView.layer.borderWidth = 1.0f;

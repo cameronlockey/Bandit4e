@@ -26,12 +26,13 @@
 									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:27]}];
 
 	// UIToolbar
-	[[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
+	//[[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
 	
 	// UIBarButtonItems
 	[[UIBarButtonItem appearance] setTitleTextAttributes: @{
 						 NSForegroundColorAttributeName : [UIColor whiteColor],
-									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:20]}
+									NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24]
+						 }
 												forState:UIControlStateNormal];
 
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

@@ -25,6 +25,7 @@
 
 @property (weak,nonatomic) id <CharacterAddEditDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *raceField;
 @property (weak, nonatomic) IBOutlet UITextField *classField;

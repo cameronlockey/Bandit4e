@@ -35,6 +35,7 @@ enum {
             segmentedPreviousNext = _segmentedPreviousNext,
             buttonDone = _buttonDone,
             barStyle = _barStyle,
+			barTintColor = _barTintColor,
             previousNextTintColor = _previousNextTintColor,
             previousTitle = _previousTitle,
             nextTitle = _nextTitle,
@@ -51,7 +52,8 @@ enum {
         self.frame = frame;
         
         // Default colors
-        self.barStyle = UIBarStyleBlackTranslucent;
+        self.barStyle = UIBarStyleDefault;
+		self.barTintColor = [UIColor lightGrayColor];
         self.previousNextTintColor = [UIColor blackColor];
         
         // Default labels
@@ -60,13 +62,13 @@ enum {
         
         // Create toolbar
         self.toolbar = [[UIToolbar alloc] initWithFrame:self.frame];
-        self.toolbar.barStyle = self.barStyle;
-        self.toolbar.backgroundColor = [UIColor clearColor];
+		self.toolbar.barStyle = self.barStyle;
+		self.toolbar.translucent = NO;
+        self.toolbar.barTintColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"keyboardControlBg.png"]];
         
         // Setup segmented controls
         self.segmentedPreviousNext = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:self.previousTitle, self.nextTitle, nil]];
         self.segmentedPreviousNext.tintColor = self.previousNextTintColor;
-        self.segmentedPreviousNext.segmentedControlStyle = UISegmentedControlStyleBar;
         self.segmentedPreviousNext.momentary = YES;
         [self.segmentedPreviousNext addTarget:self action:@selector(segmentedControlPreviousNextChangedValue:) forControlEvents:UIControlEventValueChanged];
         

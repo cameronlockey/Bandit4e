@@ -42,6 +42,11 @@ typedef enum
 @property (nonatomic, assign) UIBarStyle barStyle;
 
 /*
+ * barTintColor of the bar
+ */
+@property (nonatomic, strong) UIColor *barTintColor;
+
+/*
  * Tint color of the previous and next buttons
  */
 @property (nonatomic, strong) UIColor *previousNextTintColor;

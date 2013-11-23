@@ -39,6 +39,7 @@
 	
 	self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	self.tableView.allowsSelectionDuringEditing = YES;
 	
 	self.tableView.rowHeight = 80;
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]];
@@ -163,7 +164,6 @@
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
@@ -227,12 +227,18 @@
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	selectedCharacter = [characters objectAtIndex:indexPath.row];
 	
-	if (cell.isEditing == YES) {
+	NSLog(@"cell: %@", cell);
+	
+	if (cell.isEditing == YES)
+	{
+		NSLog(@"pressed a row in editing mode");
 		[self performSegueWithIdentifier:@"EditCharacter" sender:self];
 	}
 	else
 	{
-		[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
+		
+		NSLog(@"selected a row");
+		//[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
 	}
 	
 }
@@ -244,7 +250,6 @@
 		CharacterAddEdit *characterAdd = segue.destinationViewController;
 		characterAdd.managedObjectContext = managedObjectContext;
 		characterAdd.delegate = self;
-		characterAdd.navigationItem.title = @"NEW CHARACTER";
 	}
 	else if ([segue.identifier isEqualToString:@"EditCharacter"])
 	{
@@ -252,7 +257,7 @@
 		characterEdit.managedObjectContext = managedObjectContext;
 		characterEdit.delegate = self;
 		characterEdit.character = selectedCharacter;
-		characterEdit.navigationItem.title = [NSString stringWithFormat:@"EDIT %@",selectedCharacter.name];
+		characterEdit.navbar.topItem.title = [NSString stringWithFormat:@"EDIT %@",selectedCharacter.name];
 	}
 	else if ([segue.identifier isEqualToString:@"PlayCharacter"])
 	{

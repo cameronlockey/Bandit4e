@@ -29,7 +29,7 @@
 
 @implementation CharacterAddEdit
 
-@synthesize managedObjectContext, imagePicker, character, delegate, saveButton, cancelButton;
+@synthesize managedObjectContext, imagePicker, character, delegate, navbar, saveButton, cancelButton;
 @synthesize nameField, raceField, classField, levelField, photoEditButton, photoView;
 @synthesize experienceField, goldField, maxHpField, maxSurgesField, healingSurgeValueField, savingThrowModifierField;
 @synthesize milestonesField, actionPointsField;
@@ -41,6 +41,8 @@
     [super viewDidLoad];
 	
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]];
+	
+	navbar.frame = CGRectMake(navbar.frame.origin.x, navbar.frame.origin.y, navbar.frame.size.width, 64);
 	
 	// Initialize the keyboard controls
 	self.keyboardControls = [[BSKeyboardControls alloc] init];
@@ -55,11 +57,8 @@
 	
 	self.keyboardControls.textFields = textFields;
 	
-	// Set the style of the bar
-	self.keyboardControls.barStyle = UIBarStyleBlackTranslucent;
-	
 	// Set the tint color of the Previous/Next buttons
-	self.keyboardControls.previousNextTintColor = [UIColor blackColor];
+	self.keyboardControls.previousNextTintColor = [UIColor lightGrayColor];
 	
 	// Set the tint color of the done button.
 	self.keyboardControls.doneTintColor = [UIColor colorWithRed:34.0/255.0 green:164.0/255.0 blue:255.0/255.0 alpha:1.0];
@@ -137,8 +136,8 @@
 /* Scroll the view to the active text field */
 - (void)scrollViewToTextField:(id)textField
 {
-    UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview;
-    [self.tableView scrollRectToVisible:cell.frame animated:YES];
+    UITableViewCell *cell = (UITableViewCell *) ((UIView *) textField).superview.superview.superview;
+    [self.tableView scrollToRowAtIndexPath:[self.tableView indexPathForCell:cell] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
