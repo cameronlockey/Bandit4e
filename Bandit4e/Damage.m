@@ -39,7 +39,7 @@
 	
 	self.title = @"DAMAGE";
 	
-	amountField.font = LEAGUE(114.0f);
+	amountField.font = LEAGUE(100.0f);
 	amountField.textColor = GRAY;
 	amountField.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
 	amountField.layer.shadowOffset = CGSizeMake(0,1);

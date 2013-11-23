@@ -33,7 +33,7 @@
 @property (strong,nonatomic) Experience *experienceController;
 @property (strong,nonatomic) Gold *goldController;
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *combatNavigationBar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIView *characterInfoView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *characterImageView;
@@ -60,7 +60,7 @@
  * ---------------------------------------------*/
 -(void)configureButton:(UIButton*)button LabelText:(NSString*)text;
 -(IBAction)returnToCharacterList:(id)sender;
--(IBAction)startTurn:(id)sender;
+//-(IBAction)startTurn:(id)sender;
 -(void)updateCombatButton:(UIButton*)button Label:(UILabel*)label Value:(NSString*)value;
 
 -(void)addFailedDeathSave;

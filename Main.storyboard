@@ -50,12 +50,13 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="NQF-Cv-GMa">
                         <barButtonItem key="rightBarButtonItem" title="New" id="KDq-GE-5IG">
                             <connections>
-                                <segue destination="2tf-YV-huu" kind="modal" identifier="AddCharacter" modalTransitionStyle="coverVertical" id="xgY-eL-v7K"/>
+                                <segue destination="2tf-YV-huu" kind="modal" identifier="AddCharacter" modalTransitionStyle="crossDissolve" id="xgY-eL-v7K"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="2tf-YV-huu" kind="modal" identifier="EditCharacter" modalTransitionStyle="coverVertical" id="9E5-2M-ocX"/>
+                        <segue destination="2tf-YV-huu" kind="modal" identifier="EditCharacter" modalTransitionStyle="crossDissolve" id="9E5-2M-ocX"/>
+                        <segue destination="ZOX-kr-31Y" kind="modal" identifier="PlayCharacter" modalTransitionStyle="crossDissolve" id="M8U-cu-dTU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rre-YS-87X" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -546,9 +547,436 @@
             </objects>
             <point key="canvasLocation" x="-113" y="-16"/>
         </scene>
+        <!--Combat - COMBAT-->
+        <scene sceneID="dP8-iS-wmp">
+            <objects>
+                <viewController id="SDr-D7-ekQ" customClass="Combat" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vV9-M8-Wbf"/>
+                        <viewControllerLayoutGuide type="bottom" id="WqP-3K-ulb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZGv-Jd-Mne">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="hpLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rba-Ao-lsl">
+                                <rect key="frame" x="9" y="138" width="130" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="surgesLabel" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuL-GN-12d">
+                                <rect key="frame" x="175" y="138" width="132" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ExE-Lf-9lu">
+                                <rect key="frame" x="0.0" y="64" width="320" height="66"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yd-Mn-g3V">
+                                        <rect key="frame" x="10" y="10" width="45" height="45"/>
+                                        <color key="backgroundColor" red="0.91320551660000004" green="0.91320551660000004" blue="0.91320551660000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="nameLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMw-HY-a6w">
+                                        <rect key="frame" x="63" y="10" width="237" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.41753029339999997" green="0.41753029339999997" blue="0.41753029339999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="raceClassLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ5-Vv-khg">
+                                        <rect key="frame" x="63" y="38" width="210" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91320551660000004" green="0.91320551660000004" blue="0.91320551660000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="HIT POINTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpp-v0-NH9">
+                                <rect key="frame" x="9" y="182" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="HEALING SURGES" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDq-4X-wAe">
+                                <rect key="frame" x="156" y="182" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFC-Ja-1SY">
+                                <rect key="frame" x="9" y="211" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="DAMAGE" backgroundImage="damageButton.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="JQm-Qb-LwP" kind="modal" identifier="Damage" modalTransitionStyle="crossDissolve" id="vmD-0z-jrf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLE-83-AfR">
+                                <rect key="frame" x="9" y="289" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="ACTION POINT" backgroundImage="combatButton.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmUseActionPoint:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="hjo-2X-mBf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uT-cV-Gys">
+                                <rect key="frame" x="87" y="211" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="HEAL" backgroundImage="healButton.png">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="02m-lJ-aGl" kind="modal" identifier="Heal" modalTransitionStyle="crossDissolve" id="Qfw-Z9-Aby"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-gb-QeG">
+                                <rect key="frame" x="87" y="289" width="69" height="70"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                <state key="normal" title="GOLD" backgroundImage="combatButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PI-gE-gkp">
+                                <rect key="frame" x="165" y="289" width="69" height="70"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                <state key="normal" title="EXPERIENCE" backgroundImage="combatButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="tw6-NU-zrT" kind="modal" identifier="Experience" modalTransitionStyle="crossDissolve" id="hcs-Ml-gpQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61S-UY-Pi6">
+                                <rect key="frame" x="165" y="211" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="TEMP HP" backgroundImage="tempButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmGainTempHp:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="f4P-yM-1VI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-27-C15">
+                                <rect key="frame" x="243" y="289" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="POWER POINT" backgroundImage="combatButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmUsePowerPoint:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="4NG-B9-twU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-w3-AW9">
+                                <rect key="frame" x="243" y="211" width="69" height="70"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="REST" backgroundImage="restButton.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showRestOptions:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="hDW-2F-9zc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDb-n8-rid">
+                                <rect key="frame" x="147" y="138" width="26" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="DEATH SAVES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGs-V3-gKa">
+                                <rect key="frame" x="124" y="182" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="COMBAT" id="HN5-H6-RaX">
+                        <barButtonItem key="leftBarButtonItem" image="icon-characters.png" id="v8O-Cp-fVl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="returnToCharacterList:" destination="SDr-D7-ekQ" id="CHO-Oz-c71"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="apButton" destination="gLE-83-AfR" id="zed-QX-ic4"/>
+                        <outlet property="characterImageView" destination="9yd-Mn-g3V" id="4gt-MR-Taf"/>
+                        <outlet property="characterInfoView" destination="ExE-Lf-9lu" id="vo8-7W-dV6"/>
+                        <outlet property="damageButton" destination="yFC-Ja-1SY" id="bsT-1V-vk3"/>
+                        <outlet property="expButton" destination="7PI-gE-gkp" id="lpu-N9-gGY"/>
+                        <outlet property="failedSavesLabel" destination="PGs-V3-gKa" id="hck-bQ-6af"/>
+                        <outlet property="failedSavesValueLabel" destination="tDb-n8-rid" id="uuQ-zI-Fiy"/>
+                        <outlet property="goldButton" destination="Xe8-gb-QeG" id="6DP-ub-IMd"/>
+                        <outlet property="healButton" destination="9uT-cV-Gys" id="EKG-cm-8fu"/>
+                        <outlet property="healingSurges" destination="BDq-4X-wAe" id="HTT-1a-PZl"/>
+                        <outlet property="hitPoints" destination="hpp-v0-NH9" id="GbW-0K-ykV"/>
+                        <outlet property="hpLabel" destination="Rba-Ao-lsl" id="jOm-7T-dC8"/>
+                        <outlet property="nameLabel" destination="cMw-HY-a6w" id="t2W-Pf-6gc"/>
+                        <outlet property="ppButton" destination="Z1e-27-C15" id="QUb-H5-cMZ"/>
+                        <outlet property="raceClassLevelLabel" destination="ZZ5-Vv-khg" id="Ik5-7m-XXy"/>
+                        <outlet property="restButton" destination="fU2-w3-AW9" id="ybZ-J0-D8s"/>
+                        <outlet property="surgesLabel" destination="TuL-GN-12d" id="iMm-R3-6T7"/>
+                        <outlet property="tempHpButton" destination="61S-UY-Pi6" id="QWJ-rh-tA6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9ol-1v-qlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1302" y="137"/>
+        </scene>
+        <!--Navigation Controller - Combat-->
+        <scene sceneID="du9-hg-eKu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZOX-kr-31Y" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Combat" image="tabCombat.png" id="fBq-dz-ebt"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LYz-Og-g4x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SDr-D7-ekQ" kind="relationship" relationship="rootViewController" id="rYQ-Fj-GHA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="56w-ZK-X2i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896" y="137"/>
+        </scene>
+        <!--Damage - DAMAGE-->
+        <scene sceneID="u1M-HA-b0k">
+            <objects>
+                <viewController id="o2Y-pL-8fm" customClass="Damage" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XOm-tf-5ne"/>
+                        <viewControllerLayoutGuide type="bottom" id="OOT-z1-qOD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ju4-Zc-SAJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="AMOUNT" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="53l-aS-Wzf">
+                                <rect key="frame" x="20" y="86" width="280" height="100"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfG-XV-S18">
+                                <rect key="frame" x="136" y="208" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="LOSE HEALING SURGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDe-4a-PNB">
+                                <rect key="frame" x="20" y="241" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="DAMAGE" id="b9D-wV-fet">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rtN-ca-gsG">
+                            <connections>
+                                <action selector="cancel:" destination="o2Y-pL-8fm" id="Igk-zn-SDf"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Take" id="tkI-cU-Ckp">
+                            <connections>
+                                <action selector="takeDamage:" destination="o2Y-pL-8fm" id="iEs-PX-3VA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="amountField" destination="53l-aS-Wzf" id="10U-vZ-x8y"/>
+                        <outlet property="loseSurgeLabel" destination="jDe-4a-PNB" id="tpM-XM-bSJ"/>
+                        <outlet property="loseSurgeSwitch" destination="CfG-XV-S18" id="zhY-Jl-OoU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Idy-aY-KmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1781" y="928"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="G4m-Vg-rwG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JQm-Qb-LwP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="taC-iw-bfJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="o2Y-pL-8fm" kind="relationship" relationship="rootViewController" id="beh-DH-G7S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgh-t7-2dO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1799" y="144"/>
+        </scene>
+        <!--Heal - HEAL-->
+        <scene sceneID="LRp-e6-Ywb">
+            <objects>
+                <viewController id="Nob-op-bjC" customClass="Heal" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C8F-hg-KGX"/>
+                        <viewControllerLayoutGuide type="bottom" id="rWj-os-dn1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="D2t-Co-Me6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2bQ-jR-ynQ">
+                                <rect key="frame" x="57" y="84" width="206" height="29"/>
+                                <segments>
+                                    <segment title="0 Surges"/>
+                                    <segment title="1 Surge"/>
+                                    <segment title="2 Surges"/>
+                                </segments>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDITIONAL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j94-Nf-3Iv">
+                                <rect key="frame" x="20" y="132" width="280" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GAIN SURGES" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWP-Mz-pZo">
+                                <rect key="frame" x="20" y="200" width="280" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="HEAL" id="UHS-Ts-CfJ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RQA-6V-rOL">
+                            <connections>
+                                <action selector="cancel:" destination="Nob-op-bjC" id="ucm-1L-bWT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Gain" id="uta-wi-z01">
+                            <connections>
+                                <action selector="heal:" destination="Nob-op-bjC" id="hM9-rm-fMJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="additionalHealingField" destination="j94-Nf-3Iv" id="EUo-hk-CPa"/>
+                        <outlet property="numSurgesSegmentControl" destination="2bQ-jR-ynQ" id="tjc-un-IaL"/>
+                        <outlet property="regainSurgesField" destination="KWP-Mz-pZo" id="5h0-7Z-Ah9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Khb-hb-5Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2247" y="934"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hzH-OQ-ow0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="02m-lJ-aGl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UzG-eX-kJl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Nob-op-bjC" kind="relationship" relationship="rootViewController" id="Yu3-PP-o9U"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mXP-Qd-fqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2227" y="132"/>
+        </scene>
+        <!--Experience - EXPERIENCE-->
+        <scene sceneID="zAm-9O-q5X">
+            <objects>
+                <viewController id="Tg2-MY-BSP" customClass="Experience" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nf6-6T-AUX"/>
+                        <viewControllerLayoutGuide type="bottom" id="MFb-6b-KPq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cRS-XX-wj8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Current Experience" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPv-Y1-i6N">
+                                <rect key="frame" x="142" y="75" width="158" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="EXPERIENCE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fjg-rL-k6b">
+                                <rect key="frame" x="20" y="162" width="280" height="74"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT EXPERIENCE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daq-Nt-S5i">
+                                <rect key="frame" x="20" y="89" width="280" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="EXPERIENCE" id="h1F-dJ-EQK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gII-Xg-R2B">
+                            <connections>
+                                <action selector="cancel:" destination="Tg2-MY-BSP" id="Nzk-Np-Xug"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Gain" id="EB5-tj-2zf">
+                            <connections>
+                                <action selector="gainExperience:" destination="Tg2-MY-BSP" id="lgn-Za-8r4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="currentExperienceLabel" destination="daq-Nt-S5i" id="fzm-6U-bvy"/>
+                        <outlet property="experienceField" destination="fjg-rL-k6b" id="UH3-hY-Qvi"/>
+                        <outlet property="experienceLabel" destination="CPv-Y1-i6N" id="XJI-rB-2w6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CE3-ob-6D5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2218" y="-541"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0g3-0j-U3I">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tw6-NU-zrT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9HS-M3-ifD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tg2-MY-BSP" kind="relationship" relationship="rootViewController" id="wrV-1i-dVg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3be-dV-jpx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1799" y="-548"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="combatButton.png" width="69" height="70"/>
+        <image name="damageButton.png" width="69" height="70"/>
+        <image name="healButton.png" width="69" height="70"/>
+        <image name="icon-characters.png" width="33" height="16"/>
         <image name="noPhoto.png" width="73" height="73"/>
+        <image name="restButton.png" width="69" height="70"/>
+        <image name="tabCombat.png" width="30" height="30"/>
+        <image name="tempButton.png" width="69" height="70"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

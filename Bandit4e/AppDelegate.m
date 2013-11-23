@@ -34,6 +34,8 @@
 									NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24]
 						 }
 												forState:UIControlStateNormal];
+	[[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+	[[UITextField appearance] setTintColor:[UIColor darkGrayColor]];
 
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }

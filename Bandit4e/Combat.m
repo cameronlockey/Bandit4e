@@ -23,7 +23,7 @@
 
 @synthesize managedObjectContext, character, restOptions;
 @synthesize characterInfoView, characterImageView, nameLabel, raceClassLevelLabel, hpLabel, surgesLabel, failedSavesValueLabel, failedSavesLabel, hitPoints, healingSurges;
-@synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startEndTurnButton, combatNavigationBar;
+@synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startEndTurnButton, navBar;
 @synthesize damageController, healController, experienceController, goldController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,10 +38,9 @@
 {
     [super viewDidLoad];
 	
-	
-	self.title = @"Combat";
-	
 	self.view.backgroundColor = VIEWBG;
+	navBar.frame = CGRectMake(navBar.frame.origin.x, navBar.frame.origin.y, navBar.frame.size.width, 64);
+	self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 		
 	// set up characterInfo bg
 	characterInfoView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLight.png"]];
@@ -502,7 +501,7 @@
 		[actionSheet addButtonWithTitle:option];
 	}
 	actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"Cancel"];
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet showInView:self.view];
 }
 
 
@@ -512,7 +511,9 @@
 {
 	switch (alertView.tag) {
 		case 1:
-			[self useActionPoint];
+			if (buttonIndex == 1) {
+				[self useActionPoint];
+			}			
 			break;
 		case 2:
 			[self usePowerPoints:[alertView textFieldAtIndex:0].text.intValue];
@@ -602,29 +603,34 @@
  * ---------------------------------------------*/
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-	if ([segue.identifier isEqualToString:@"Damage"]) {
-		damageController = segue.destinationViewController;
+	if ([segue.identifier isEqualToString:@"Damage"])
+	{
+		UINavigationController *damageNav = segue.destinationViewController;
+		damageController = damageNav.viewControllers.firstObject;
 		damageController.managedObjectContext = managedObjectContext;
 		damageController.character = character;
 		damageController.delegate = self;
 	}
 	else if ([segue.identifier isEqualToString:@"Heal"])
 	{
-		healController = segue.destinationViewController;
+		UINavigationController *healNav = segue.destinationViewController;
+		healController = healNav.viewControllers.firstObject;
 		healController.managedObjectContext = managedObjectContext;
 		healController.character = character;
 		healController.delegate = self;
 	}
 	else if ([segue.identifier isEqualToString:@"Experience"])
 	{
-		experienceController = segue.destinationViewController;
+		UINavigationController *experienceNav = segue.destinationViewController;
+		experienceController = experienceNav.viewControllers.firstObject;
 		experienceController.managedObjectContext = managedObjectContext;
 		experienceController.character = character;
 		experienceController.delegate = self;
 	}
 	else if ([segue.identifier isEqualToString:@"Gold"])
 	{
-		goldController = segue.destinationViewController;
+		UINavigationController *goldNav = segue.destinationViewController;
+		goldController = goldNav.viewControllers.firstObject;
 		goldController.managedObjectContext = managedObjectContext;
 		goldController.character = character;
 		goldController.delegate = self;

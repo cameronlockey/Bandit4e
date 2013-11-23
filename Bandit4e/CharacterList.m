@@ -227,18 +227,13 @@
 	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 	selectedCharacter = [characters objectAtIndex:indexPath.row];
 	
-	NSLog(@"cell: %@", cell);
-	
 	if (cell.isEditing == YES)
 	{
-		NSLog(@"pressed a row in editing mode");
 		[self performSegueWithIdentifier:@"EditCharacter" sender:self];
 	}
 	else
 	{
-		
-		NSLog(@"selected a row");
-		//[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
+		[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
 	}
 	
 }
@@ -261,19 +256,10 @@
 	}
 	else if ([segue.identifier isEqualToString:@"PlayCharacter"])
 	{
-		UITabBarController *playCharacterController = segue.destinationViewController;
-		playCharacterController.selectedIndex = 1;
-		Combat *combat = [playCharacterController.viewControllers objectAtIndex:1];
+		UINavigationController *combatNavController = segue.destinationViewController;
+		Combat *combat = combatNavController.viewControllers.firstObject;
 		combat.managedObjectContext = managedObjectContext;
-		combat.character = selectedCharacter;
-		
-		CharacterAddEdit *characterEdit = [playCharacterController.viewControllers objectAtIndex:0];
-		characterEdit.managedObjectContext = managedObjectContext;
-		characterEdit.delegate = nil;
-		characterEdit.character = selectedCharacter;
-		characterEdit.navigationItem.title = [NSString stringWithFormat:@"EDIT %@",selectedCharacter.name];
-		
-		
+		combat.character = selectedCharacter;		
 	}
 }
 
