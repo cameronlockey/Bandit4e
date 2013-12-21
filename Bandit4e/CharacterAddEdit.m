@@ -29,21 +29,19 @@
 
 @implementation CharacterAddEdit
 
-@synthesize managedObjectContext, imagePicker, character, delegate, navbar, saveButton, cancelButton;
+@synthesize managedObjectContext, imagePicker, character, delegate, saveButton, cancelButton;
 @synthesize nameField, raceField, classField, levelField, photoEditButton, photoView;
 @synthesize experienceField, goldField, maxHpField, maxSurgesField, healingSurgeValueField, savingThrowModifierField;
-@synthesize milestonesField, actionPointsField;
+@synthesize actionPointsField;
 @synthesize saveAtStartSwitch, usePowerPointsSwitch, maxPowerPointsField;
-@synthesize nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxHpLabel, maxSurgesLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, milestonesLabel, actionPointsLabel, saveAtStartLabel, usePowerPointsLabel,maxPowerPointsLabel;
+@synthesize nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxHpLabel, maxSurgesLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, actionPointsLabel, saveAtStartLabel, usePowerPointsLabel,maxPowerPointsLabel;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
 	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]];
-	
-	navbar.frame = CGRectMake(navbar.frame.origin.x, navbar.frame.origin.y, navbar.frame.size.width, 64);
-	
+		
 	// Initialize the keyboard controls
 	self.keyboardControls = [[BSKeyboardControls alloc] init];
 	
@@ -53,7 +51,7 @@
 	// Add all text fields you want to be able to skip between to the keyboard controls
 	// Sets the order of prev/next	
 	NSMutableArray *textFields = [NSMutableArray arrayWithObjects:
-									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,savingThrowModifierField,experienceField,goldField,milestonesField,actionPointsField,nil];
+									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,savingThrowModifierField,experienceField,goldField, actionPointsField,nil];
 	
 	self.keyboardControls.textFields = textFields;
 	
@@ -98,7 +96,6 @@
 		healingSurgeValueField.text = character.surgeValue.stringValue;
 		savingThrowModifierField.text = character.saveModifier.stringValue;
 		
-		milestonesField.text = character.milestones.stringValue;
 		actionPointsField.text = character.actionPoints.stringValue;
 		
 		saveAtStartSwitch.on = character.saveAtStart.boolValue;
@@ -121,7 +118,7 @@
 		cancelButton.enabled = NO;
 	
 	// customize labels
-	[self customizeLabels:[NSArray arrayWithObjects:nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxSurgesLabel, maxHpLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, milestonesLabel, actionPointsLabel, savingThrowLabel, saveAtStartLabel, usePowerPointsLabel, maxPowerPointsLabel, nil]];
+	[self customizeLabels:[NSArray arrayWithObjects:nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxSurgesLabel, maxHpLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, actionPointsLabel, savingThrowLabel, saveAtStartLabel, usePowerPointsLabel, maxPowerPointsLabel, nil]];
 	
 	// customize fields
 	[self customizeFields:textFields];
@@ -130,6 +127,9 @@
 	if (!usePowerPointsSwitch.on) {
 		maxPowerPointsLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1];
 	}
+	
+	// add in save button and config to done action
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"SAVE" style:UIBarButtonItemStylePlain target:self action:@selector(saveCharacter)];
 	
 }
 
@@ -157,7 +157,7 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-- (IBAction)saveCharacter:(id)sender
+- (void)saveCharacter
 {
 	// If we are adding a new character then create an entry
 	if (!character)
@@ -179,7 +179,6 @@
 	character.maxSurges = nums(maxSurgesField.text);
 	character.surgeValue = nums(healingSurgeValueField.text);
 	character.saveModifier = nums(savingThrowModifierField.text);
-	character.milestones = nums(milestonesField.text);
 	character.actionPoints = nums(actionPointsField.text);
 	character.maxPp = nums(maxPowerPointsField.text);
 	
@@ -187,11 +186,14 @@
 	character.saveAtStart = [NSNumber numberWithBool:saveAtStartSwitch.on];
 	character.usesPp = [NSNumber numberWithBool:usePowerPointsSwitch.on];
 	
-	// Set rest of fields that are not defined by user
-	character.currentHp = [f numberFromString:maxHpField.text];
-	character.currentSurges = [f numberFromString:maxSurgesField.text];
-	character.tempHp = [NSNumber numberWithInt:0];
-	character.failedSaves = [NSNumber numberWithInt:0];
+	// Set rest of fields that are not defined by user, if we are not editing from 
+	if (!self.editing)
+	{
+		character.currentHp = [f numberFromString:maxHpField.text];
+		character.currentSurges = [f numberFromString:maxSurgesField.text];
+		character.tempHp = [NSNumber numberWithInt:0];
+		character.failedSaves = [NSNumber numberWithInt:0];
+	}
 	
 	if (photoView.image)
     {	
@@ -232,15 +234,14 @@
 	{
 		//  Automatically pop to previous view now we're done adding
 		[delegate characterAddEditDidFinish];
+		[self.navigationController popViewControllerAnimated:YES];
 	}
-    
-	
 	
 }
 
-- (IBAction)cancel:(id)sender
+- (void)cancel
 {
-	[delegate characterAddEditDidCancel];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)didSwitchUsePowerPoints:(id)sender {

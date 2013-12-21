@@ -37,18 +37,12 @@
 	
 	currentGoldLabel.font = LEAGUE(24.0f);
 	currentGoldLabel.textColor = [UIColor colorWithWhite:0.5f alpha:1.0];
-	currentGoldLabel.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
-	currentGoldLabel.layer.shadowOffset = CGSizeMake(0,1);
-	currentGoldLabel.layer.shadowRadius = 0;
-	currentGoldLabel.layer.shadowOpacity = 1;
+	[UIHelpers applyTextShadow:currentGoldLabel];
 	
 	goldLabel.text = character.gold.stringValue;
 	goldLabel.font = LEAGUE(44.0f);
 	goldLabel.textColor = GRAY;
-	goldLabel.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
-	goldLabel.layer.shadowOffset = CGSizeMake(0,1);
-	goldLabel.layer.shadowRadius = 0;
-	goldLabel.layer.shadowOpacity = 1;
+	[UIHelpers applyTextShadow:goldLabel];
 	
 	goldField.font = LEAGUE(90.0f);
 	goldField.textColor = GRAY;
@@ -60,10 +54,7 @@
 	
 	spendLabel.font = LEAGUE(24.0f);
 	spendLabel.textColor = [UIColor colorWithWhite:0.5f alpha:1.0];
-	spendLabel.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
-	spendLabel.layer.shadowOffset = CGSizeMake(0,1);
-	spendLabel.layer.shadowRadius = 0;
-	spendLabel.layer.shadowOpacity = 1;
+	[UIHelpers applyTextShadow:spendLabel];
 	
 	spendSwitch.on = NO;
 	spendSwitch.onTintColor = [UIColor colorWithRed:0.16 green:0.32 blue:0.46 alpha:1.0];

@@ -25,7 +25,6 @@
 
 @property (weak,nonatomic) id <CharacterAddEditDelegate> delegate;
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *raceField;
 @property (weak, nonatomic) IBOutlet UITextField *classField;
@@ -38,7 +37,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *maxSurgesField;
 @property (weak, nonatomic) IBOutlet UITextField *healingSurgeValueField;
 @property (weak, nonatomic) IBOutlet UITextField *savingThrowModifierField;
-@property (weak, nonatomic) IBOutlet UITextField *milestonesField;
 @property (weak, nonatomic) IBOutlet UITextField *actionPointsField;
 @property (weak, nonatomic) IBOutlet UISwitch *saveAtStartSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *usePowerPointsSwitch;
@@ -55,7 +53,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *savingThrowLabel;
 @property (weak, nonatomic) IBOutlet UILabel *experienceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *goldLabel;
-@property (weak, nonatomic) IBOutlet UILabel *milestonesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *actionPointsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *saveAtStartLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usePowerPointsLabel;
@@ -64,9 +61,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelButton;
 
+@property (nonatomic, assign) BOOL editing;
+
 - (IBAction)imageFromAlbum:(id)sender;
-- (IBAction)saveCharacter:(id)sender;
-- (IBAction)cancel:(id)sender;
+- (void)saveCharacter;
+- (void)cancel;
 - (IBAction)didSwitchUsePowerPoints:(id)sender;
 
 -(void)customizeLabel:(UILabel*)label;
@@ -77,7 +76,6 @@
 
 @protocol CharacterAddEditDelegate <NSObject>
 
--(void)characterAddEditDidCancel;
 -(void)characterAddEditDidFinish;
 
 @end

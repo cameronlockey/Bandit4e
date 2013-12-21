@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CvU-mX-idM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="CvU-mX-idM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -640,9 +640,6 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bwv-uC-1Ew">
                                                     <rect key="frame" x="251" y="8" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="didSwitchUsePowerPoints:" destination="kmx-Jr-RPB" eventType="valueChanged" id="McH-l7-rol"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -698,26 +695,16 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Edit" image="tabEdit.png" id="9Zj-fA-0W3"/>
                     <connections>
-                        <outlet property="actionPointsField" destination="TYC-vr-L3m" id="evp-Ve-tOS"/>
-                        <outlet property="actionPointsLabel" destination="Is6-z3-sOd" id="Dnk-d8-Hdf"/>
                         <outlet property="cancelButton" destination="rw4-hk-ouD" id="84K-7c-G5z"/>
                         <outlet property="classField" destination="JIA-bR-Pcv" id="nuY-yh-XbA"/>
                         <outlet property="classLabel" destination="LTC-jQ-LFe" id="yO8-Ak-18P"/>
                         <outlet property="experienceField" destination="f5K-Ak-em3" id="AU8-XJ-F6d"/>
-                        <outlet property="experienceLabel" destination="FBg-cf-v4H" id="WDU-K8-TDK"/>
                         <outlet property="goldField" destination="2MY-T8-pmf" id="qUS-mL-6zT"/>
-                        <outlet property="goldLabel" destination="kfz-Bf-d6e" id="VD4-bh-v23"/>
                         <outlet property="healingSurgeValueField" destination="8Jw-jX-2nu" id="IqY-HX-A9h"/>
                         <outlet property="levelField" destination="NqM-Kk-Wgp" id="JTy-8e-Yln"/>
                         <outlet property="levelLabel" destination="SsT-yO-4ac" id="BRb-ot-Fnj"/>
                         <outlet property="maxHpField" destination="QI9-Us-AZh" id="NOg-RK-Mdi"/>
-                        <outlet property="maxHpLabel" destination="etU-aY-ieK" id="5Da-ru-v4C"/>
-                        <outlet property="maxPowerPointsField" destination="uOT-qr-fVg" id="tFV-kd-UMv"/>
-                        <outlet property="maxPowerPointsLabel" destination="2pM-fP-n20" id="sLj-LS-zLd"/>
                         <outlet property="maxSurgesField" destination="EyQ-VH-QGP" id="7ON-St-ywo"/>
-                        <outlet property="maxSurgesLabel" destination="V8A-Ea-1QQ" id="j7H-EP-lci"/>
-                        <outlet property="milestonesField" destination="nk5-tO-8gB" id="KY6-wz-WV3"/>
-                        <outlet property="milestonesLabel" destination="CZJ-Zn-zod" id="DTV-TY-Gw6"/>
                         <outlet property="nameField" destination="eZt-aX-lin" id="kua-8v-aQ6"/>
                         <outlet property="nameLabel" destination="fRd-Ve-FHg" id="gXQ-0N-zfp"/>
                         <outlet property="photoEditButton" destination="5KU-0S-aw3" id="E2t-xL-iG7"/>
@@ -725,14 +712,8 @@
                         <outlet property="photoView" destination="WGh-Oj-9S3" id="UqR-L1-Vlz"/>
                         <outlet property="raceField" destination="h6n-gd-IOv" id="EC7-Uf-fiG"/>
                         <outlet property="raceLabel" destination="2Cf-pk-4cY" id="bMd-qC-ljt"/>
-                        <outlet property="saveAtStartLabel" destination="p7z-LK-QGE" id="OtG-ay-Lmm"/>
-                        <outlet property="saveAtStartSwitch" destination="gvT-pA-nap" id="4O9-UO-fSp"/>
                         <outlet property="saveButton" destination="HVp-2d-jIs" id="58r-Yn-jN4"/>
-                        <outlet property="savingThrowLabel" destination="2Mz-t8-38D" id="MSw-n8-1lZ"/>
                         <outlet property="savingThrowModifierField" destination="a4n-Qd-eke" id="KJ0-Rw-rKw"/>
-                        <outlet property="surgeValueLabel" destination="QIX-EH-oBl" id="KVE-5E-O9S"/>
-                        <outlet property="usePowerPointsLabel" destination="IZC-Gv-vPL" id="m0T-eS-45Z"/>
-                        <outlet property="usePowerPointsSwitch" destination="Bwv-uC-1Ew" id="dP6-O8-nm3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FA9-5b-9Qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1669,6 +1650,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="evj-PK-M2a"/>
+        <segue reference="jPh-Rm-DpQ"/>
     </inferredMetricsTieBreakers>
 </document>

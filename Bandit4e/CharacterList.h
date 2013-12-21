@@ -11,7 +11,7 @@
 
 @class Character;
 
-@interface CharacterList : UITableViewController <CharacterAddEditDelegate>
+@interface CharacterList : UITableViewController
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSMutableArray *characters;

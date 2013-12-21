@@ -244,15 +244,21 @@
 	{
 		CharacterAddEdit *characterAdd = segue.destinationViewController;
 		characterAdd.managedObjectContext = managedObjectContext;
-		characterAdd.delegate = self;
+		characterAdd.title = @"NEW CHARACTER";
+		characterAdd.navigationItem.hidesBackButton = YES;
+		characterAdd.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CANCEL" style:UIBarButtonItemStylePlain target:characterAdd action:@selector(cancel)];
+		[characterAdd.navigationItem setBackBarButtonItem:nil];
 	}
 	else if ([segue.identifier isEqualToString:@"EditCharacter"])
 	{
 		CharacterAddEdit *characterEdit = segue.destinationViewController;
 		characterEdit.managedObjectContext = managedObjectContext;
-		characterEdit.delegate = self;
 		characterEdit.character = selectedCharacter;
-		characterEdit.navbar.topItem.title = [NSString stringWithFormat:@"EDIT %@",selectedCharacter.name];
+		characterEdit.title = @"EDIT CHARACTER";
+		characterEdit.editing = YES;
+		characterEdit.navigationItem.hidesBackButton = YES;
+		characterEdit.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CANCEL" style:UIBarButtonItemStylePlain target:characterEdit action:@selector(cancel)];
+		[characterEdit.navigationItem setBackBarButtonItem:nil];
 	}
 	else if ([segue.identifier isEqualToString:@"PlayCharacter"])
 	{
@@ -261,18 +267,6 @@
 		combat.managedObjectContext = managedObjectContext;
 		combat.character = selectedCharacter;		
 	}
-}
-
-/* !CharacterAddEditDelegate Methods
- * ---------------------------------------------*/
--(void)characterAddEditDidCancel
-{
-	[self dismissViewControllerAnimated:YES completion:NULL];
-}
-
--(void)characterAddEditDidFinish
-{
-	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

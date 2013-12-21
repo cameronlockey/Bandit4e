@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CharacterAddEdit.h"
 #import "CustomBadge.h"
 #import "Damage.h"
 #import "Experience.h"
@@ -16,7 +17,7 @@
 
 @class Character;
 
-@interface Combat : UIViewController <DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, UIAlertViewDelegate>
+@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, UIAlertViewDelegate>
 {
 	UILabel *actionPoints;
 	UILabel *experiencePoints;
@@ -33,7 +34,6 @@
 @property (strong,nonatomic) Experience *experienceController;
 @property (strong,nonatomic) Gold *goldController;
 
-@property (weak, nonatomic) IBOutlet UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIView *characterInfoView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *characterImageView;
@@ -59,7 +59,7 @@
 /* !Combat Methods
  * ---------------------------------------------*/
 -(void)configureButton:(UIButton*)button LabelText:(NSString*)text;
--(IBAction)returnToCharacterList:(id)sender;
+-(void)returnToCharacterList;
 //-(IBAction)startTurn:(id)sender;
 -(void)updateCombatButton:(UIButton*)button Label:(UILabel*)label Value:(NSString*)value;
 
@@ -76,5 +76,6 @@
 -(void)updateTempHpBadge;
 -(void)useActionPoint;
 -(void)usePowerPoints:(int)points;
+-(void)refreshCharacter;
 
 @end

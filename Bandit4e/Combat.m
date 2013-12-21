@@ -23,7 +23,7 @@
 
 @synthesize managedObjectContext, character, restOptions;
 @synthesize characterInfoView, characterImageView, nameLabel, raceClassLevelLabel, hpLabel, surgesLabel, failedSavesValueLabel, failedSavesLabel, hitPoints, healingSurges;
-@synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startEndTurnButton, navBar;
+@synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startEndTurnButton;
 @synthesize damageController, healController, experienceController, goldController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -39,39 +39,31 @@
     [super viewDidLoad];
 	
 	self.view.backgroundColor = VIEWBG;
-	navBar.frame = CGRectMake(navBar.frame.origin.x, navBar.frame.origin.y, navBar.frame.size.width, 64);
+	self.title = @"COMBAT";
+	UIImage *characterListIcon = [UIImage imageNamed:@"icon-characters.png"];
+	UIBarButtonItem *characterListButton = [[UIBarButtonItem alloc] initWithImage:[characterListIcon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(returnToCharacterList)];
+	self.navigationItem.leftBarButtonItem = characterListButton;
 	self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
 		
 	// set up characterInfo bg
 	characterInfoView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLight.png"]];
-	characterInfoView.layer.shadowColor = [[UIColor blackColor] CGColor];
-	characterInfoView.layer.shadowOffset = CGSizeMake(0,1);
-	characterInfoView.layer.shadowRadius = 2.0;
-	characterInfoView.layer.shadowOpacity = 0.8f;
 	characterInfoView.clipsToBounds = NO;
 	
 	// set up name label
-	nameLabel.text = character.name;
 	nameLabel.font = MISSION(29.0f);
 	nameLabel.textColor = GRAY;
-	nameLabel.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
-	nameLabel.layer.shadowOffset = CGSizeMake(0,1);
-	nameLabel.layer.shadowRadius = 0;
-	nameLabel.layer.shadowOpacity = 1;
+	[UIHelpers applyTextShadow:nameLabel];
 	nameLabel.clipsToBounds = NO;
 	
 	// set up raceClassLevel label
-	raceClassLevelLabel.text = [NSString stringWithFormat:@"LEVEL %@ %@ %@",character.level.stringValue, character.race, character.classname];
 	raceClassLevelLabel.font = ARVIL(21.0f);
 	raceClassLevelLabel.textColor = GRAY;
 	[UIHelpers applyTextShadow:raceClassLevelLabel];
 	
 	// set up HPlabels
-	hpLabel.text = [NSString stringWithFormat:@"%@/%@",character.currentHp, character.maxHp];
 	hpLabel.font = LEAGUE(44.0f);
 	hpLabel.textColor = GRAY;
 	[UIHelpers applyTextShadow:hpLabel];
-	
 	hitPoints.font = LEAGUE(18.0f);
 	hitPoints.textColor = GRAY;
 	[UIHelpers applyTextShadow:hitPoints];
@@ -82,7 +74,6 @@
 	surgesLabel.textColor = GRAY;
 	[UIHelpers applyTextShadow:surgesLabel];
 	failedSavesValueLabel.text = character.failedSaves.stringValue;
-	
 	healingSurges.font = LEAGUE(18.0f);
 	healingSurges.textColor = GRAY;
 	[UIHelpers applyTextShadow:healingSurges];
@@ -111,26 +102,11 @@
 	failedSavesLabel.textColor = GRAY;
 	[UIHelpers applyTextShadow:failedSavesLabel];
 	
-	
-	// Place the image
-	UIImage *characterPhoto;
-	if (character.photo != nil)
-		characterPhoto = [[UIImage alloc] initWithData:character.photo];
-	else
-		characterPhoto = [UIImage imageNamed:@"noPhoto.png"];
-	
-	characterImageView.image = characterPhoto;
-	characterImageView.contentMode = UIViewContentModeScaleAspectFill;
-	characterImageView.layer.borderColor = [[UIColor colorWithWhite:0.5 alpha:0.5] CGColor];
-	characterImageView.layer.borderWidth = 1.0f;
-	characterImageView.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
-	characterImageView.layer.shadowOffset = CGSizeMake(0,1);
-	characterImageView.layer.shadowRadius = 0;
-	characterImageView.layer.shadowOpacity = 1;
-	
+	// setup PP
 	if (!character.usesPp.intValue)
 		ppButton.enabled = NO;
 	
+	// initialize current HP and Surges
 	if (character.currentHp == nil) {
 		character.currentHp = character.maxHp;
 		character.currentSurges = character.maxSurges;
@@ -150,15 +126,11 @@
 	[startEndTurnButton setTitleEdgeInsets:UIEdgeInsetsMake(9, 10, 10, 10)];
 	[UIHelpers applyTextShadow:startEndTurnButton.titleLabel];
 	
-	// fix combat buttons
+	// fix unlabeled combat buttons
 	[self configureButton:damageButton LabelText:nil];
 	[self configureButton:healButton LabelText:nil];
-	[self configureButton:apButton LabelText:character.actionPoints.stringValue];
-	[self configureButton:goldButton LabelText:character.gold.stringValue];
-	[self configureButton:expButton LabelText:character.experience.stringValue];
 	[self configureButton:tempHpButton LabelText:nil];
 	[self configureButton:restButton LabelText:nil];
-	[self configureButton:ppButton LabelText:character.currentPp.stringValue];
 	
 	// create TempHP Badge
 	NSString *tempHpString = character.tempHp.stringValue;
@@ -175,7 +147,10 @@
 	
 	// if no tempHP, set hidden
 	if (character.tempHp.intValue < 1)
-		tempBadge.hidden = YES;	
+		tempBadge.hidden = YES;
+
+	// set character data in views
+	[self refreshCharacter];
 	
 }
 
@@ -209,6 +184,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) refreshCharacter
+{
+	// update character info view with data
+	nameLabel.text = character.name;
+	raceClassLevelLabel.text = [NSString stringWithFormat:@"LEVEL %@ %@ %@",character.level.stringValue, character.race, character.classname];
+	
+	// update the character image if we have one
+	UIImage *characterPhoto;
+	if (character.photo != nil)
+		characterPhoto = [[UIImage alloc] initWithData:character.photo];
+	else
+		characterPhoto = [UIImage imageNamed:@"noPhoto.png"];
+	
+	characterImageView.contentMode = UIViewContentModeScaleAspectFill;
+	characterImageView.layer.borderColor = [[UIColor colorWithWhite:0.5 alpha:0.5] CGColor];
+	characterImageView.layer.borderWidth = 1.0f;
+	characterImageView.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
+	characterImageView.layer.shadowOffset = CGSizeMake(0,1);
+	characterImageView.layer.shadowRadius = 0;
+	characterImageView.layer.shadowOpacity = 1;
+	characterImageView.image = characterPhoto;
+	
+	// stat labels
+	[self updateStatLabels];
+	
+	// update labeled buttons
+	[self configureButton:apButton LabelText:character.actionPoints.stringValue];
+	[self configureButton:goldButton LabelText:character.gold.stringValue];
+	[self configureButton:expButton LabelText:character.experience.stringValue];
+	[self configureButton:ppButton LabelText:character.currentPp.stringValue];
+	
+	
+}
+
 -(void)configureButton:(UIButton *)button LabelText:(NSString *)text
 {
 	UIEdgeInsets insets = UIEdgeInsetsMake(50, 4, 4, 4);
@@ -239,9 +248,8 @@
 		label.text = 0;
 }
 
-- (IBAction)returnToCharacterList:(id)sender
+- (void)returnToCharacterList
 {
-	
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -345,9 +353,6 @@
 
 - (void)gainMilestone
 {
-	// gain a milestone
-	character.milestones = numInt(character.milestones.intValue + 1);
-	
 	// gain an action point
 	character.actionPoints = numInt(character.actionPoints.intValue + 1);
 	[self updateCombatButton:apButton Label:actionPoints Value:character.actionPoints.stringValue];
@@ -405,7 +410,6 @@
 
 - (void)updateStatLabels
 {
-	
 	// reset hp and surges
 	hpLabel.text = [NSString stringWithFormat:@"%@/%@",character.currentHp, character.maxHp];
 	surgesLabel.text = [NSString stringWithFormat:@"%@/%@", character.currentSurges, character.maxSurges];
@@ -635,6 +639,25 @@
 		goldController.character = character;
 		goldController.delegate = self;
 	}
+	else if ([segue.identifier isEqualToString:@"EditCharacter"])
+	{
+		CharacterAddEdit *characterEdit = segue.destinationViewController;
+		characterEdit.managedObjectContext = managedObjectContext;
+		characterEdit.character = character;
+		characterEdit.delegate = self;
+		characterEdit.editing = YES;
+		characterEdit.title = @"EDIT CHARACTER";
+		characterEdit.navigationItem.hidesBackButton = YES;
+		characterEdit.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CANCEL" style:UIBarButtonItemStylePlain target:characterEdit action:@selector(cancel)];
+		[characterEdit.navigationItem setBackBarButtonItem:nil];
+	}
+}
+
+/* !CharacterAddEditDelegate Methods
+ * ---------------------------------------------*/
+- (void) characterAddEditDidFinish
+{
+	[self refreshCharacter];
 }
 
 @end
