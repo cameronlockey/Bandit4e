@@ -256,6 +256,7 @@
 		characterEdit.character = selectedCharacter;
 		characterEdit.title = @"EDIT CHARACTER";
 		characterEdit.editing = YES;
+		characterEdit.delegate = self;
 		characterEdit.navigationItem.hidesBackButton = YES;
 		characterEdit.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CANCEL" style:UIBarButtonItemStylePlain target:characterEdit action:@selector(cancel)];
 		[characterEdit.navigationItem setBackBarButtonItem:nil];
@@ -267,6 +268,13 @@
 		combat.managedObjectContext = managedObjectContext;
 		combat.character = selectedCharacter;		
 	}
+}
+
+/* !CharacterAddEditDelegate Methods
+ * ---------------------------------------------*/
+-(void)characterAddEditDidFinish
+{
+	self.editing = NO;
 }
 
 @end

@@ -427,7 +427,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gH-A5-vkI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gH-A5-vkI">
                                                     <rect key="frame" x="237" y="7" width="63" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -460,7 +460,7 @@
                         <outlet property="levelLabel" destination="zm9-bg-LaV" id="IWQ-6j-tAs"/>
                         <outlet property="maxHpField" destination="DnU-r4-CNS" id="ZP4-dB-VTM"/>
                         <outlet property="maxHpLabel" destination="DHD-MZ-GkB" id="872-Hp-tnN"/>
-                        <outlet property="maxPowerPointsField" destination="9gH-A5-vkI" id="z10-Hj-FdB"/>
+                        <outlet property="maxPowerPointsField" destination="9gH-A5-vkI" id="vm1-qu-UIh"/>
                         <outlet property="maxPowerPointsLabel" destination="y9D-yN-2Hu" id="PaD-tT-x9G"/>
                         <outlet property="maxSurgesField" destination="UN7-MF-BdF" id="b9H-uz-QQ3"/>
                         <outlet property="maxSurgesLabel" destination="EAM-J1-yEZ" id="3T0-1j-QIK"/>
@@ -569,10 +569,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFC-Ja-1SY">
-                                <rect key="frame" x="9" y="211" width="69" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yFC-Ja-1SY">
+                                <rect key="frame" x="9" y="211" width="75" height="76"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="DAMAGE" backgroundImage="damageButton.png">
+                                <state key="normal" title="DAMAGE" backgroundImage="topLeftCorner.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -581,9 +582,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLE-83-AfR">
-                                <rect key="frame" x="9" y="289" width="69" height="70"/>
+                                <rect key="frame" x="9" y="287" width="75" height="75"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="ACTION POINT" backgroundImage="combatButton.png">
+                                <state key="normal" title="ACTION POINT" backgroundImage="bottomLeft.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -592,9 +593,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9uT-cV-Gys">
-                                <rect key="frame" x="87" y="211" width="69" height="70"/>
+                                <rect key="frame" x="84" y="211" width="76" height="76"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="HEAL" backgroundImage="healButton.png">
+                                <state key="normal" title="HEAL" backgroundImage="topInner.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -603,9 +604,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-gb-QeG">
-                                <rect key="frame" x="87" y="289" width="69" height="70"/>
+                                <rect key="frame" x="84" y="287" width="76" height="75"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                <state key="normal" title="GOLD" backgroundImage="combatButton.png">
+                                <state key="normal" title="GOLD" backgroundImage="bottomInner.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -613,29 +614,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PI-gE-gkp">
-                                <rect key="frame" x="165" y="289" width="69" height="70"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                <state key="normal" title="EXPERIENCE" backgroundImage="combatButton.png">
+                                <rect key="frame" x="160" y="287" width="76" height="75"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="EXPERIENCE" backgroundImage="bottomInner.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="tw6-NU-zrT" kind="modal" identifier="Experience" modalTransitionStyle="crossDissolve" id="hcs-Ml-gpQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61S-UY-Pi6">
-                                <rect key="frame" x="165" y="211" width="69" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-27-C15">
+                                <rect key="frame" x="236" y="287" width="75" height="75"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="TEMP HP" backgroundImage="tempButton.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="confirmGainTempHp:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="f4P-yM-1VI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z1e-27-C15">
-                                <rect key="frame" x="243" y="289" width="69" height="70"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="POWER POINT" backgroundImage="combatButton.png">
+                                <state key="normal" title="POWER POINT" backgroundImage="bottomInner.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -643,13 +634,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU2-w3-AW9">
-                                <rect key="frame" x="243" y="211" width="69" height="70"/>
+                                <rect key="frame" x="235" y="211" width="76" height="76"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="REST" backgroundImage="restButton.png">
+                                <state key="normal" title="REST" backgroundImage="topRightCorner.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showRestOptions:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="hDW-2F-9zc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61S-UY-Pi6">
+                                <rect key="frame" x="160" y="211" width="76" height="76"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="TEMP HP" backgroundImage="topInner.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmGainTempHp:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="f4P-yM-1VI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDb-n8-rid">
@@ -664,6 +665,38 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9g7-u9-rcL">
+                                <rect key="frame" x="9" y="211" width="300" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu7-z4-NyS">
+                                <rect key="frame" x="9" y="362" width="151" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="startBg.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggleTurn:" destination="SDr-D7-ekQ" eventType="touchUpInside" id="L9I-my-7kP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tew-KF-d2X">
+                                <rect key="frame" x="160" y="362" width="76" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="REMINDERS" backgroundImage="lightInner.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e73-f7-Izc">
+                                <rect key="frame" x="236" y="362" width="75" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <state key="normal" title="NOTES" backgroundImage="lightRight.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -682,9 +715,12 @@
                         <outlet property="hitPoints" destination="hpp-v0-NH9" id="GbW-0K-ykV"/>
                         <outlet property="hpLabel" destination="Rba-Ao-lsl" id="jOm-7T-dC8"/>
                         <outlet property="nameLabel" destination="cMw-HY-a6w" id="t2W-Pf-6gc"/>
+                        <outlet property="notesButton" destination="e73-f7-Izc" id="UAb-9P-EJa"/>
                         <outlet property="ppButton" destination="Z1e-27-C15" id="QUb-H5-cMZ"/>
                         <outlet property="raceClassLevelLabel" destination="ZZ5-Vv-khg" id="Ik5-7m-XXy"/>
+                        <outlet property="remindersButton" destination="Tew-KF-d2X" id="6oS-RH-fJD"/>
                         <outlet property="restButton" destination="fU2-w3-AW9" id="ybZ-J0-D8s"/>
+                        <outlet property="startTurnButton" destination="Xu7-z4-NyS" id="Iby-20-Ubn"/>
                         <outlet property="surgesLabel" destination="TuL-GN-12d" id="iMm-R3-6T7"/>
                         <outlet property="tempHpButton" destination="61S-UY-Pi6" id="QWJ-rh-tA6"/>
                     </connections>
@@ -1019,13 +1055,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="combatButton.png" width="69" height="70"/>
-        <image name="damageButton.png" width="69" height="70"/>
-        <image name="healButton.png" width="69" height="70"/>
+        <image name="bottomInner.png" width="76" height="75"/>
+        <image name="bottomLeft.png" width="75" height="75"/>
+        <image name="lightInner.png" width="75" height="76"/>
+        <image name="lightRight.png" width="76" height="76"/>
         <image name="noPhoto.png" width="73" height="73"/>
-        <image name="restButton.png" width="69" height="70"/>
+        <image name="startBg.png" width="151" height="76"/>
         <image name="tabCombat.png" width="30" height="30"/>
-        <image name="tempButton.png" width="69" height="70"/>
+        <image name="topInner.png" width="76" height="76"/>
+        <image name="topLeftCorner.png" width="75" height="76"/>
+        <image name="topRightCorner.png" width="77" height="76"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

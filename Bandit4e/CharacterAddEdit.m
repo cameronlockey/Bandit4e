@@ -51,7 +51,7 @@
 	// Add all text fields you want to be able to skip between to the keyboard controls
 	// Sets the order of prev/next	
 	NSMutableArray *textFields = [NSMutableArray arrayWithObjects:
-									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,savingThrowModifierField,experienceField,goldField, actionPointsField,nil];
+									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,savingThrowModifierField,experienceField,goldField, actionPointsField, maxPowerPointsField,nil];
 	
 	self.keyboardControls.textFields = textFields;
 	
@@ -180,6 +180,11 @@
 	character.surgeValue = nums(healingSurgeValueField.text);
 	character.saveModifier = nums(savingThrowModifierField.text);
 	character.actionPoints = nums(actionPointsField.text);
+	
+	if ([maxPowerPointsField.text isEqualToString:@""])
+	{
+		maxPowerPointsField.text = @"0";
+	}
 	character.maxPp = nums(maxPowerPointsField.text);
 	
 	// set values for boolean settings
@@ -227,15 +232,9 @@
     //  Commit item to core data
     [Constants save:managedObjectContext];
 	
-	if (delegate == nil) {
-		[UIHelpers showAlertWithTitle:@"Saved!" msg:@"Your character's info has been saved."];
-	}
-	else
-	{
-		//  Automatically pop to previous view now we're done adding
-		[delegate characterAddEditDidFinish];
-		[self.navigationController popViewControllerAnimated:YES];
-	}
+	//  Automatically pop to previous view now we're done adding
+	[delegate characterAddEditDidFinish];
+	[self.navigationController popViewControllerAnimated:YES];
 	
 }
 
@@ -412,6 +411,7 @@
 {
 	return 30;
 }
+
 
 
 @end

@@ -82,4 +82,9 @@
 	label.layer.shadowOpacity = 1;
 }
 
++ (void) showDeadAlert
+{
+	[UIHelpers showAlertWithTitle:@"You are dead."];
+}
+
 @end

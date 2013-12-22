@@ -70,5 +70,6 @@
 						  tag:(int)tag;
 
 + (void) applyTextShadow:(UILabel*)label;
++ (void) showDeadAlert;
 
 @end

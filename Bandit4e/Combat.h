@@ -24,6 +24,7 @@
 	UILabel *gold;
 	UILabel *powerPoints;
 	CustomBadge *tempBadge;
+	BOOL start;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -53,29 +54,43 @@
 @property (weak, nonatomic) IBOutlet UIButton *expButton;
 @property (weak, nonatomic) IBOutlet UIButton *restButton;
 @property (weak, nonatomic) IBOutlet UIButton *ppButton;
-@property (weak, nonatomic) IBOutlet UIButton *startEndTurnButton;
 @property (weak, nonatomic) IBOutlet UIButton *goldButton;
+@property (weak, nonatomic) IBOutlet UIButton *startTurnButton;
+@property (weak, nonatomic) IBOutlet UIButton *remindersButton;
+@property (weak, nonatomic) IBOutlet UIButton *notesButton;
 
-/* !Combat Methods
+/* !Navigation Methods
  * ---------------------------------------------*/
--(void)configureButton:(UIButton*)button LabelText:(NSString*)text;
 -(void)returnToCharacterList;
-//-(IBAction)startTurn:(id)sender;
--(void)updateCombatButton:(UIButton*)button Label:(UILabel*)label Value:(NSString*)value;
 
--(void)addFailedDeathSave;
+/* !UI Setup/Update Methods
+ * ---------------------------------------------*/
+-(void)configureButton:(UIButton*)button LabelText:(NSString*)labelText Icon:(UIImage*)icon;
+-(void)updateCombatButton:(UIButton*)button Label:(UILabel*)label Value:(NSString*)value;
+-(void)updateTurnButton;
+-(void)refreshCharacter;
+-(void)updateTempHpBadge;
+-(void)updateStatLabels;
+
+/* !Interaction Handler Methods
+ * ---------------------------------------------*/
+-(IBAction)toggleTurn:(id)sender;
 -(IBAction)confirmGainTempHp:(id)sender;
 -(IBAction)confirmUseActionPoint:(id)sender;
 -(IBAction)confirmUsePowerPoint:(id)sender;
+
+-(void)startTurn;
+-(void)endTurn;
+
+/* !Data Management Methods
+ * ---------------------------------------------*/
+-(void)addFailedDeathSave;
 -(void)extendedRest;
 -(void)gainMilestone;
 -(void)gainTempHp:(int)tempHp;
 -(void)handleDying;
 -(void)shortRest:(BOOL)milestone;
--(void)updateStatLabels;
--(void)updateTempHpBadge;
 -(void)useActionPoint;
 -(void)usePowerPoints:(int)points;
--(void)refreshCharacter;
 
 @end
