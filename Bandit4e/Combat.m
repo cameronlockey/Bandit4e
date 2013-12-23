@@ -10,6 +10,8 @@
 #import "Character.h"
 #import "Combat.h"
 #import "Constants.h"
+#import "Note.h"
+#import "Reminder.h"
 #import "UIHelpers.h"
 
 @interface Combat ()<UIActionSheetDelegate>
@@ -24,7 +26,7 @@
 @synthesize managedObjectContext, character, restOptions;
 @synthesize characterInfoView, characterImageView, nameLabel, raceClassLevelLabel, hpLabel, surgesLabel, failedSavesValueLabel, failedSavesLabel, hitPoints, healingSurges;
 @synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startTurnButton, remindersButton, notesButton;
-@synthesize damageController, healController, experienceController, goldController;
+@synthesize damageController, healController, experienceController, goldController, notesController, remindersController;
 
 /* !Default ViewController Methods
  * ---------------------------------------------*/
@@ -144,7 +146,7 @@
 		tempBadge.hidden = YES;
 
 	// set character data in views
-	[self refreshCharacter];
+	[self refreshCharacter];	
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -248,7 +250,6 @@
 	{
 		text = @"END TURN";
 	}
-	NSLog(@"text: %@", text);
 	[startTurnButton setTitle:text forState:UIControlStateNormal];
 }
 
@@ -435,6 +436,27 @@
 
 /* !Data Management Methods
  * ---------------------------------------------*/
+-(void)insertTestReminder
+{
+		Reminder *reminder = (Reminder*)[NSEntityDescription insertNewObjectForEntityForName:@"Reminder" inManagedObjectContext:managedObjectContext];
+		reminder.text = @"+2 Attack Rolls";
+		reminder.showAtStart = 0;
+		[character addRemindersObject:reminder];
+		[Constants save:managedObjectContext];
+}
+
+-(void)insertTestNotes
+{
+	if (character.notes.count == 0) {
+		
+		Note *note = (Note*)[NSEntityDescription  insertNewObjectForEntityForName:@"Note"
+														   inManagedObjectContext:managedObjectContext];
+		note.text = @"Found a huge sword.";
+		[character addNotesObject:note];
+		[Constants save:managedObjectContext];
+	}
+}
+
 -(void)addFailedDeathSave
 {
 	character.failedSaves = numInt(character.failedSaves.intValue+1);
@@ -729,6 +751,20 @@
 		characterEdit.navigationItem.hidesBackButton = YES;
 		characterEdit.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CANCEL" style:UIBarButtonItemStylePlain target:characterEdit action:@selector(cancel)];
 		[characterEdit.navigationItem setBackBarButtonItem:nil];
+	}
+	else if ([segue.identifier isEqualToString:@"Notes"])
+	{
+		UINavigationController *notesNav = segue.destinationViewController;
+		notesController = notesNav.viewControllers.firstObject;
+		notesController.managedObjectContext = managedObjectContext;
+		notesController.character = character;
+	}
+	else if ([segue.identifier isEqualToString:@"Reminders"])
+	{
+		UINavigationController *remindersNav = segue.destinationViewController;
+		remindersController = remindersNav.viewControllers.firstObject;
+		remindersController.managedObjectContext = managedObjectContext;
+		remindersController.character = character;
 	}
 }
 

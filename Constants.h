@@ -28,6 +28,7 @@
 
 
 #define VIEWBG				[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]
+#define TABLEBG				[UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]]
 
 @interface Constants : NSObject
 

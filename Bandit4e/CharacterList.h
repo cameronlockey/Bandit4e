@@ -15,6 +15,7 @@
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSMutableArray *characters;
+@property (strong,nonatomic) UIActivityIndicatorView *activity;
 
 @property (strong,nonatomic) Character *selectedCharacter;
 

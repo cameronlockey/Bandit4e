@@ -39,6 +39,11 @@
 		7E1E5A5C18665675004F3380 /* topLeftCorner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E5A3D18665675004F3380 /* topLeftCorner@2x.png */; };
 		7E1E5A5D18665675004F3380 /* topRightCorner.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E5A3E18665675004F3380 /* topRightCorner.png */; };
 		7E1E5A5E18665675004F3380 /* topRightCorner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E5A3F18665675004F3380 /* topRightCorner@2x.png */; };
+		7E1E5A6518672DA3004F3380 /* Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E5A6418672DA3004F3380 /* Notes.m */; };
+		7E1E5A6818677EE0004F3380 /* NoteAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E5A6718677EE0004F3380 /* NoteAdd.m */; };
+		7E1E5A721867920F004F3380 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E5A711867920F004F3380 /* NoteCell.m */; };
+		7E1E5A7518679D1E004F3380 /* Reminders.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E5A7418679D1E004F3380 /* Reminders.m */; };
+		7E1E5A7818679F8F004F3380 /* ReminderAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E5A7718679F8F004F3380 /* ReminderAdd.m */; };
 		7E227CCA18410E7700CC449F /* keyboardControlBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E227CC818410E7700CC449F /* keyboardControlBg.png */; };
 		7E227CCB18410E7700CC449F /* keyboardControlBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E227CC918410E7700CC449F /* keyboardControlBg@2x.png */; };
 		7E227CCE184117EC00CC449F /* noPhoto.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E227CCC184117EC00CC449F /* noPhoto.png */; };
@@ -160,6 +165,16 @@
 		7E1E5A3D18665675004F3380 /* topLeftCorner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topLeftCorner@2x.png"; sourceTree = "<group>"; };
 		7E1E5A3E18665675004F3380 /* topRightCorner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topRightCorner.png; sourceTree = "<group>"; };
 		7E1E5A3F18665675004F3380 /* topRightCorner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topRightCorner@2x.png"; sourceTree = "<group>"; };
+		7E1E5A6318672DA3004F3380 /* Notes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notes.h; sourceTree = "<group>"; };
+		7E1E5A6418672DA3004F3380 /* Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notes.m; sourceTree = "<group>"; };
+		7E1E5A6618677EE0004F3380 /* NoteAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteAdd.h; sourceTree = "<group>"; };
+		7E1E5A6718677EE0004F3380 /* NoteAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteAdd.m; sourceTree = "<group>"; };
+		7E1E5A701867920F004F3380 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
+		7E1E5A711867920F004F3380 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		7E1E5A7318679D1E004F3380 /* Reminders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminders.h; sourceTree = "<group>"; };
+		7E1E5A7418679D1E004F3380 /* Reminders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminders.m; sourceTree = "<group>"; };
+		7E1E5A7618679F8F004F3380 /* ReminderAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderAdd.h; sourceTree = "<group>"; };
+		7E1E5A7718679F8F004F3380 /* ReminderAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderAdd.m; sourceTree = "<group>"; };
 		7E227CC818410E7700CC449F /* keyboardControlBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyboardControlBg.png; sourceTree = "<group>"; };
 		7E227CC918410E7700CC449F /* keyboardControlBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "keyboardControlBg@2x.png"; sourceTree = "<group>"; };
 		7E227CCC184117EC00CC449F /* noPhoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noPhoto.png; sourceTree = "<group>"; };
@@ -323,6 +338,16 @@
 			name = "combat buttons";
 			sourceTree = "<group>";
 		};
+		7E1E5A6918679125004F3380 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E1E5A701867920F004F3380 /* NoteCell.h */,
+				7E1E5A711867920F004F3380 /* NoteCell.m */,
+			);
+			name = "Custom Views";
+			path = Bandit4e;
+			sourceTree = "<group>";
+		};
 		7E74437216C86A6C00CD314A /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +424,7 @@
 				7E4CBFA61837FF0F00F684C3 /* Main.storyboard */,
 				7ED04E411673905200BABBA1 /* CoreData */,
 				7ED04E2316738F9F00BABBA1 /* Bandit4e */,
+				7E1E5A6918679125004F3380 /* Custom Views */,
 				7ED04E421673A30900BABBA1 /* Helpers */,
 				7ED04E2416738F9F00BABBA1 /* Supporting Files */,
 				7ED04E1A16738F9F00BABBA1 /* Frameworks */,
@@ -474,8 +500,8 @@
 				7E39CE2116C9E1B300F5582D /* UIHelpers.h */,
 				7E39CE2216C9E1B300F5582D /* UIHelpers.m */,
 				7ED4A09D1673D36400376255 /* BSKeyboardControls */,
-				7ED04E431673A33D00BABBA1 /* CoreDataHelper.m */,
 				7ED04E441673A33D00BABBA1 /* CoreDataHelper.h */,
+				7ED04E431673A33D00BABBA1 /* CoreDataHelper.m */,
 				7E464C8116D94A5E00C37390 /* Constants.h */,
 				7E464C8216D94A5E00C37390 /* Constants.m */,
 			);
@@ -536,6 +562,14 @@
 				7EE0717C16D2747100EE1BB2 /* Experience.m */,
 				7E464C8416D978C200C37390 /* Gold.h */,
 				7E464C8516D978C200C37390 /* Gold.m */,
+				7E1E5A6318672DA3004F3380 /* Notes.h */,
+				7E1E5A6418672DA3004F3380 /* Notes.m */,
+				7E1E5A6618677EE0004F3380 /* NoteAdd.h */,
+				7E1E5A6718677EE0004F3380 /* NoteAdd.m */,
+				7E1E5A7318679D1E004F3380 /* Reminders.h */,
+				7E1E5A7418679D1E004F3380 /* Reminders.m */,
+				7E1E5A7618679F8F004F3380 /* ReminderAdd.h */,
+				7E1E5A7718679F8F004F3380 /* ReminderAdd.m */,
 			);
 			name = Combat;
 			sourceTree = "<group>";
@@ -707,10 +741,13 @@
 				7ED04E2A16738F9F00BABBA1 /* main.m in Sources */,
 				7ED04E2E16738F9F00BABBA1 /* AppDelegate.m in Sources */,
 				7ED04E3716738FA000BABBA1 /* Bandit4e.xcdatamodeld in Sources */,
+				7E1E5A6518672DA3004F3380 /* Notes.m in Sources */,
+				7E1E5A7518679D1E004F3380 /* Reminders.m in Sources */,
 				7ED04E451673A33D00BABBA1 /* CoreDataHelper.m in Sources */,
 				7ED04E4A1673BFA600BABBA1 /* CharacterList.m in Sources */,
 				7ED04E501673C09700BABBA1 /* Note.m in Sources */,
 				7ED04E531673C09700BABBA1 /* Reminder.m in Sources */,
+				7E1E5A7818679F8F004F3380 /* ReminderAdd.m in Sources */,
 				7ED04E561673C09700BABBA1 /* Condition.m in Sources */,
 				7ED04E591673C58200BABBA1 /* CharacterAddEdit.m in Sources */,
 				7ED4A0A31673D36400376255 /* BSKeyboardControls.m in Sources */,
@@ -719,8 +756,10 @@
 				7E74438916C86D5200CD314A /* Damage.m in Sources */,
 				7E39CE2016C9CC8700F5582D /* Heal.m in Sources */,
 				7E39CE2316C9E1B300F5582D /* UIHelpers.m in Sources */,
+				7E1E5A6818677EE0004F3380 /* NoteAdd.m in Sources */,
 				7EE0717D16D2747100EE1BB2 /* Experience.m in Sources */,
 				7E464C8316D94A5E00C37390 /* Constants.m in Sources */,
+				7E1E5A721867920F004F3380 /* NoteCell.m in Sources */,
 				7E464C8616D978C200C37390 /* Gold.m in Sources */,
 				7E750F6616E0EDD500A3374C /* CustomBadge.m in Sources */,
 				7ED9657716F663C6009FDB5A /* ConditionsList.m in Sources */,

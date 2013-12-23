@@ -13,11 +13,13 @@
 #import "Experience.h"
 #import "Gold.h"
 #import "Heal.h"
+#import "Notes.h"
+#import "Reminders.h"
 
 
 @class Character;
 
-@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, UIAlertViewDelegate>
+@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, UIAlertViewDelegate>
 {
 	UILabel *actionPoints;
 	UILabel *experiencePoints;
@@ -34,6 +36,8 @@
 @property (strong,nonatomic) Heal *healController;
 @property (strong,nonatomic) Experience *experienceController;
 @property (strong,nonatomic) Gold *goldController;
+@property (strong,nonatomic) Notes *notesController;
+@property (strong,nonatomic) Reminders *remindersController;
 
 @property (weak, nonatomic) IBOutlet UIView *characterInfoView;
 
@@ -84,6 +88,8 @@
 
 /* !Data Management Methods
  * ---------------------------------------------*/
+-(void)insertTestNotes;
+-(void)insertTestReminder;
 -(void)addFailedDeathSave;
 -(void)extendedRest;
 -(void)gainMilestone;

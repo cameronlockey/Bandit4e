@@ -20,7 +20,7 @@
 
 @implementation CharacterList
 
-@synthesize managedObjectContext, characters, selectedCharacter;
+@synthesize managedObjectContext, characters, selectedCharacter, activity;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,11 +38,15 @@
 	self.title = @"CHARACTERS";
 	
 	self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	self.tableView.allowsSelectionDuringEditing = YES;
 	
 	self.tableView.rowHeight = 80;
-	self.tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tableBg.png"]];
+	self.view.backgroundColor = TABLEBG;
+	self.tableView.backgroundColor = TABLEBG;
+	
+	activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+	activity.center = CGPointMake(self.parentViewController.view.frame.size.width/2, self.parentViewController.view.frame.size.height/2);
+	activity.hidesWhenStopped = YES;
+	[[UIApplication sharedApplication].windows.firstObject addSubview:activity];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -54,6 +58,11 @@
 	}
 	else
 		self.tableView.scrollEnabled = YES;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+	[activity stopAnimating];
 }
 
 -(void)readDataForTable
@@ -140,6 +149,8 @@
 	
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
+	cell.tintColor = [UIColor darkGrayColor];
+	
 	// Draw top border only on first cell
 	if (indexPath.row == 0) {
 		UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
@@ -148,12 +159,12 @@
 	}
 	else
 	{
-		UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 2)];
+		UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
 		topLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
 		[cell addSubview:topLineView];
-	}	
+	}
 	
-	UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height, self.view.bounds.size.width, 1)];
+	UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height-1, self.view.bounds.size.width, 1)];
 	bottomLineView.backgroundColor = [UIColor colorWithWhite:0.45 alpha:1.0];
 	[cell addSubview:bottomLineView];
 	   
@@ -224,18 +235,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+	[activity startAnimating];
 	selectedCharacter = [characters objectAtIndex:indexPath.row];
-	
-	if (cell.isEditing == YES)
-	{
-		[self performSegueWithIdentifier:@"EditCharacter" sender:self];
-	}
-	else
-	{
-		[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
-	}
-	
+	[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	selectedCharacter = [characters objectAtIndex:indexPath.row];
+	[self performSegueWithIdentifier:@"EditCharacter" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
