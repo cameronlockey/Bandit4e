@@ -11,12 +11,21 @@
 @class Character;
 @class Reminder;
 
+@protocol ReminderDelegate;
+
 @interface Reminders : UITableViewController
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) Character *character;
 @property (strong,nonatomic) NSMutableArray *reminders;
 @property (strong,nonatomic) Reminder *selectedReminder;
+@property (strong,nonatomic) id <ReminderDelegate> delegate;
 
 - (IBAction)done:(id)sender;
+@end
+
+@protocol ReminderDelegate <NSObject>
+
+-(void)remindersDidFinish;
+
 @end

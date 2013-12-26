@@ -113,6 +113,7 @@
 		7ED9657316F64F88009FDB5A /* sectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ED9657216F64F88009FDB5A /* sectionHeader.png */; };
 		7ED9657716F663C6009FDB5A /* ConditionsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED9657616F663C6009FDB5A /* ConditionsList.m */; };
 		7EE0717D16D2747100EE1BB2 /* Experience.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE0717C16D2747100EE1BB2 /* Experience.m */; };
+		7EE31F571869FFCA00237587 /* CLTurnQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EE31F561869FFCA00237587 /* CLTurnQueue.m */; };
 		7EE80F5E16CFE10A005D576D /* barButtonSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE80F5A16CFE10A005D576D /* barButtonSquare.png */; };
 		7EE80F5F16CFE10A005D576D /* barButtonSquare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE80F5B16CFE10A005D576D /* barButtonSquare@2x.png */; };
 		7EE80F6416CFE2D8005D576D /* icon-characters@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE80F6216CFE2D8005D576D /* icon-characters@2x.png */; };
@@ -266,6 +267,8 @@
 		7ED9657616F663C6009FDB5A /* ConditionsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConditionsList.m; sourceTree = "<group>"; };
 		7EE0717B16D2747100EE1BB2 /* Experience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experience.h; sourceTree = "<group>"; };
 		7EE0717C16D2747100EE1BB2 /* Experience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experience.m; sourceTree = "<group>"; };
+		7EE31F551869FFCA00237587 /* CLTurnQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTurnQueue.h; sourceTree = "<group>"; };
+		7EE31F561869FFCA00237587 /* CLTurnQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTurnQueue.m; sourceTree = "<group>"; };
 		7EE80F5A16CFE10A005D576D /* barButtonSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barButtonSquare.png; sourceTree = "<group>"; };
 		7EE80F5B16CFE10A005D576D /* barButtonSquare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barButtonSquare@2x.png"; sourceTree = "<group>"; };
 		7EE80F6216CFE2D8005D576D /* icon-characters@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-characters@2x.png"; sourceTree = "<group>"; };
@@ -457,7 +460,6 @@
 			children = (
 				7EE80F7C16CFFB4D005D576D /* Controllers */,
 				7EE80F5016CFD861005D576D /* Fonts */,
-				7E74437216C86A6C00CD314A /* Images */,
 			);
 			path = Bandit4e;
 			sourceTree = "<group>";
@@ -496,6 +498,7 @@
 		7ED04E421673A30900BABBA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7EE31F541869FFA200237587 /* CLTurnQueue */,
 				7E750F6316E0EDC200A3374C /* CustomBadge */,
 				7E39CE2116C9E1B300F5582D /* UIHelpers.h */,
 				7E39CE2216C9E1B300F5582D /* UIHelpers.m */,
@@ -524,9 +527,19 @@
 				7ED9657516F663C6009FDB5A /* ConditionsList.h */,
 				7ED9657616F663C6009FDB5A /* ConditionsList.m */,
 				7E2B6A7016F88EDB00D478F4 /* ConditionAdd.h */,
+				7E74437216C86A6C00CD314A /* Images */,
 				7E2B6A7116F88EDB00D478F4 /* ConditionAdd.m */,
 			);
 			name = Conditions;
+			sourceTree = "<group>";
+		};
+		7EE31F541869FFA200237587 /* CLTurnQueue */ = {
+			isa = PBXGroup;
+			children = (
+				7EE31F551869FFCA00237587 /* CLTurnQueue.h */,
+				7EE31F561869FFCA00237587 /* CLTurnQueue.m */,
+			);
+			name = CLTurnQueue;
 			sourceTree = "<group>";
 		};
 		7EE80F5016CFD861005D576D /* Fonts */ = {
@@ -761,6 +774,7 @@
 				7E464C8316D94A5E00C37390 /* Constants.m in Sources */,
 				7E1E5A721867920F004F3380 /* NoteCell.m in Sources */,
 				7E464C8616D978C200C37390 /* Gold.m in Sources */,
+				7EE31F571869FFCA00237587 /* CLTurnQueue.m in Sources */,
 				7E750F6616E0EDD500A3374C /* CustomBadge.m in Sources */,
 				7ED9657716F663C6009FDB5A /* ConditionsList.m in Sources */,
 				7E2B6A7216F88EDB00D478F4 /* ConditionAdd.m in Sources */,

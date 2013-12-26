@@ -19,7 +19,7 @@
 
 @implementation Reminders
 
-@synthesize character, reminders, selectedReminder, managedObjectContext;
+@synthesize character, delegate, reminders, selectedReminder, managedObjectContext;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -97,7 +97,7 @@
 	cell.textLabel.textColor = [UIColor darkGrayColor];
 	[UIHelpers applyTextShadow:cell.textLabel];
 	cell.textLabel.font = LEAGUE(22);
-	cell.detailTextLabel.text = (theReminder.showAtStart) ? @"START" : @"END";
+	cell.detailTextLabel.text = (theReminder.showAtStart.intValue == 1) ? @"START" : @"END";
 	
 	cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 	cell.detailTextLabel.font = ARVIL(22);
@@ -190,6 +190,7 @@
 
 - (IBAction)done:(id)sender
 {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[delegate remindersDidFinish];
 }
+
 @end

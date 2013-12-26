@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSNumber * showAtStart;
 @property (nonatomic, retain) Character *character;
+@property (strong,nonatomic) UIAlertView *alert;
 
 @end

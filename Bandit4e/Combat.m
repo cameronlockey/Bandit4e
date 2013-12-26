@@ -14,6 +14,9 @@
 #import "Reminder.h"
 #import "UIHelpers.h"
 
+#define START 1;
+#define END 0;
+
 @interface Combat ()<UIActionSheetDelegate>
 
 @property(strong,nonatomic) NSMutableArray *restOptions;
@@ -23,7 +26,7 @@
 
 @implementation Combat
 
-@synthesize managedObjectContext, character, restOptions;
+@synthesize managedObjectContext, character, restOptions, turnQueue;
 @synthesize characterInfoView, characterImageView, nameLabel, raceClassLevelLabel, hpLabel, surgesLabel, failedSavesValueLabel, failedSavesLabel, hitPoints, healingSurges;
 @synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startTurnButton, remindersButton, notesButton;
 @synthesize damageController, healController, experienceController, goldController, notesController, remindersController;
@@ -146,7 +149,13 @@
 		tempBadge.hidden = YES;
 
 	// set character data in views
-	[self refreshCharacter];	
+	[self refreshCharacter];
+	
+	// queue up reminders
+	turnQueue = [CLTurnQueue queueWithManagedObjectContext:managedObjectContext andCharacter:character];
+	
+	NSLog(@"START QUEUE: %@", turnQueue.startReminders);
+	NSLog(@"END QUEUE: %@", turnQueue.endReminders);
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -426,37 +435,24 @@
 	// handle dying or dead
 	if (IS_DYING || IS_DEAD)
 		[self handleDying];
+	
+	// show startTurn alerts
+	if (turnQueue.haveStartReminders)
+		[turnQueue presentQueue:1];
 }
 
 -(void)endTurn
 {
 	if (IS_DEAD)
 		[self handleDying];
+	
+	// show endTurn alerts
+	if (turnQueue.haveEndReminders)
+		[turnQueue presentQueue:0];
 }
 
 /* !Data Management Methods
  * ---------------------------------------------*/
--(void)insertTestReminder
-{
-		Reminder *reminder = (Reminder*)[NSEntityDescription insertNewObjectForEntityForName:@"Reminder" inManagedObjectContext:managedObjectContext];
-		reminder.text = @"+2 Attack Rolls";
-		reminder.showAtStart = 0;
-		[character addRemindersObject:reminder];
-		[Constants save:managedObjectContext];
-}
-
--(void)insertTestNotes
-{
-	if (character.notes.count == 0) {
-		
-		Note *note = (Note*)[NSEntityDescription  insertNewObjectForEntityForName:@"Note"
-														   inManagedObjectContext:managedObjectContext];
-		note.text = @"Found a huge sword.";
-		[character addNotesObject:note];
-		[Constants save:managedObjectContext];
-	}
-}
-
 -(void)addFailedDeathSave
 {
 	character.failedSaves = numInt(character.failedSaves.intValue+1);
@@ -704,6 +700,21 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+/* !Reminder Delegate Protocol Methods
+ * ---------------------------------------------*/
+-(void)remindersDidFinish
+{
+	[self dismissViewControllerAnimated:YES completion:NULL];
+	[turnQueue collectQueues];
+}
+
+/* !CharacterAddEditDelegate Methods
+ * ---------------------------------------------*/
+- (void) characterAddEditDidFinish
+{
+	[self refreshCharacter];
+}
+
 /* !Segue Methods
  * ---------------------------------------------*/
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -765,14 +776,10 @@
 		remindersController = remindersNav.viewControllers.firstObject;
 		remindersController.managedObjectContext = managedObjectContext;
 		remindersController.character = character;
+		remindersController.delegate = self;
 	}
 }
 
-/* !CharacterAddEditDelegate Methods
- * ---------------------------------------------*/
-- (void) characterAddEditDidFinish
-{
-	[self refreshCharacter];
-}
+
 
 @end

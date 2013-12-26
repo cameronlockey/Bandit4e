@@ -16,4 +16,13 @@
 @dynamic showAtStart;
 @dynamic character;
 
+@synthesize alert;
+
+-(NSString*)description
+{
+	NSString *start = (self.showAtStart.intValue) ? @"START" : @"END";
+	NSString *description = [NSString stringWithFormat:@"(%@) - %@", start, self.text];
+	return description;
+}
+
 @end

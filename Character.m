@@ -41,6 +41,12 @@
 @dynamic notes;
 @dynamic reminders;
 
+-(NSString*) description
+{
+	NSString *description = [NSString stringWithFormat:@"%@, L%i %@ %@ - %i/%i HP | %i/%i SUR | %i EXP | %i GP", self.name, self.level.intValue, self.race, self.classname, self.currentHp.intValue, self.maxHp.intValue, self.currentSurges.intValue, self.maxSurges.intValue, self.experience.intValue, self.gold.intValue];
+	return description;
+}
+
 + (BOOL)useHealingSurges:(int)surges forCharacter:(Character*)character
 {
 	// do we have any surges?

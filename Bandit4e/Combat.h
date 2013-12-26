@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CharacterAddEdit.h"
+#import "CLTurnQueue.h"
 #import "CustomBadge.h"
 #import "Damage.h"
 #import "Experience.h"
@@ -19,7 +20,7 @@
 
 @class Character;
 
-@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, UIAlertViewDelegate>
+@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, ReminderDelegate, UIAlertViewDelegate>
 {
 	UILabel *actionPoints;
 	UILabel *experiencePoints;
@@ -30,6 +31,7 @@
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong,nonatomic) CLTurnQueue *turnQueue;
 @property (strong,nonatomic) Character *character;
 
 @property (strong,nonatomic) Damage *damageController;
@@ -88,8 +90,6 @@
 
 /* !Data Management Methods
  * ---------------------------------------------*/
--(void)insertTestNotes;
--(void)insertTestReminder;
 -(void)addFailedDeathSave;
 -(void)extendedRest;
 -(void)gainMilestone;
