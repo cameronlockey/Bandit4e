@@ -34,6 +34,7 @@
     [super viewDidLoad];
 	
 	self.view.backgroundColor = VIEWBG;
+	self.navigationController.navigationBar.translucent = NO;
 	
 	reminderField.font = LEAGUE(35.0f);
 	reminderField.textColor = GRAY;

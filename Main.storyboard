@@ -1018,6 +1018,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="z8T-xH-DH6">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="SDr-D7-ekQ" kind="relationship" relationship="rootViewController" id="rYQ-Fj-GHA"/>
                     </connections>
@@ -1031,12 +1035,12 @@
             <objects>
                 <tableViewController id="ght-IX-BB0" customClass="Notes" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="t0V-Gm-2kw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NoteCell" rowHeight="71" id="kJz-d6-1u4" customClass="NoteCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="71"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJz-d6-1u4" id="9ue-JG-uyE">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="70"/>
@@ -1070,6 +1074,7 @@
                             <outlet property="delegate" destination="ght-IX-BB0" id="Ow3-di-Wk7"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="NOTES" id="PDo-Pz-vJ6">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="OXY-U2-32r">
                             <connections>
@@ -1137,19 +1142,19 @@
                         <viewControllerLayoutGuide type="bottom" id="OOT-z1-qOD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ju4-Zc-SAJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="AMOUNT" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="53l-aS-Wzf">
-                                <rect key="frame" x="20" y="86" width="280" height="100"/>
+                                <rect key="frame" x="20" y="20" width="280" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfG-XV-S18">
-                                <rect key="frame" x="136" y="208" width="51" height="31"/>
+                                <rect key="frame" x="136" y="129" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="LOSE HEALING SURGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDe-4a-PNB">
-                                <rect key="frame" x="20" y="241" width="280" height="21"/>
+                                <rect key="frame" x="20" y="159" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1157,6 +1162,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="DAMAGE" id="b9D-wV-fet">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rtN-ca-gsG">
                             <connections>
@@ -1177,7 +1183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idy-aY-KmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1781" y="928"/>
+            <point key="canvasLocation" x="2218" y="160"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G4m-Vg-rwG">
@@ -1206,11 +1212,11 @@
                         <viewControllerLayoutGuide type="bottom" id="rWj-os-dn1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="D2t-Co-Me6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2bQ-jR-ynQ">
-                                <rect key="frame" x="57" y="84" width="206" height="29"/>
+                                <rect key="frame" x="57" y="20" width="206" height="29"/>
                                 <segments>
                                     <segment title="0 Surges"/>
                                     <segment title="1 Surge"/>
@@ -1219,18 +1225,19 @@
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDITIONAL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j94-Nf-3Iv">
-                                <rect key="frame" x="20" y="132" width="280" height="60"/>
+                                <rect key="frame" x="20" y="62" width="280" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GAIN SURGES" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWP-Mz-pZo">
-                                <rect key="frame" x="20" y="200" width="280" height="60"/>
+                                <rect key="frame" x="20" y="121" width="280" height="60"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="HEAL" id="UHS-Ts-CfJ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RQA-6V-rOL">
                             <connections>
@@ -1269,7 +1276,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mXP-Qd-fqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2227" y="132"/>
+            <point key="canvasLocation" x="1799" y="940"/>
         </scene>
         <!--Experience - EXPERIENCE-->
         <scene sceneID="zAm-9O-q5X">
@@ -1280,22 +1287,22 @@
                         <viewControllerLayoutGuide type="bottom" id="MFb-6b-KPq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cRS-XX-wj8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Current Experience" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPv-Y1-i6N">
-                                <rect key="frame" x="142" y="75" width="158" height="49"/>
+                                <rect key="frame" x="142" y="20" width="158" height="49"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="EXPERIENCE" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fjg-rL-k6b">
-                                <rect key="frame" x="20" y="162" width="280" height="74"/>
+                                <rect key="frame" x="20" y="95" width="280" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT EXPERIENCE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daq-Nt-S5i">
-                                <rect key="frame" x="20" y="89" width="280" height="21"/>
+                                <rect key="frame" x="20" y="33" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1303,6 +1310,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="EXPERIENCE" id="h1F-dJ-EQK">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gII-Xg-R2B">
                             <connections>

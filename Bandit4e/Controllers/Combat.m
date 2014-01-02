@@ -47,6 +47,8 @@
 	
 	start = YES;
 	self.view.backgroundColor = VIEWBG;
+	self.navigationController.navigationBar.translucent = NO;
+	
 	self.title = @"COMBAT";
 	UIImage *characterListIcon = [UIImage imageNamed:@"icon-characters.png"];
 	UIBarButtonItem *characterListButton = [[UIBarButtonItem alloc] initWithImage:[characterListIcon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(returnToCharacterList)];
@@ -201,7 +203,16 @@
  * ---------------------------------------------*/
 -(void)configureButton:(UIButton *)button LabelText:(NSString *)labelText Icon:(UIImage *)icon
 {
-	UIEdgeInsets insets = UIEdgeInsetsMake(50, 4, 4, 4);
+	
+	int y = 10;
+	int topInset = 50;
+	if (IS_IPHONE_5)
+	{
+		y = 20;
+		topInset = 65;
+	}
+	
+	UIEdgeInsets insets = UIEdgeInsetsMake(topInset, 4, 4, 4);
 	
 	[button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
 	[button setContentVerticalAlignment:UIControlContentVerticalAlignmentTop];
@@ -213,14 +224,14 @@
 	if (icon != nil)
 	{
 		float x = button.frame.size.width*0.5 - icon.size.width*0.5;
-		int y = 10;
+		
 		UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, icon.size.width, icon.size.height)];
 		iconView.image = icon;
 		[button addSubview:iconView];
 	}
 	
 	// create value label
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 75, 30)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, y+5, 75, 30)];
 	label.backgroundColor = [UIColor clearColor];
 	label.textColor = GRAY;
 	label.font = LEAGUE(32.0f);

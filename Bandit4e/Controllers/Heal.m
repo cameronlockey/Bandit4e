@@ -35,6 +35,7 @@
     [super viewDidLoad];
 	
 	self.view.backgroundColor = VIEWBG;
+	self.navigationController.navigationBar.translucent = NO;
 	
 	additionalHealingField.font = LEAGUE(60.0f);
 	additionalHealingField.textColor = GRAY;

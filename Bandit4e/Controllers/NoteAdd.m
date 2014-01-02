@@ -33,6 +33,7 @@
     [super viewDidLoad];
 	
 	self.view.backgroundColor = VIEWBG;
+	self.navigationController.navigationBar.translucent = NO;
 	
 	if (note)
 	{

@@ -96,6 +96,9 @@
 		7EE635371874D70900F02C4B /* sectionHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE635091874D70900F02C4B /* sectionHeader.png */; };
 		7EE635381874D70900F02C4B /* tableBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6350A1874D70900F02C4B /* tableBg.png */; };
 		7EE635391874D70900F02C4B /* tableViewSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6350B1874D70900F02C4B /* tableViewSelected.png */; };
+		7EE6353B187516A700F02C4B /* iPhoneRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6353A187516A700F02C4B /* iPhoneRetina.png */; };
+		7EE6353D187516DB00F02C4B /* iPhoneSpotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */; };
+		7EE6353F1875170A00F02C4B /* iPhoneSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6353E1875170A00F02C4B /* iPhoneSettings.png */; };
 		7EE80F6916CFE57B005D576D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE80F6816CFE57B005D576D /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -218,6 +221,9 @@
 		7EE635091874D70900F02C4B /* sectionHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sectionHeader.png; path = Images/sectionHeader.png; sourceTree = "<group>"; };
 		7EE6350A1874D70900F02C4B /* tableBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tableBg.png; path = Images/tableBg.png; sourceTree = "<group>"; };
 		7EE6350B1874D70900F02C4B /* tableViewSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tableViewSelected.png; path = Images/tableViewSelected.png; sourceTree = "<group>"; };
+		7EE6353A187516A700F02C4B /* iPhoneRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneRetina.png; sourceTree = "<group>"; };
+		7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneSpotlight.png; sourceTree = "<group>"; };
+		7EE6353E1875170A00F02C4B /* iPhoneSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneSettings.png; sourceTree = "<group>"; };
 		7EE80F6816CFE57B005D576D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -283,6 +289,9 @@
 		7ED04E0C16738F9F00BABBA1 = {
 			isa = PBXGroup;
 			children = (
+				7EE6353E1875170A00F02C4B /* iPhoneSettings.png */,
+				7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */,
+				7EE6353A187516A700F02C4B /* iPhoneRetina.png */,
 				7ED9657016F6448F009FDB5A /* Default-568h@2x.png */,
 				7ED9656616F5F9BA009FDB5A /* Icon.png */,
 				7ED9656716F5F9BA009FDB5A /* Icon@2x.png */,
@@ -579,7 +588,9 @@
 				7EE635121874D70900F02C4B /* bottomLeft.png in Resources */,
 				7EE6351E1874D70900F02C4B /* topRightCorner.png in Resources */,
 				7EE635141874D70900F02C4B /* lightInner.png in Resources */,
+				7EE6353D187516DB00F02C4B /* iPhoneSpotlight.png in Resources */,
 				7E4CBFA71837FF0F00F684C3 /* Main.storyboard in Resources */,
+				7EE6353B187516A700F02C4B /* iPhoneRetina.png in Resources */,
 				7EE6351F1874D70900F02C4B /* topRightCorner@2x.png in Resources */,
 				7EE6351B1874D70900F02C4B /* topInner@2x.png in Resources */,
 				7EE6352E1874D70900F02C4B /* swords.png in Resources */,
@@ -587,6 +598,7 @@
 				7EE6351C1874D70900F02C4B /* topLeftCorner.png in Resources */,
 				7EE635101874D70900F02C4B /* bottomInner.png in Resources */,
 				7EE635111874D70900F02C4B /* bottomInner@2x.png in Resources */,
+				7EE6353F1875170A00F02C4B /* iPhoneSettings.png in Resources */,
 				7ED4A0A41673D36400376255 /* BSKeyboardControls.strings in Resources */,
 				7EE634B21874D64C00F02C4B /* Arvil_Sans.ttf in Resources */,
 				7EE635361874D70900F02C4B /* noPhoto@2x.png in Resources */,
@@ -734,13 +746,13 @@
 		7ED04E3B16738FA000BABBA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cameron Lockey (BD32YEWV62)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B7CDD1F6-812B-4B30-9812-B18909BEBB6E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -748,13 +760,13 @@
 		7ED04E3C16738FA000BABBA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cameron Lockey (BD32YEWV62)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "B7CDD1F6-812B-4B30-9812-B18909BEBB6E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

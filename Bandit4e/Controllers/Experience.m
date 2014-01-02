@@ -34,6 +34,7 @@
     [super viewDidLoad];
 	
 	self.view.backgroundColor = VIEWBG;
+	self.navigationController.navigationBar.translucent = NO;
 	
 	currentExperienceLabel.font = LEAGUE(24.0f);
 	currentExperienceLabel.textColor = [UIColor colorWithWhite:0.5f alpha:1.0];

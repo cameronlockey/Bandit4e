@@ -20,10 +20,17 @@
 -(void)customizeAppearance
 {
 	// UINavigationBar
-	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
+//	[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
+	UIImage *navBar = [[UIImage imageNamed:@"navBg.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[[UINavigationBar appearance] setBackgroundImage:navBar forBarMetrics:UIBarMetricsDefault];
+	NSShadow *textShadow = [[NSShadow alloc] init];
+	textShadow.shadowColor = [UIColor blackColor];
+	textShadow.shadowOffset = CGSizeMake(0, -1);
+	textShadow.shadowBlurRadius = 0;
 	[[UINavigationBar appearance] setTitleTextAttributes: @{
 						 NSForegroundColorAttributeName : [UIColor whiteColor],
-									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:27]}];
+									NSFontAttributeName : [UIFont fontWithName:@"League Gothic" size:27],
+								  NSShadowAttributeName : textShadow }];
 
 	// UIToolbar
 	//[[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
@@ -31,7 +38,8 @@
 	// UIBarButtonItems
 	[[UIBarButtonItem appearance] setTitleTextAttributes: @{
 						 NSForegroundColorAttributeName : [UIColor whiteColor],
-									NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24]
+									NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24],
+								  NSShadowAttributeName : textShadow
 						 }
 												forState:UIControlStateNormal];
 	[[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
