@@ -20,5 +20,6 @@
 @property (strong,nonatomic) Character *selectedCharacter;
 
 -(void)readDataForTable;
+-(void)accessoryButton:(UIControl*)button withEvent:(UIEvent*)event;
 
 @end

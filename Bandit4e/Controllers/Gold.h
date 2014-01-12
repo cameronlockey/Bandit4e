@@ -13,6 +13,10 @@
 @protocol GoldDelegate;
 
 @interface Gold : UIViewController
+{
+	int	amount;
+	int	total;
+}
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) Character *character;
@@ -28,6 +32,10 @@
 - (IBAction)cancel:(id)sender;
 - (IBAction)resolveGold:(id)sender;
 - (IBAction)switchToSpend:(id)sender;
+- (IBAction)goldChanged:(id)sender;
+- (void)updateCommitButton;
+- (void)updateTotal;
+- (void)updateGoldLabel;
 
 @end
 

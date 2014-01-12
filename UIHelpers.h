@@ -41,6 +41,7 @@
 #define BoolFromNSNum(n)                        ([(n) boolValue])
 #define ToString(o)                             [NSString stringWithFormat:@"%@", (o)]
 #define numInt(x)								[NSNumber numberWithInt:x]
+#define strInt(x)								[NSString stringWithFormat:@"%i", x]
 // ------
 #define ContinueIf(expr)            if ((expr))  { continue;     }
 #define BreakIf(expr)               if ((expr))  { break;        }

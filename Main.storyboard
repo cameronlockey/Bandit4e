@@ -68,7 +68,7 @@
             <objects>
                 <tableViewController id="2tf-YV-huu" customClass="CharacterAddEdit" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="P3P-Tg-Jgq">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -1149,6 +1149,9 @@
                                 <rect key="frame" x="20" y="20" width="280" height="100"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="100"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="damageChanged:" destination="o2Y-pL-8fm" eventType="editingChanged" id="rj1-sv-PhJ"/>
+                                </connections>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfG-XV-S18">
                                 <rect key="frame" x="136" y="129" width="51" height="31"/>
@@ -1169,7 +1172,7 @@
                                 <action selector="cancel:" destination="o2Y-pL-8fm" id="Igk-zn-SDf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Take" id="tkI-cU-Ckp">
+                        <barButtonItem key="rightBarButtonItem" title="Take 0 Damage" id="tkI-cU-Ckp">
                             <connections>
                                 <action selector="takeDamage:" destination="o2Y-pL-8fm" id="iEs-PX-3VA"/>
                             </connections>
@@ -1179,6 +1182,7 @@
                         <outlet property="amountField" destination="53l-aS-Wzf" id="10U-vZ-x8y"/>
                         <outlet property="loseSurgeLabel" destination="jDe-4a-PNB" id="tpM-XM-bSJ"/>
                         <outlet property="loseSurgeSwitch" destination="CfG-XV-S18" id="zhY-Jl-OoU"/>
+                        <outlet property="takeDamageButton" destination="tkI-cU-Ckp" id="fep-xK-HS9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Idy-aY-KmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1216,24 +1220,40 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2bQ-jR-ynQ">
-                                <rect key="frame" x="57" y="20" width="206" height="29"/>
+                                <rect key="frame" x="20" y="20" width="191" height="29"/>
                                 <segments>
                                     <segment title="0 Surges"/>
                                     <segment title="1 Surge"/>
                                     <segment title="2 Surges"/>
                                 </segments>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="segmentChanged:" destination="Nob-op-bjC" eventType="valueChanged" id="BO3-dN-Qiw"/>
+                                </connections>
                             </segmentedControl>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDITIONAL" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j94-Nf-3Iv">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ADDITIONAL HP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j94-Nf-3Iv">
                                 <rect key="frame" x="20" y="62" width="280" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="additionalChanged:" destination="Nob-op-bjC" eventType="editingChanged" id="CAa-3N-CNM"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GAIN SURGES" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWP-Mz-pZo">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="REGAIN SURGES" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KWP-Mz-pZo">
                                 <rect key="frame" x="20" y="121" width="280" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="regainSurgesChanged:" destination="Nob-op-bjC" eventType="editingChanged" id="Htl-VD-kAW"/>
+                                </connections>
                             </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJy-RX-Huu">
+                                <rect key="frame" x="224" y="13" width="81" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1244,7 +1264,7 @@
                                 <action selector="cancel:" destination="Nob-op-bjC" id="ucm-1L-bWT"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Gain" id="uta-wi-z01">
+                        <barButtonItem key="rightBarButtonItem" title="Gain 0 HP" id="uta-wi-z01">
                             <connections>
                                 <action selector="heal:" destination="Nob-op-bjC" id="hM9-rm-fMJ"/>
                             </connections>
@@ -1252,8 +1272,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="additionalHealingField" destination="j94-Nf-3Iv" id="EUo-hk-CPa"/>
+                        <outlet property="gainButton" destination="uta-wi-z01" id="whb-YW-rzs"/>
                         <outlet property="numSurgesSegmentControl" destination="2bQ-jR-ynQ" id="tjc-un-IaL"/>
-                        <outlet property="regainSurgesField" destination="KWP-Mz-pZo" id="5h0-7Z-Ah9"/>
+                        <outlet property="regainSurgesField" destination="KWP-Mz-pZo" id="WJx-LI-KdK"/>
+                        <outlet property="totalLabel" destination="RJy-RX-Huu" id="ava-BL-CNx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Khb-hb-5Lz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1300,6 +1322,9 @@
                                 <rect key="frame" x="20" y="95" width="280" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="experienceChanged:" destination="Tg2-MY-BSP" eventType="editingChanged" id="BZP-BV-94n"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT EXPERIENCE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daq-Nt-S5i">
                                 <rect key="frame" x="20" y="33" width="280" height="21"/>
@@ -1327,6 +1352,7 @@
                         <outlet property="currentExperienceLabel" destination="daq-Nt-S5i" id="fzm-6U-bvy"/>
                         <outlet property="experienceField" destination="fjg-rL-k6b" id="UH3-hY-Qvi"/>
                         <outlet property="experienceLabel" destination="CPv-Y1-i6N" id="XJI-rB-2w6"/>
+                        <outlet property="gainButton" destination="EB5-tj-2zf" id="p18-L9-aGe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CE3-ob-6D5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1373,6 +1399,9 @@
                                 <rect key="frame" x="20" y="103" width="280" height="93"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" keyboardAppearance="alert"/>
+                                <connections>
+                                    <action selector="goldChanged:" destination="UDk-3X-NNV" eventType="editingChanged" id="fZg-x1-n6w"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="CURRENT GOLD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgN-xg-Gtd">
                                 <rect key="frame" x="20" y="18" width="149" height="21"/>
@@ -1496,8 +1525,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kOj-1F-GVX"/>
-        <segue reference="hgi-0k-NVY"/>
+        <segue reference="xgY-eL-v7K"/>
         <segue reference="RIB-07-dBK"/>
+        <segue reference="kOj-1F-GVX"/>
     </inferredMetricsTieBreakers>
 </document>

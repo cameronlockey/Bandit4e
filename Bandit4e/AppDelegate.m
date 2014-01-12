@@ -8,7 +8,11 @@
 
 #import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Character.h"
 #import "CharacterList.h"
+#import "CoreDataHelper.h"
+#import "Constants.h"
+#import "UIHelpers.h"
 
 
 @implementation AppDelegate
@@ -56,7 +60,25 @@
 	
     UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
 	CharacterList *characterList = (CharacterList*)navigationController.topViewController;
+	
+	
+	// Grab the data
+	characterList.characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
+	
+	// if we don't have any characters, make one
+	if (characterList.characters.count == 0)
+	{
+		Character *newCharacter = (Character*)[NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:self.managedObjectContext];
+		
+		[newCharacter setName:@"Bluefield" Race:@"Dwarf" Class:@"Fighter" Level:numInt(1) MaxHP:numInt(30) MaxSurges:numInt(8) HealingSurgeValue:numInt(7) SavingThrowModifier:numInt(0) Experience:numInt(0) Gold:numInt(500) SaveAtStartOfTurn:numInt(0) UsePowerPoints:numInt(0) MaxPowerPoints:numInt(0)];
+		
+		[Constants save:self.managedObjectContext];
+		
+	}
+	
 	characterList.managedObjectContext = self.managedObjectContext;
+	characterList.characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
+	
     return YES;
 }
 

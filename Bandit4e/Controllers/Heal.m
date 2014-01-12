@@ -19,7 +19,7 @@
 
 @implementation Heal
 
-@synthesize delegate, character, numSurgesSegmentControl, additionalHealingField, regainSurgesField, managedObjectContext;
+@synthesize delegate, character, numSurgesSegmentControl, additionalHealingField, regainSurgesField, managedObjectContext, totalLabel, gainButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +52,27 @@
 	regainSurgesField.layer.shadowOpacity = 1;
 	
 	[additionalHealingField becomeFirstResponder];
+	
+	if (character.currentSurges.intValue < 2)
+	{
+		[numSurgesSegmentControl setEnabled:NO forSegmentAtIndex:2];
+	}
+	
+	if (character.currentSurges.intValue < 1)
+	{
+		[numSurgesSegmentControl setEnabled:NO forSegmentAtIndex:1];
+	}
+	
+	numSurgesSegmentControl.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+	
+	// set up total and totalLabel
+	total = 0;
+	totalLabel.font = LEAGUE(44.0f);
+	totalLabel.textColor = GRAY;
+	totalLabel.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
+	totalLabel.layer.shadowOffset = CGSizeMake(0,1);
+	totalLabel.layer.shadowRadius = 0;
+	totalLabel.layer.shadowOpacity = 1;
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,4 +130,45 @@
 	
 	[delegate didHealDamage];
 }
+
+- (IBAction)segmentChanged:(id)sender
+{
+	hpFromSurges = numSurgesSegmentControl.selectedSegmentIndex * character.surgeValue.intValue;
+	[self updateTotal];
+}
+
+- (IBAction)additionalChanged:(id)sender
+{
+	additional = additionalHealingField.text.intValue;
+	[self updateTotal];
+}
+
+- (IBAction)regainSurgesChanged:(id)sender
+{
+	[self updateGainButton];
+}
+
+- (void)updateTotal
+{
+	total = hpFromSurges + additional;
+	totalLabel.text = strInt(total);
+	[self updateGainButton];
+}
+
+- (void)updateGainButton
+{
+	if (regainSurgesField.text.length > 0 && total > 0)
+		gainButton.title = @"Gain";
+	else if (regainSurgesField.text.length > 0)
+	{
+		NSString *plural = (regainSurgesField.text.intValue > 1) ? @"Surges" : @"Surge";
+		gainButton.title = [NSString stringWithFormat:@"Gain %i %@", regainSurgesField.text.intValue, plural];
+	}
+	else
+	{
+		gainButton.title = [NSString stringWithFormat:@"Gain %i HP", total];
+	}
+		
+}
+
 @end

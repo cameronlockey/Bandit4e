@@ -328,29 +328,26 @@
 	surgesLabel.text = [NSString stringWithFormat:@"%@/%@", character.currentSurges, character.maxSurges];
 	
 	// reset color of hp and surges labels
-	UIColor *red = [UIColor colorWithRed:0.55 green:0.05 blue:0.05 alpha:1];
-	UIColor *gray = [UIColor colorWithRed:0.27 green:0.27 blue:0.27 alpha:1];
-	UIColor *yellow = [UIColor colorWithRed:0.63 green:0.58 blue:0.13 alpha:1];
 	if (character.currentHp.intValue <= character.maxHp.intValue/2)
 	{
-		hpLabel.textColor = red;
-		hitPoints.textColor = red;
+		hpLabel.textColor = RED;
+		hitPoints.textColor = RED;
 	}
 	else
 	{
-		hpLabel.textColor = gray;
-		hitPoints.textColor = gray;
+		hpLabel.textColor = GRAY;
+		hitPoints.textColor = GRAY;
 	}
 	
 	if (character.currentSurges.intValue <= character.maxSurges.intValue/2)
 	{
-		surgesLabel.textColor = yellow;
-		healingSurges.textColor = yellow;
+		surgesLabel.textColor = YELLOW;
+		healingSurges.textColor = YELLOW;
 	}
 	else
 	{
-		surgesLabel.textColor = gray;
-		healingSurges.textColor = gray;
+		surgesLabel.textColor = GRAY;
+		healingSurges.textColor = GRAY;
 	}
 	
 	// update failed saves value
@@ -445,11 +442,15 @@
 {
 	// handle dying or dead
 	if (IS_DYING || IS_DEAD)
+	{
 		[self handleDying];
-	
-	// show startTurn alerts
-	if (turnQueue.haveStartReminders)
-		[turnQueue presentQueue:1];
+	}
+	else
+	{
+		// show startTurn alerts
+		if (turnQueue.haveStartReminders)
+			[turnQueue presentQueue:1];
+	}
 }
 
 -(void)endTurn
@@ -487,7 +488,8 @@
 	[self updateCombatButton:apButton Label:actionPoints Value:character.actionPoints.stringValue];
 	
 	// reset Power Points to Max
-	if (character.usesPp) {
+	if (character.usesPp)
+	{
 		character.currentPp = character.maxPp;
 		[self updateCombatButton:ppButton Label:powerPoints Value:character.maxPp.stringValue];
 	}
@@ -499,6 +501,7 @@
 	if (character.failedSaves.intValue > 0)
 		character.failedSaves = numInt(0);
 	
+	
 	// update start turn
 	start = YES;
 	[self updateTurnButton];
@@ -509,12 +512,19 @@
 
 - (void)gainMilestone
 {
-	// gain an action point
-	character.actionPoints = numInt(character.actionPoints.intValue + 1);
-	[self updateCombatButton:apButton Label:actionPoints Value:character.actionPoints.stringValue];
-	
-	// save
-	[Constants save:managedObjectContext];
+	if (!(IS_DEAD))
+	{
+		// gain an action point
+		character.actionPoints = numInt(character.actionPoints.intValue + 1);
+		[self updateCombatButton:apButton Label:actionPoints Value:character.actionPoints.stringValue];
+		
+		// save
+		[Constants save:managedObjectContext];
+	}
+	else
+	{
+		[UIHelpers showDeadAlert];
+	}
 }
 
 - (void)gainTempHp:(int)tempHp
@@ -543,7 +553,7 @@
 
 - (void)shortRest:(BOOL)milestone
 {
-	if (!IS_DEAD)
+	if (!(IS_DEAD))
 	{
 		// how many surges can we use without going over?
 		float deficit = character.maxHp.intValue - character.currentHp.intValue;
@@ -552,18 +562,18 @@
 		// use that many surges
 		[Character useHealingSurges:surges forCharacter:character];
 		
-		[self updateStatLabels];
-		
 		// add a milestone?
 		if (milestone)
 			[self gainMilestone];
 		
 		// update failed saves
-		character.failedSaves = numInt(0);
-			
+		if (character.failedSaves.intValue > 0)
+			character.failedSaves = numInt(0);
 		
 		//  Commit item to core data
 		[Constants save:managedObjectContext];
+		
+		[self updateStatLabels];
 	}
 	else
 	{

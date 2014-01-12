@@ -19,6 +19,8 @@
 	int		newHP;
 	int		newCurrentSurges;
 	int		selectedSegment;
+	int		total;
+	int		hpFromSurges;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -28,9 +30,16 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *numSurgesSegmentControl;
 @property (weak, nonatomic) IBOutlet UITextField *additionalHealingField;
 @property (weak, nonatomic) IBOutlet UITextField *regainSurgesField;
+@property (weak, nonatomic) IBOutlet UILabel *totalLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *gainButton;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)heal:(id)sender;
+- (IBAction)segmentChanged:(id)sender;
+- (IBAction)additionalChanged:(id)sender;
+- (IBAction)regainSurgesChanged:(id)sender;
+- (void)updateTotal;
+- (void)updateGainButton;
 @end
 
 @protocol HealDelegate <NSObject>

@@ -41,6 +41,69 @@
 @dynamic notes;
 @dynamic reminders;
 
+-(void)setName:(NSString *)_name
+		  Race:(NSString *)_race
+		 Class:(NSString *)_classname
+		 Level:(NSNumber *)_level
+		 MaxHP:(NSNumber *)_maxHp
+	 MaxSurges:(NSNumber *)_maxSurges
+HealingSurgeValue:(NSNumber *)_surgeValue
+SavingThrowModifier:(NSNumber *)_saveModifier
+	Experience:(NSNumber *)_experience
+		  Gold:(NSNumber *)_gold
+SaveAtStartOfTurn:(NSNumber *)_saveAtStart
+UsePowerPoints:(NSNumber *)_usesPp
+MaxPowerPoints:(NSNumber *)_maxPp
+{
+	self.name = _name;
+	self.race = _race;
+	self.classname = _classname;
+	self.level = _level;
+	self.maxHp = _maxHp;
+	self.currentHp = self.maxHp;
+	self.maxSurges = _maxSurges;
+	self.currentSurges = self.maxSurges;
+	self.surgeValue = _surgeValue;
+	self.saveModifier = _saveModifier;
+	self.actionPoints = numInt(1);
+	self.experience = _experience;
+	self.gold = _gold;
+	self.saveAtStart = _saveAtStart;
+	self.usesPp = _usesPp;
+	self.maxPp = _maxPp;
+	self.currentPp = self.maxPp;
+	self.failedSaves = numInt(0);
+	
+	// Resize and save a smaller version for the table
+	UIImage *image = [UIImage imageNamed:@"noPhoto.png"];
+	
+	float resize = 60.0;
+	float actualWidth = image.size.width;
+	float actualHeight = image.size.height;
+	float divBy, newWidth, newHeight;
+	if (actualWidth > actualHeight)
+	{
+		divBy = (actualWidth / resize);
+		newWidth = resize;
+		newHeight = (actualHeight / divBy);
+	}
+	else
+	{
+		divBy = (actualHeight / resize);
+		newWidth = (actualWidth / divBy);
+		newHeight = resize;
+	}
+	CGRect rect = CGRectMake(0.0, 0.0, newWidth, newHeight);
+	UIGraphicsBeginImageContext(rect.size);
+	[image drawInRect:rect];
+	UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	// Save the small image version
+	NSData *smallImageData = UIImageJPEGRepresentation(smallImage, 1.0);
+	self.photo = smallImageData;
+}
+
 -(NSString*) description
 {
 	NSString *description = [NSString stringWithFormat:@"%@, L%i %@ %@ - %i/%i HP | %i/%i SUR | %i EXP | %i GP", self.name, self.level.intValue, self.race, self.classname, self.currentHp.intValue, self.maxHp.intValue, self.currentSurges.intValue, self.maxSurges.intValue, self.experience.intValue, self.gold.intValue];
@@ -53,28 +116,51 @@
 	// add them to currentHP
 	if (character.currentSurges.intValue > 0 && surges > 0) {
 		
-		float deficit = character.maxHp.intValue - character.currentHp.intValue;
+		// determine the deficit (HP needed)
+		float deficit;
+		if (character.currentHp.intValue <= 0)
+			deficit = character.maxHp.intValue;
+		else
+			deficit = character.maxHp.intValue - character.currentHp.intValue;
+
 		
 		// should we really use that many?
-		if (surges > 1) {
+		if (surges > 1)
+		{
 			
 			// if I need less than I'm about to use
 			if ( deficit < character.surgeValue.intValue*surges)
 			{
 				// how many should I use without going over?
 				int surgesToUse = surges;
-				int surges = MIN(surgesToUse,floor(deficit / character.surgeValue.floatValue));
-				NSLog(@"using %i surges", surges);
+				surges = MIN(surgesToUse,floor(deficit / character.surgeValue.floatValue));
 			}
+			NSLog(@"using %i surges", surges);
+		}
+		
+		// can I use this many?
+		if (surges > character.currentSurges.intValue)
+		{
+			// you are trying to use more than you have left...calculating the most you can use, if any
+			NSLog(@"you are trying to use more than you have left...calculating the most you can use, if any");
+			if (character.currentSurges.intValue > 0)
+			{
+				surges = character.currentSurges.intValue;
 				
+			}
+			NSLog(@"NOW using %i surges", surges);
 		}
 		
 		// are we at max health already?
-		// if not, give me some freakin' HP
-		if (deficit > 0) {
-			
+		// if not, heal up!
+		if (deficit > 0)
+		{
 			int amountFromSurges = character.surgeValue.intValue * surges;
 			NSLog(@"amountFromSurges: %i", amountFromSurges);
+			
+			// set current HP to 0 if dying (HP < 0)
+			if (character.currentHp.intValue < 0)
+				character.currentHp = numInt(0);
 			
 			int newHP = amountFromSurges + character.currentHp.intValue;
 			character.currentHp = (newHP > character.maxHp.intValue) ? character.maxHp : numInt(newHP);
@@ -82,7 +168,7 @@
 			
 			// update surges
 			int remainingSurges = character.currentSurges.intValue - surges;
-			character.currentSurges = (remainingSurges < 0) ? 0 : numInt(remainingSurges);
+			character.currentSurges = numInt(remainingSurges);
 		}
 		
 		return TRUE;

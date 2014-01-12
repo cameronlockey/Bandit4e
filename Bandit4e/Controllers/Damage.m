@@ -20,7 +20,7 @@
 
 @implementation Damage
 
-@synthesize delegate, character, amountField, loseSurgeSwitch, loseSurgeLabel, managedObjectContext;
+@synthesize delegate, character, amountField, loseSurgeSwitch, loseSurgeLabel, takeDamageButton, managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +57,14 @@
 	[amountField becomeFirstResponder];
 	loseSurgeSwitch.on = NO;
 	loseSurgeSwitch.onTintColor = [UIColor colorWithRed:0.16 green:0.32 blue:0.46 alpha:1.0];
+	
+	if (character.currentSurges.intValue < 1)
+	{
+		loseSurgeSwitch.enabled = NO;
+		loseSurgeLabel.layer.opacity = 0.5;
+	}
+	
+	takeDamageButton.title = [NSString stringWithFormat:@"Take %i Damage", 0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +73,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)takeDamage:(id)sender {
+- (IBAction)takeDamage:(id)sender
+{
 	
 	BOOL damage = false;
 	BOOL surge = false;
@@ -98,7 +107,13 @@
 	[delegate didTakeDamage:damage Surge:surge];	
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id)sender
+{
 	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)damageChanged:(id)sender
+{
+	takeDamageButton.title = [NSString stringWithFormat:@"Take %i Damage", amountField.text.intValue];
 }
 @end

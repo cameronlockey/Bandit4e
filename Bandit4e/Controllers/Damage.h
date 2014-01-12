@@ -21,8 +21,10 @@
 @property (weak, nonatomic) IBOutlet UISwitch *loseSurgeSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *amountField;
 @property (weak, nonatomic) IBOutlet UILabel *loseSurgeLabel;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *takeDamageButton;
 - (IBAction)takeDamage:(id)sender;
 - (IBAction)cancel:(id)sender;
+- (IBAction)damageChanged:(id)sender;
 @end
 
 @protocol DamageDelegate <NSObject>

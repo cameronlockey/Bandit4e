@@ -13,6 +13,9 @@
 @protocol ExperienceDelegate;
 
 @interface Experience : UIViewController
+{
+	int amount;
+}
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) Character *character;
@@ -21,9 +24,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *experienceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentExperienceLabel;
 @property (weak, nonatomic) IBOutlet UITextField *experienceField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *gainButton;
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)gainExperience:(id)sender;
+- (IBAction)experienceChanged:(id)sender;
 @end
 
 @protocol ExperienceDelegate <NSObject>

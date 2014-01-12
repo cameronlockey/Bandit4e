@@ -59,6 +59,8 @@
 	
 	spendSwitch.on = NO;
 	spendSwitch.onTintColor = [UIColor colorWithRed:0.16 green:0.32 blue:0.46 alpha:1.0];
+	amount = 0;
+	total = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,37 +69,77 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id)sender
+{
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)resolveGold:(id)sender {
+- (IBAction)resolveGold:(id)sender
+{
 	
-	if (![goldField.text isEqualToString:@""])
+	if ( total > 0 )
 	{
-		int goldValue = goldField.text.intValue;
-		
-		if (spendSwitch.on) {
+		if (spendSwitch.on)
+		{
 			// spend gold
-			character.gold = numInt(character.gold.intValue - goldValue);
+			character.gold = numInt(character.gold.intValue - total);
 		}
 		else
 		{
 			// add gold
-			character.gold = numInt(character.gold.intValue + goldValue);
+			character.gold = numInt(character.gold.intValue + total);
 		}
-	}		
-	
-	//  Commit item to core data
-	[Constants save:managedObjectContext];
-	
-	[delegate didAddGold];
+		//  Commit item to core data
+		[Constants save:managedObjectContext];
+		
+		[delegate didAddGold];
+	}
+	else
+	{
+		[UIHelpers showAlertWithTitle:@"Not Enough Gold!" msg:@"You don't have enough gold to spend it like that."];
+	}	
 }
 
-- (IBAction)switchToSpend:(id)sender {
-	if (spendSwitch.on)
-		doneButton.title = @"Spend";
-	else
-		doneButton.title = @"Add";
+- (IBAction)switchToSpend:(id)sender
+{
+	[self updateTotal];
 }
+
+- (IBAction)goldChanged:(id)sender
+{
+	amount = goldField.text.intValue;
+	[self updateTotal];
+}
+
+-(void) updateCommitButton
+{
+	NSString *commitString = (spendSwitch.on) ? @"Spend" : @"Gain";
+	doneButton.title = [NSString stringWithFormat:@"%@ %i", commitString, goldField.text.intValue];
+}
+
+-(void)updateTotal
+{
+	if (spendSwitch.on)
+	{
+		total = character.gold.intValue - amount;
+	}
+	else
+	{
+		total = character.gold.intValue + amount;
+	}
+	
+	goldLabel.text = [NSString stringWithFormat:@"%i",total];
+	[self updateGoldLabel];
+	[self updateCommitButton];
+	
+}
+
+-(void)updateGoldLabel
+{
+	if (total < 0)
+		goldLabel.textColor = RED;
+	else
+		goldLabel.textColor = GRAY;
+}
+
 @end

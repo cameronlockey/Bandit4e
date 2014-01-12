@@ -45,6 +45,21 @@
 
 @interface Character (CoreDataGeneratedAccessors)
 
+- (void)setName:(NSString*)_name
+		   Race:(NSString*)_race
+		  Class:(NSString*)_classname
+		  Level:(NSNumber*)_level
+		  MaxHP:(NSNumber*)_maxHp
+	  MaxSurges:(NSNumber*)_maxSurges
+HealingSurgeValue:(NSNumber*)_surgeValue
+SavingThrowModifier:(NSNumber*)_saveModifier
+	 Experience:(NSNumber*)_experience
+		   Gold:(NSNumber*)_gold
+SaveAtStartOfTurn:(NSNumber*)_saveAtStart
+ UsePowerPoints:(NSNumber*)_usesPp
+ MaxPowerPoints:(NSNumber*)_maxPp;
+
+
 - (void)addConditionsObject:(Condition *)value;
 - (void)removeConditionsObject:(Condition *)value;
 - (void)addConditions:(NSSet *)values;

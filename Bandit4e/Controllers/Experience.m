@@ -18,7 +18,7 @@
 
 @implementation Experience
 
-@synthesize experienceField, experienceLabel, currentExperienceLabel, delegate, character, managedObjectContext;
+@synthesize experienceField, experienceLabel, gainButton, currentExperienceLabel, delegate, character, managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +59,8 @@
 	
 	experienceLabel.text = character.experience.stringValue;
 	[experienceField becomeFirstResponder];
+	
+	amount = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,18 +69,28 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)cancel:(id)sender {
+- (IBAction)cancel:(id)sender
+{
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)gainExperience:(id)sender {
+- (IBAction)gainExperience:(id)sender
+{
 	
-	if (![experienceField.text isEqualToString:@""])
-		character.experience = numInt(character.experience.intValue + experienceField.text.intValue);
+	if (amount > 0)
+		character.experience = numInt(character.experience.intValue + amount);
 	
 	//  Commit item to core data
     [Constants save:managedObjectContext];
 	
 	[delegate didGainExperience];	
 }
+
+- (IBAction)experienceChanged:(id)sender
+{
+	amount = experienceField.text.intValue;
+	experienceLabel.text = [NSString stringWithFormat:@"%i", character.experience.intValue + amount];
+	gainButton.title = [NSString stringWithFormat:@"Gain %i EXP", amount];
+}
+
 @end

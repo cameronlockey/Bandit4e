@@ -66,12 +66,16 @@
 }
 
 -(void)readDataForTable
-{
-	// Grab the data
-	characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:managedObjectContext];
-	
+{	
 	// Force table refresh
 	[self.tableView reloadData];
+}
+
+-(void)accessoryButton:(UIControl *)button withEvent:(UIEvent *)event
+{
+    UITableViewCell *cell = (UITableViewCell*)[button superview];
+    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+    [self.tableView.delegate tableView:self.tableView accessoryButtonTappedForRowWithIndexPath:ip];
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,10 +128,6 @@
 		photoView.image = [UIImage imageWithData:currentCharacter.photo];
 		photoView.layer.borderColor = [[UIColor colorWithWhite:0.6f alpha:1.0f] CGColor];
 		photoView.layer.borderWidth = 1;
-		photoView.layer.shadowColor = [[UIColor colorWithWhite:0.3f alpha:0.7f] CGColor];
-		photoView.layer.shadowOffset = CGSizeMake(0,0);
-		photoView.layer.shadowRadius = 2;
-		photoView.layer.shadowOpacity = 0.8;
 		photoView.clipsToBounds = NO;
 	}
 		
@@ -146,6 +146,13 @@
 	raceClass.layer.shadowOffset = CGSizeMake(0,1);
 	raceClass.layer.shadowRadius = 0;
 	raceClass.layer.shadowOpacity = 1;
+	
+	// setup the edit button accessory
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 44, 44);
+    [button setImage:[UIImage imageNamed:@"edit-icon.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(accessoryButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+    cell.accessoryView = button;
 	
 	tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	

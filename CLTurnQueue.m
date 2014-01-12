@@ -70,7 +70,7 @@
 	if (!currentReminder)
 	{
 		currentReminder = [alertQueue objectAtIndex:0];
-		currentReminder.alert = [[UIAlertView alloc] initWithTitle:currentReminder.text message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Dismiss", @"OK", nil];
+		currentReminder.alert = [[UIAlertView alloc] initWithTitle:currentReminder.text message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Remove", @"OK", nil];
 		[currentReminder.alert show];
 	}
 	else
@@ -81,7 +81,7 @@
 		{
 			index++;
 			currentReminder = [alertQueue objectAtIndex:index];
-			currentReminder.alert = [[UIAlertView alloc] initWithTitle:currentReminder.text message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Dismiss", @"OK", nil];
+			currentReminder.alert = [[UIAlertView alloc] initWithTitle:currentReminder.text message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Remove", @"OK", nil];
 			[currentReminder.alert show];
 		}
 	}
