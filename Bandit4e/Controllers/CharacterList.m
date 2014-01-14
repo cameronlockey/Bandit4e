@@ -35,13 +35,19 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"CHARACTERS";
+	self.title = @"";
 	
 	self.navigationController.navigationBar.translucent = NO;
 	
 	self.tableView.rowHeight = 80;
 	self.view.backgroundColor = TABLEBG;
 	self.tableView.backgroundColor = TABLEBG;
+	
+	UIImage *titleImage = [UIImage imageNamed:@"bandit4e_title.png"];
+	float x = (self.view.frame.size.width / 2) - (titleImage.size.width/2);
+	UIImageView *banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
+	banditTitle.image = titleImage;
+	[self.navigationController.navigationBar addSubview:banditTitle];
 }
 
 -(void)viewWillAppear:(BOOL)animated

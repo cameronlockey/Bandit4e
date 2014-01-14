@@ -49,11 +49,18 @@
 	self.view.backgroundColor = VIEWBG;
 	self.navigationController.navigationBar.translucent = NO;
 	
-	self.title = @"COMBAT";
+	
+	self.title = @"";
 	UIImage *characterListIcon = [UIImage imageNamed:@"icon-characters.png"];
 	UIBarButtonItem *characterListButton = [[UIBarButtonItem alloc] initWithImage:[characterListIcon imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(returnToCharacterList)];
 	self.navigationItem.leftBarButtonItem = characterListButton;
 	self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+	
+	UIImage *titleImage = [UIImage imageNamed:@"bandit4e_title.png"];
+	float x = (self.view.frame.size.width / 2) - (titleImage.size.width/2);
+	UIImageView *banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
+	banditTitle.image = titleImage;
+	[self.navigationController.navigationBar addSubview:banditTitle];
 		
 	// set up characterInfo bg
 	characterInfoView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgLight.png"]];
@@ -155,9 +162,6 @@
 	
 	// queue up reminders
 	turnQueue = [CLTurnQueue queueWithManagedObjectContext:managedObjectContext andCharacter:character];
-	
-	NSLog(@"START QUEUE: %@", turnQueue.startReminders);
-	NSLog(@"END QUEUE: %@", turnQueue.endReminders);
 }
 
 -(void)viewWillAppear:(BOOL)animated
