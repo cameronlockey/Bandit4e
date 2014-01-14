@@ -31,9 +31,9 @@
 
 @synthesize managedObjectContext, imagePicker, character, delegate, saveButton, cancelButton;
 @synthesize nameField, raceField, classField, levelField, photoEditButton, photoView;
-@synthesize experienceField, goldField, maxHpField, maxSurgesField, healingSurgeValueField, savingThrowModifierField;
+@synthesize experienceField, goldField, maxHpField, maxSurgesField, healingSurgeValueField;
 @synthesize actionPointsField;
-@synthesize saveAtStartSwitch, usePowerPointsSwitch, maxPowerPointsField;
+@synthesize usePowerPointsSwitch, maxPowerPointsField;
 @synthesize nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxHpLabel, maxSurgesLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, actionPointsLabel, saveAtStartLabel, usePowerPointsLabel,maxPowerPointsLabel;
 
 - (void)viewDidLoad
@@ -51,7 +51,7 @@
 	// Add all text fields you want to be able to skip between to the keyboard controls
 	// Sets the order of prev/next	
 	NSMutableArray *textFields = [NSMutableArray arrayWithObjects:
-									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,savingThrowModifierField,experienceField,goldField, actionPointsField, maxPowerPointsField,nil];
+									   nameField,raceField,classField,levelField,maxHpField,maxSurgesField,healingSurgeValueField,experienceField,goldField, actionPointsField, maxPowerPointsField,nil];
 	
 	self.keyboardControls.textFields = textFields;
 	
@@ -94,31 +94,25 @@
 		maxHpField.text = character.maxHp.stringValue;
 		maxSurgesField.text = character.maxSurges.stringValue;
 		healingSurgeValueField.text = character.surgeValue.stringValue;
-		savingThrowModifierField.text = character.saveModifier.stringValue;
 		
 		actionPointsField.text = character.actionPoints.stringValue;
 		
-		saveAtStartSwitch.on = character.saveAtStart.boolValue;
 		usePowerPointsSwitch.on = character.usesPp.boolValue;
 		maxPowerPointsField.text = character.maxPp.stringValue;
 		
 	}
-	else
-	{
-		// make the name field the first responder
-		[nameField becomeFirstResponder];
-	}
+	
+	[nameField becomeFirstResponder];
 
 	// customize switches
 	UIColor *switchBlue = [UIColor colorWithRed:0.16 green:0.32 blue:0.46 alpha:1.0];
-	saveAtStartSwitch.onTintColor = switchBlue;
 	usePowerPointsSwitch.onTintColor = switchBlue;
 	
 	if (delegate == nil)
 		cancelButton.enabled = NO;
 	
 	// customize labels
-	[self customizeLabels:[NSArray arrayWithObjects:nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxSurgesLabel, maxHpLabel, surgeValueLabel, savingThrowLabel, experienceLabel, goldLabel, actionPointsLabel, savingThrowLabel, saveAtStartLabel, usePowerPointsLabel, maxPowerPointsLabel, nil]];
+	[self customizeLabels:[NSArray arrayWithObjects:nameLabel, raceLabel, classLabel, levelLabel, photoLabel, maxSurgesLabel, maxHpLabel, surgeValueLabel, experienceLabel, goldLabel, actionPointsLabel, usePowerPointsLabel, maxPowerPointsLabel, nil]];
 	
 	// customize fields
 	[self customizeFields:textFields];
@@ -178,8 +172,22 @@
 	character.maxHp = nums(maxHpField.text);
 	character.maxSurges = nums(maxSurgesField.text);
 	character.surgeValue = nums(healingSurgeValueField.text);
-	character.saveModifier = nums(savingThrowModifierField.text);
 	character.actionPoints = nums(actionPointsField.text);
+	
+	if (character.currentHp.intValue > character.maxHp.intValue)
+	{
+		character.currentHp = character.maxHp;
+	}
+	
+	if (character.currentSurges.intValue > character.maxSurges.intValue)
+	{
+		character.currentSurges = character.maxSurges;
+	}
+	
+	if (character.currentPp.intValue > character.maxPp.intValue)
+	{
+		character.currentPp = character.maxPp;
+	}
 	
 	if ([maxPowerPointsField.text isEqualToString:@""])
 	{
@@ -188,7 +196,6 @@
 	character.maxPp = nums(maxPowerPointsField.text);
 	
 	// set values for boolean settings
-	character.saveAtStart = [NSNumber numberWithBool:saveAtStartSwitch.on];
 	character.usesPp = [NSNumber numberWithBool:usePowerPointsSwitch.on];
 	
 	// Set rest of fields that are not defined by user, if we are not editing from 
@@ -203,30 +210,7 @@
 	if (photoView.image)
     {	
         imageData = UIImageJPEGRepresentation(photoView.image, 1);
-		
-		// Resize and save a smaller version for the table
-		float resize = 60.0;
-		float actualWidth = photoView.image.size.width;
-		float actualHeight = photoView.image.size.height;
-		float divBy, newWidth, newHeight;
-		if (actualWidth > actualHeight) {
-			divBy = (actualWidth / resize);
-			newWidth = resize;
-			newHeight = (actualHeight / divBy);
-		} else {
-			divBy = (actualHeight / resize);
-			newWidth = (actualWidth / divBy);
-			newHeight = resize;
-		}
-		CGRect rect = CGRectMake(0.0, 0.0, newWidth, newHeight);
-		UIGraphicsBeginImageContext(rect.size);
-		[photoView.image drawInRect:rect];
-		UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-		
-		// Save the small image version
-		NSData *smallImageData = UIImageJPEGRepresentation(smallImage, 1.0);
-		character.photo = smallImageData;
+		character.photo = imageData;
     }
 	
     //  Commit item to core data

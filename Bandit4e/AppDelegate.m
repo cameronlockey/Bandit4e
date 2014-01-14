@@ -70,7 +70,7 @@
 	{
 		Character *newCharacter = (Character*)[NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:self.managedObjectContext];
 		
-		[newCharacter setName:@"Bluefield" Race:@"Dwarf" Class:@"Fighter" Level:numInt(1) MaxHP:numInt(30) MaxSurges:numInt(8) HealingSurgeValue:numInt(7) SavingThrowModifier:numInt(0) Experience:numInt(0) Gold:numInt(500) SaveAtStartOfTurn:numInt(0) UsePowerPoints:numInt(0) MaxPowerPoints:numInt(0)];
+		[newCharacter setName:@"Sampreston Lambertil" Race:@"Half-Elf" Class:@"Druid" Level:numInt(1) MaxHP:numInt(30) MaxSurges:numInt(10) HealingSurgeValue:numInt(13) SavingThrowModifier:numInt(0) Experience:numInt(0) Gold:numInt(500) SaveAtStartOfTurn:numInt(0) UsePowerPoints:numInt(0) MaxPowerPoints:numInt(0)];
 		
 		[Constants save:self.managedObjectContext];
 		

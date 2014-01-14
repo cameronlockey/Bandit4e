@@ -44,9 +44,9 @@
 	reminders = [NSMutableArray arrayWithArray:[character.reminders allObjects]];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	reminders = reminders = [NSMutableArray arrayWithArray:[character.reminders allObjects]];
+	reminders = [NSMutableArray arrayWithArray:[character.reminders allObjects]];
 	[self.tableView reloadData];
 	
 	if (reminders.count < 10 ) {
@@ -60,6 +60,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)accessoryButton:(UIControl *)button withEvent:(UIEvent *)event
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.tableView]];
+    if ( indexPath == nil )
+        return;
+	
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
 #pragma mark - Table view data source
@@ -102,6 +111,13 @@
 	cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 	cell.detailTextLabel.font = ARVIL(22);
 	[UIHelpers applyTextShadow:cell.detailTextLabel];
+	
+	// setup the edit button accessory
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 44, 44);
+    [button setImage:[UIImage imageNamed:@"edit-icon.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(accessoryButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+    cell.accessoryView = button;
 	
 	// Draw top border only on first cell
 	if (indexPath.row == 0) {

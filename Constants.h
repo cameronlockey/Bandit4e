@@ -23,7 +23,7 @@
 #define NEG_BLOODIED		-1*BLOODIED
 #define FAILED_SAVES		character.failedSaves.intValue == 3
 #define IS_BLOODIED			character.currentHp.intValue <= character.maxHp.intValue*0.5
-#define IS_DYING			character.currentHp.intValue < 0
+#define IS_DYING			character.currentHp.intValue <= 0
 #define IS_DEAD				character.currentHp.intValue <= NEG_BLOODIED || FAILED_SAVES
 
 

@@ -22,6 +22,7 @@
 @property (weak,nonatomic) id <NotesDelegate> delegate;
 
 - (IBAction)done:(id)sender;
+- (void)accessoryButton:(UIControl*)button withEvent:(UIEvent*)event;
 @end
 
 @protocol NotesDelegate <NSObject>

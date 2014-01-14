@@ -22,10 +22,12 @@
 @property (strong,nonatomic) id <ReminderDelegate> delegate;
 
 - (IBAction)done:(id)sender;
+-(void)accessoryButton:(UIControl*)button withEvent:(UIEvent*)event;
 @end
 
 @protocol ReminderDelegate <NSObject>
 
 -(void)remindersDidFinish;
+
 
 @end

@@ -75,33 +75,11 @@ MaxPowerPoints:(NSNumber *)_maxPp
 	self.failedSaves = numInt(0);
 	
 	// Resize and save a smaller version for the table
-	UIImage *image = [UIImage imageNamed:@"noPhoto.png"];
-	
-	float resize = 60.0;
-	float actualWidth = image.size.width;
-	float actualHeight = image.size.height;
-	float divBy, newWidth, newHeight;
-	if (actualWidth > actualHeight)
-	{
-		divBy = (actualWidth / resize);
-		newWidth = resize;
-		newHeight = (actualHeight / divBy);
-	}
-	else
-	{
-		divBy = (actualHeight / resize);
-		newWidth = (actualWidth / divBy);
-		newHeight = resize;
-	}
-	CGRect rect = CGRectMake(0.0, 0.0, newWidth, newHeight);
-	UIGraphicsBeginImageContext(rect.size);
-	[image drawInRect:rect];
-	UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+	UIImage *image = [UIImage imageNamed:@"sampreston_quick.png"];
 	
 	// Save the small image version
-	NSData *smallImageData = UIImageJPEGRepresentation(smallImage, 1.0);
-	self.photo = smallImageData;
+	NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+	self.photo = imageData;
 }
 
 -(NSString*) description
@@ -110,11 +88,12 @@ MaxPowerPoints:(NSNumber *)_maxPp
 	return description;
 }
 
-+ (BOOL)useHealingSurges:(int)surges forCharacter:(Character*)character
++ (NSDictionary*)useHealingSurges:(int)surges forCharacter:(Character*)character
 {
 	// do we have any surges?
 	// add them to currentHP
-	if (character.currentSurges.intValue > 0 && surges > 0) {
+	if (character.currentSurges.intValue > 0 && surges > 0)
+	{
 		
 		// determine the deficit (HP needed)
 		float deficit;
@@ -169,14 +148,19 @@ MaxPowerPoints:(NSNumber *)_maxPp
 			// update surges
 			int remainingSurges = character.currentSurges.intValue - surges;
 			character.currentSurges = numInt(remainingSurges);
+			
+			NSDictionary *usedSurges = [NSDictionary dictionaryWithObjectsAndKeys:numInt(surges), @"surges", numInt(amountFromSurges), @"amount", nil];
+			
+			return usedSurges;
 		}
 		
-		return TRUE;
+		return FALSE;
 		
 	}
 	else
+	{
 		return FALSE;
-		
+	}		
 }
 
 @end

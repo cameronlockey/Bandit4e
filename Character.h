@@ -39,7 +39,7 @@
 @property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) NSSet *reminders;
 
-+ (BOOL)useHealingSurges:(int)surges forCharacter:(Character*)character;
++ (NSDictionary*)useHealingSurges:(int)surges forCharacter:(Character*)character;
 
 @end
 

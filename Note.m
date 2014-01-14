@@ -15,4 +15,10 @@
 @dynamic text;
 @dynamic character;
 
+-(NSString*)description
+{
+	NSString *description = [NSString stringWithFormat:@"%@", self.text];
+	return description;
+}
+
 @end

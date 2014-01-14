@@ -43,6 +43,8 @@
 
     // convert notes set to array
 	notes = [NSMutableArray arrayWithArray:[character.notes allObjects]];
+	
+	NSLog(@"Notes: %@", notes);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,6 +57,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)accessoryButton:(UIControl *)button withEvent:(UIEvent *)event
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.tableView]];
+    if ( indexPath == nil )
+        return;
+	
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
 #pragma mark - Table view data source
@@ -91,20 +102,19 @@
 	cell.textView.textColor = [UIColor darkGrayColor];
 	cell.textView.backgroundColor = [UIColor clearColor];
 	
+	// setup the edit button accessory
+	UIButton *accessoryButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    accessoryButton.frame = CGRectMake(0, 0, 44, 44);
+    [accessoryButton setImage:[UIImage imageNamed:@"edit-icon.png"] forState:UIControlStateNormal];
+    [accessoryButton addTarget:self action:@selector(accessoryButton:withEvent:) forControlEvents:UIControlEventTouchUpInside];
+    cell.accessoryView = accessoryButton;
+	
 	cell.tintColor = [UIColor darkGrayColor];
 	
 	// Draw top border only on first cell
-	if (indexPath.row == 0) {
-		UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
-		topLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
-		[cell addSubview:topLineView];
-	}
-	else
-	{
-		UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
-		topLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
-		[cell addSubview:topLineView];
-	}
+	UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+	topLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
+	[cell addSubview:topLineView];
 	
 	UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, cell.bounds.size.height-1, self.view.bounds.size.width, 1)];
 	bottomLineView.backgroundColor = [UIColor colorWithWhite:0.45 alpha:1.0];
@@ -116,6 +126,8 @@
 - (void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
 	selectedNote = [notes objectAtIndex:indexPath.row];
+	NSLog(@"selected item at index path: %i", indexPath.row);
+	NSLog(@"selected note: %@", selectedNote);
 	[self performSegueWithIdentifier:@"EditNote" sender:self];
 }
 

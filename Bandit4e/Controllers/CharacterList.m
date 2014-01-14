@@ -42,11 +42,6 @@
 	self.tableView.rowHeight = 80;
 	self.view.backgroundColor = TABLEBG;
 	self.tableView.backgroundColor = TABLEBG;
-	
-	activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-	activity.center = CGPointMake(self.parentViewController.view.frame.size.width/2, self.parentViewController.view.frame.size.height/2);
-	activity.hidesWhenStopped = YES;
-	[[UIApplication sharedApplication].windows.firstObject addSubview:activity];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -62,20 +57,23 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-	[activity stopAnimating];
 }
 
 -(void)readDataForTable
 {	
 	// Force table refresh
+	// Grab the data
+	characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
 	[self.tableView reloadData];
 }
 
 -(void)accessoryButton:(UIControl *)button withEvent:(UIEvent *)event
 {
-    UITableViewCell *cell = (UITableViewCell*)[button superview];
-    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-    [self.tableView.delegate tableView:self.tableView accessoryButtonTappedForRowWithIndexPath:ip];
+    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.tableView]];
+    if ( indexPath == nil )
+        return;
+	
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
 - (void)didReceiveMemoryWarning
@@ -289,7 +287,6 @@
  * ---------------------------------------------*/
 -(void)characterAddEditDidFinish
 {
-	self.editing = NO;
 }
 
 @end

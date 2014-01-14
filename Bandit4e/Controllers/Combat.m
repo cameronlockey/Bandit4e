@@ -560,7 +560,17 @@
 		int surges = floor(deficit / character.surgeValue.floatValue);
 		
 		// use that many surges
-		[Character useHealingSurges:surges forCharacter:character];
+		NSDictionary *successfulRest = [Character useHealingSurges:surges forCharacter:character];
+		
+		if (successfulRest != nil)
+		{
+			NSLog(@"successful rest: %@", successfulRest);
+			NSNumber *surgesUsed = [successfulRest objectForKey:@"surges"];
+			NSNumber *amountFromSurges = [successfulRest objectForKey:@"amount"];
+			NSString *plural = (surgesUsed.intValue == 1) ? @"surge" : @"surges";
+			NSString *message = [NSString stringWithFormat:@"Used %i healing %@ \rand recovered %i HP!", surgesUsed.intValue,plural, amountFromSurges.intValue];
+			[UIHelpers showAlertWithTitle:@"You Took A Short Rest" msg:message];
+		}
 		
 		// add a milestone?
 		if (milestone)
