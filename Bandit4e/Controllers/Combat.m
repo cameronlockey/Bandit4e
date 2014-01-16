@@ -58,7 +58,7 @@
 	
 	UIImage *titleImage = [UIImage imageNamed:@"bandit4e_title.png"];
 	float x = (self.view.frame.size.width / 2) - (titleImage.size.width/2);
-	UIImageView *banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
+	banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
 	banditTitle.image = titleImage;
 	[self.navigationController.navigationBar addSubview:banditTitle];
 		
@@ -188,6 +188,13 @@
 	[self updateCombatButton:goldButton Label:gold Value:character.gold.stringValue];
 	[self updateCombatButton:expButton Label:experiencePoints Value:character.experience.stringValue];
 	[self updateCombatButton:ppButton Label:powerPoints Value:character.currentPp.stringValue];
+	
+	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 1;}];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 0.0;}];
 }
 
 - (void)didReceiveMemoryWarning
@@ -298,6 +305,15 @@
 	characterImageView.layer.shadowRadius = 0;
 	characterImageView.layer.shadowOpacity = 1;
 	characterImageView.image = characterPhoto;
+	
+	if (character.usesPp.intValue == 1)
+	{
+		ppButton.enabled = YES;
+	}
+	else
+	{
+		ppButton.enabled = NO;
+	}
 	
 	// stat labels
 	[self updateStatLabels];
@@ -438,7 +454,7 @@
 			
 		}
 		else
-			[UIHelpers showAlertWithTitle:@"No Power Points" msg:@"Sorry, no Power Points. You need to extended rest first."];
+			[UIHelpers showAlertWithTitle:@"No Power Points" msg:@"Sorry, no Power Points. You need to take a short or extended rest first."];
 	}
 }
 
@@ -583,6 +599,13 @@
 		// update failed saves
 		if (character.failedSaves.intValue > 0)
 			character.failedSaves = numInt(0);
+		
+		// reset Power Points to Max
+		if (character.usesPp)
+		{
+			character.currentPp = character.maxPp;
+			[self updateCombatButton:ppButton Label:powerPoints Value:character.maxPp.stringValue];
+		}
 		
 		//  Commit item to core data
 		[Constants save:managedObjectContext];

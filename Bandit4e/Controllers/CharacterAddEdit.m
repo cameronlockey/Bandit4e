@@ -184,16 +184,17 @@
 		character.currentSurges = character.maxSurges;
 	}
 	
-	if (character.currentPp.intValue > character.maxPp.intValue)
-	{
-		character.currentPp = character.maxPp;
-	}
-	
+	// set up PowerPoints
 	if ([maxPowerPointsField.text isEqualToString:@""])
 	{
 		maxPowerPointsField.text = @"0";
 	}
 	character.maxPp = nums(maxPowerPointsField.text);
+	
+	if (character.currentPp.intValue > character.maxPp.intValue)
+	{
+		character.currentPp = character.maxPp;
+	}
 	
 	// set values for boolean settings
 	character.usesPp = [NSNumber numberWithBool:usePowerPointsSwitch.on];
@@ -203,6 +204,7 @@
 	{
 		character.currentHp = [f numberFromString:maxHpField.text];
 		character.currentSurges = [f numberFromString:maxSurgesField.text];
+		character.currentPp = [f numberFromString:maxPowerPointsField.text];
 		character.tempHp = [NSNumber numberWithInt:0];
 		character.failedSaves = [NSNumber numberWithInt:0];
 	}
@@ -233,6 +235,7 @@
 		maxPowerPointsField.enabled = YES;
 		[self.keyboardControls.textFields addObject:maxPowerPointsField];
 		maxPowerPointsLabel.textColor = [UIColor colorWithWhite:0.35 alpha:1.0];
+		[maxPowerPointsField becomeFirstResponder];
 	}
 	else
 	{

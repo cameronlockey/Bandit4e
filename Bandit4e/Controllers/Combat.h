@@ -28,6 +28,7 @@
 	UILabel *powerPoints;
 	CustomBadge *tempBadge;
 	BOOL start;
+	UIImageView *banditTitle;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
