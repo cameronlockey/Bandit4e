@@ -27,6 +27,8 @@
 	UILabel *gold;
 	UILabel *powerPoints;
 	CustomBadge *tempBadge;
+	CustomBadge *startEndTurnBadge;
+	//CustomBadge *endTurnBadge;
 	BOOL start;
 	UIImageView *banditTitle;
 }

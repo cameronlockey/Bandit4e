@@ -145,13 +145,26 @@
 	tempBadge = [CustomBadge customBadgeWithString:tempHpString
 								   withStringColor:[UIColor whiteColor]
 									withInsetColor:[UIColor colorWithRed:0.04 green:0.64 blue:0 alpha:1.0]
-									withBadgeFrame:YES
+									withBadgeFrame:NO
 							   withBadgeFrameColor:[UIColor whiteColor]
 										 withScale:1.0
-									   withShining:YES];
+									   withShining:NO];
 	tempBadge.frame = CGRectMake(tempHpButton.frame.size.width-tempBadge.frame.size.width*0.83, (-1*(tempBadge.frame.size.height*0.22)), tempBadge.frame.size.width, tempBadge.frame.size.height);
 	[tempHpButton addSubview:tempBadge];
 	tempHpButton.clipsToBounds = NO;
+	
+	// create reminder badges
+	NSMutableArray *startReminders = [NSMutableArray arrayWithArray:[character.reminders allObjects]];
+	startEndTurnBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", startReminders.count]
+								   withStringColor:[UIColor whiteColor]
+									withInsetColor:[UIColor colorWithRed:0.04 green:0.64 blue:0 alpha:1.0]
+									withBadgeFrame:NO
+							   withBadgeFrameColor:[UIColor whiteColor]
+										 withScale:1.0
+									   withShining:NO];
+	startEndTurnBadge.frame = CGRectMake(remindersButton.frame.size.width-startEndTurnBadge.frame.size.width*0.83, (-1*(startEndTurnBadge.frame.size.height*0.25)), startEndTurnBadge.frame.size.width, startEndTurnBadge.frame.size.height);
+	[remindersButton addSubview:startEndTurnBadge];
+	remindersButton.clipsToBounds = NO;
 	
 	// if no tempHP, set hidden
 	if (character.tempHp.intValue < 1)
