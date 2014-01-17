@@ -20,16 +20,7 @@
 
 @implementation CharacterList
 
-@synthesize managedObjectContext, characters, selectedCharacter, activity;
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize managedObjectContext, characters, selectedCharacter, toolbar;
 
 - (void)viewDidLoad
 {
@@ -45,9 +36,11 @@
 	
 	UIImage *titleImage = [UIImage imageNamed:@"bandit4e_title.png"];
 	float x = (self.view.frame.size.width / 2) - (titleImage.size.width/2);
-	UIImageView *banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
+	banditTitle = [[UIImageView alloc] initWithFrame:CGRectMake(x, 2, titleImage.size.width, titleImage.size.height)];
 	banditTitle.image = titleImage;
 	[self.navigationController.navigationBar addSubview:banditTitle];
+	
+	toolbar.barTintColor = [UIColor colorWithWhite:1 alpha:0.4];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -59,10 +52,13 @@
 	}
 	else
 		self.tableView.scrollEnabled = YES;
+	
+	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 1;}];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
+	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 0.0;}];
 }
 
 -(void)readDataForTable
@@ -246,7 +242,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[activity startAnimating];
 	selectedCharacter = [characters objectAtIndex:indexPath.row];
 	[self performSegueWithIdentifier:@"PlayCharacter" sender:self];
 }
