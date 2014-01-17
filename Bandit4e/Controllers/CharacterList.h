@@ -11,11 +11,16 @@
 
 @class Character;
 
-@interface CharacterList : UITableViewController <CharacterAddEditDelegate>
+@interface CharacterList : UIViewController <UITableViewDelegate, UITableViewDataSource, CharacterAddEditDelegate>
+{
+	UIImageView *banditTitle;
+}
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSMutableArray *characters;
 @property (strong,nonatomic) UIActivityIndicatorView *activity;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (strong,nonatomic) Character *selectedCharacter;
 

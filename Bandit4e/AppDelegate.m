@@ -39,6 +39,13 @@
 	// UIToolbar
 	//[[UIToolbar appearance] setBarTintColor:[UIColor colorWithRed:0.14 green:0.27 blue:0.40 alpha:1.0]];
 	
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTitleTextAttributes: @{
+															NSForegroundColorAttributeName : [UIColor colorWithRed:0.29 green:0.58 blue:0.78 alpha:1],
+															NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24]
+															}
+												forState:UIControlStateNormal];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:[UIColor colorWithRed:0.29 green:0.58 blue:0.78 alpha:1]];
+	
 	// UIBarButtonItems
 	[[UIBarButtonItem appearance] setTitleTextAttributes: @{
 						 NSForegroundColorAttributeName : [UIColor whiteColor],
