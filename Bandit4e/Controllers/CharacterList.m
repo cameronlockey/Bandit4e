@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 Fragment. All rights reserved.
 //
 #import <QuartzCore/QuartzCore.h>
+#import <StoreKit/StoreKit.h>
 #import "CharacterList.h"
 #import "Character.h"
 #import "CharacterAddEdit.h"
 #import "Combat.h"
 #import "Constants.h"
 #import "CoreDataHelper.h"
+#import "Store.h"
 
 
 @interface CharacterList ()
@@ -20,7 +22,7 @@
 
 @implementation CharacterList
 
-@synthesize managedObjectContext, characters, selectedCharacter, toolbar;
+@synthesize characters, managedObjectContext, purchaseButton, selectedCharacter, toolbar;
 
 - (void)viewDidLoad
 {
@@ -40,7 +42,15 @@
 	banditTitle.image = titleImage;
 	[self.navigationController.navigationBar addSubview:banditTitle];
 	
-	toolbar.barTintColor = [UIColor colorWithWhite:1 alpha:0.4];
+	toolbar.barTintColor = [UIColor colorWithWhite:0.8 alpha:1];
+	toolbar.translucent = YES;
+	
+	[[IAPBanditHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *_products) {
+        if (success) {
+            products = _products;
+			NSLog(@"have products in view controller: %@", products);
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -54,6 +64,17 @@
 		self.tableView.scrollEnabled = YES;
 	
 	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 1;}];
+	
+	// check if user has full version
+	hasFullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:@"com.bandit4e.full_version"];
+	NSLog(@"User has full version: %@", (hasFullVersion) ? @"TRUE" : @"FALSE");
+	
+	if (hasFullVersion)
+	{
+		NSMutableArray *items = [toolbar.items mutableCopy];
+		[items removeObject: purchaseButton];
+		toolbar.items = items;
+	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -76,6 +97,23 @@
         return;
 	
     [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+}
+
+- (IBAction)showStore:(id)sender
+{
+	[self performSegueWithIdentifier:@"ShowStore" sender:self];
+}
+
+- (IBAction)addNewCharacter:(id)sender
+{
+	if (hasFullVersion)
+	{
+		[self performSegueWithIdentifier:@"AddCharacter" sender:self];
+	}
+	else
+	{
+		[self performSegueWithIdentifier:@"ShowStore" sender:self];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,7 +161,8 @@
 	raceClass.text = [NSString stringWithFormat:@"%@ %@",currentCharacter.race, currentCharacter.classname];
 	
 	// If a picture exists then use it
-	if (currentCharacter.photo) {
+	if (currentCharacter.photo)
+	{
 		UIImageView *photoView = (UIImageView*)[cell viewWithTag:1];
 		photoView.image = [UIImage imageWithData:currentCharacter.photo];
 		photoView.layer.borderColor = [[UIColor colorWithWhite:0.6f alpha:1.0f] CGColor];
@@ -178,14 +217,11 @@
     return cell;
 }
 
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
 }
-
-
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,14 +257,10 @@
     }   
 }
 
-
-
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
 }
-
-
 
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -236,7 +268,6 @@
     // Return NO if you do not want the item to be re-orderable.
     return NO;
 }
-
 
 #pragma mark - Table view delegate
 
@@ -281,6 +312,12 @@
 		Combat *combat = combatNavController.viewControllers.firstObject;
 		combat.managedObjectContext = managedObjectContext;
 		combat.character = selectedCharacter;		
+	}
+	else if ([segue.identifier isEqualToString:@"ShowStore"])
+	{
+		UINavigationController *storeNavController = segue.destinationViewController;
+		Store *store = storeNavController.viewControllers.firstObject;
+		store.products = products;
 	}
 }
 

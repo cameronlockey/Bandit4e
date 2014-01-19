@@ -13,6 +13,11 @@
 		7E39CE2316C9E1B300F5582D /* UIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E39CE2216C9E1B300F5582D /* UIHelpers.m */; };
 		7E464C8316D94A5E00C37390 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E464C8216D94A5E00C37390 /* Constants.m */; };
 		7E4CBFA71837FF0F00F684C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CBFA61837FF0F00F684C3 /* Main.storyboard */; };
+		7E594E35188AD06D004365EE /* product_ids.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E594E34188AD06D004365EE /* product_ids.plist */; };
+		7E594E39188AD869004365EE /* Store.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E594E38188AD869004365EE /* Store.m */; };
+		7E594E3B188AD9FF004365EE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E594E3A188AD9FF004365EE /* StoreKit.framework */; };
+		7E594E3F188AF97D004365EE /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E594E3E188AF97D004365EE /* IAPHelper.m */; };
+		7E594E43188AFA69004365EE /* IAPBanditHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E594E42188AFA69004365EE /* IAPBanditHelper.m */; };
 		7E6360691881D88200A48BDA /* edit-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6360671881D88200A48BDA /* edit-icon.png */; };
 		7E63606A1881D88200A48BDA /* edit-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E6360681881D88200A48BDA /* edit-icon@2x.png */; };
 		7E750F6616E0EDD500A3374C /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E750F6516E0EDD500A3374C /* CustomBadge.m */; };
@@ -116,6 +121,14 @@
 		7E464C8116D94A5E00C37390 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		7E464C8216D94A5E00C37390 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		7E4CBFA61837FF0F00F684C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7E594E34188AD06D004365EE /* product_ids.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = product_ids.plist; sourceTree = "<group>"; };
+		7E594E37188AD869004365EE /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Store.h; path = Controllers/Store.h; sourceTree = "<group>"; };
+		7E594E38188AD869004365EE /* Store.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Store.m; path = Controllers/Store.m; sourceTree = "<group>"; };
+		7E594E3A188AD9FF004365EE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7E594E3D188AF97D004365EE /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		7E594E3E188AF97D004365EE /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		7E594E41188AFA69004365EE /* IAPBanditHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAPBanditHelper.h; path = IAPBanditHelper/IAPBanditHelper.h; sourceTree = "<group>"; };
+		7E594E42188AFA69004365EE /* IAPBanditHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPBanditHelper.m; path = IAPBanditHelper/IAPBanditHelper.m; sourceTree = "<group>"; };
 		7E6360671881D88200A48BDA /* edit-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-icon.png"; sourceTree = "<group>"; };
 		7E6360681881D88200A48BDA /* edit-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-icon@2x.png"; sourceTree = "<group>"; };
 		7E750F6416E0EDD500A3374C /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
@@ -242,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E594E3B188AD9FF004365EE /* StoreKit.framework in Frameworks */,
 				7EE80F6916CFE57B005D576D /* QuartzCore.framework in Frameworks */,
 				7ED04E1C16738F9F00BABBA1 /* UIKit.framework in Frameworks */,
 				7ED04E1E16738F9F00BABBA1 /* Foundation.framework in Frameworks */,
@@ -261,6 +275,33 @@
 			);
 			name = "Custom Views";
 			path = Bandit4e;
+			sourceTree = "<group>";
+		};
+		7E594E36188AD840004365EE /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				7E594E37188AD869004365EE /* Store.h */,
+				7E594E38188AD869004365EE /* Store.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		7E594E3C188AF97D004365EE /* IAPHelper */ = {
+			isa = PBXGroup;
+			children = (
+				7E594E3D188AF97D004365EE /* IAPHelper.h */,
+				7E594E3E188AF97D004365EE /* IAPHelper.m */,
+			);
+			path = IAPHelper;
+			sourceTree = "<group>";
+		};
+		7E594E40188AFA17004365EE /* IAPBanditHelper */ = {
+			isa = PBXGroup;
+			children = (
+				7E594E41188AFA69004365EE /* IAPBanditHelper.h */,
+				7E594E42188AFA69004365EE /* IAPBanditHelper.m */,
+			);
+			name = IAPBanditHelper;
 			sourceTree = "<group>";
 		};
 		7E74437216C86A6C00CD314A /* Images */ = {
@@ -302,6 +343,7 @@
 		7ED04E0C16738F9F00BABBA1 = {
 			isa = PBXGroup;
 			children = (
+				7E594E34188AD06D004365EE /* product_ids.plist */,
 				7EE6353E1875170A00F02C4B /* iPhoneSettings.png */,
 				7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */,
 				7EE6353A187516A700F02C4B /* iPhoneRetina.png */,
@@ -334,6 +376,7 @@
 		7ED04E1A16738F9F00BABBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7E594E3A188AD9FF004365EE /* StoreKit.framework */,
 				7EE80F6816CFE57B005D576D /* QuartzCore.framework */,
 				7ED04E1B16738F9F00BABBA1 /* UIKit.framework */,
 				7ED04E1D16738F9F00BABBA1 /* Foundation.framework */,
@@ -377,6 +420,8 @@
 		7ED04E421673A30900BABBA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7E594E40188AFA17004365EE /* IAPBanditHelper */,
+				7E594E3C188AF97D004365EE /* IAPHelper */,
 				7EE31F541869FFA200237587 /* CLTurnQueue */,
 				7E750F6316E0EDC200A3374C /* CustomBadge */,
 				7E39CE2116C9E1B300F5582D /* UIHelpers.h */,
@@ -484,6 +529,7 @@
 		7EE80F7C16CFFB4D005D576D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E594E36188AD840004365EE /* Store */,
 				7EE80F7E16CFFB81005D576D /* Characters */,
 				7EE80F7D16CFFB70005D576D /* Combat */,
 				7ED9657416F6639E009FDB5A /* Conditions */,
@@ -608,6 +654,7 @@
 				7EE635251874D70900F02C4B /* hourglass@2x.png in Resources */,
 				7EE635381874D70900F02C4B /* tableBg.png in Resources */,
 				7EE635181874D70900F02C4B /* startBg.png in Resources */,
+				7E594E35188AD06D004365EE /* product_ids.plist in Resources */,
 				7EE635121874D70900F02C4B /* bottomLeft.png in Resources */,
 				7EE6351E1874D70900F02C4B /* topRightCorner.png in Resources */,
 				7EE635141874D70900F02C4B /* lightInner.png in Resources */,
@@ -664,7 +711,9 @@
 				7ED04E2A16738F9F00BABBA1 /* main.m in Sources */,
 				7EE634DB1874D6DF00F02C4B /* ConditionsList.m in Sources */,
 				7ED04E2E16738F9F00BABBA1 /* AppDelegate.m in Sources */,
+				7E594E39188AD869004365EE /* Store.m in Sources */,
 				7ED04E3716738FA000BABBA1 /* Bandit4e.xcdatamodeld in Sources */,
+				7E594E3F188AF97D004365EE /* IAPHelper.m in Sources */,
 				7EE634CD1874D69600F02C4B /* Combat.m in Sources */,
 				7EE634B91874D66500F02C4B /* CharacterAddEdit.m in Sources */,
 				7ED04E451673A33D00BABBA1 /* CoreDataHelper.m in Sources */,
@@ -683,6 +732,7 @@
 				7E750F6616E0EDD500A3374C /* CustomBadge.m in Sources */,
 				7EE634D51874D69600F02C4B /* Reminders.m in Sources */,
 				7EE634CF1874D69600F02C4B /* Experience.m in Sources */,
+				7E594E43188AFA69004365EE /* IAPBanditHelper.m in Sources */,
 				7EE634D01874D69600F02C4B /* Gold.m in Sources */,
 				7EE634D11874D69600F02C4B /* Heal.m in Sources */,
 				7EE634D21874D69600F02C4B /* NoteAdd.m in Sources */,

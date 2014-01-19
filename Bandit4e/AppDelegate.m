@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 Fragment. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
+#import <StoreKit/StoreKit.h>
+#import "AppDelegate.h"
 #import "Character.h"
 #import "CharacterList.h"
 #import "CoreDataHelper.h"
 #import "Constants.h"
+#import "IAPBanditHelper.h"
 #import "UIHelpers.h"
 
 
@@ -57,14 +59,14 @@
 	[[UITextField appearance] setTintColor:[UIColor darkGrayColor]];
 
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+	
+	[IAPBanditHelper sharedInstance];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self customizeAppearance];
-	
-	
-	
+		
     UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
 	CharacterList *characterList = (CharacterList*)navigationController.topViewController;
 	
@@ -85,6 +87,10 @@
 	
 	characterList.managedObjectContext = self.managedObjectContext;
 	characterList.characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
+	
+	// manually reset the app to not purchased
+	//[[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"com.bandit4e.full_version"];
+	//[[NSUserDefaults standardUserDefaults] synchronize];
 	
     return YES;
 }
