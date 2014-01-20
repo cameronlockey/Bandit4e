@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Fragment. All rights reserved.
 //
 
+#import <iAd/iAd.h>
 #import <UIKit/UIKit.h>
 #import <StoreKit/StoreKit.h>
 #import "CharacterAddEdit.h"
@@ -13,12 +14,13 @@
 
 @class Character;
 
-@interface CharacterList : UIViewController <UITableViewDelegate, UITableViewDataSource, CharacterAddEditDelegate>
+@interface CharacterList : UIViewController <ADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource, CharacterAddEditDelegate>
 {
 	UIImageView *banditTitle;
 	NSArray *productIdentifiers;
 	NSArray *products;
 	BOOL hasFullVersion;
+	BOOL bannerShowing;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *purchaseButton;
+@property (weak, nonatomic) IBOutlet ADBannerView *adBanner;
 
 @property (strong,nonatomic) Character *selectedCharacter;
 

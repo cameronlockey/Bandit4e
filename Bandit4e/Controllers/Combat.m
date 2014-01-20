@@ -26,7 +26,7 @@
 
 @implementation Combat
 
-@synthesize managedObjectContext, character, restOptions, turnQueue;
+@synthesize managedObjectContext, character, restOptions, turnQueue, bannerView, startButtonBottomConstraint, damageButtonTopConstraint, remindersButtonBottomConstraint, notesButtonBottomConstraint, hpLabelTopConstraint, healingSurgesTopConstraint, deathSavesTopConstraint, hitPointsTopConstraint, bannerViewBottomConstraint;
 @synthesize characterInfoView, characterImageView, nameLabel, raceClassLevelLabel, hpLabel, surgesLabel, failedSavesValueLabel, failedSavesLabel, hitPoints, healingSurges;
 @synthesize damageButton, healButton, goldButton, apButton, tempHpButton, expButton, restButton, ppButton, startTurnButton, remindersButton, notesButton;
 @synthesize damageController, healController, experienceController, goldController, notesController, remindersController;
@@ -46,6 +46,7 @@
     [super viewDidLoad];
 	
 	start = YES;
+	bannerShowing = NO;
 	self.view.backgroundColor = VIEWBG;
 	self.navigationController.navigationBar.translucent = NO;
 	
@@ -848,6 +849,89 @@
 		remindersController.managedObjectContext = managedObjectContext;
 		remindersController.character = character;
 		remindersController.delegate = self;
+	}
+}
+
+/* IADDelegate Methods
+ * ---------------------------------------------*/
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+	if (!bannerShowing)
+	{
+		[UIView animateWithDuration:1 animations:^{
+			banner.frame = CGRectMake(0, banner.frame.origin.y - 50, banner.frame.size.width, banner.frame.size.height);
+			
+			NSArray *buttonViews = [NSArray arrayWithObjects:startTurnButton, remindersButton, notesButton, apButton, goldButton, expButton, ppButton, damageButton, healButton, tempHpButton, restButton, nil];
+			
+			for (UIView *view in buttonViews)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - 40, view.frame.size.width, view.frame.size.height);
+			}
+			
+			NSArray *statViewValues = [NSArray arrayWithObjects:hpLabel, failedSavesValueLabel, surgesLabel, nil];
+			for (UIView *view in statViewValues)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - 15, view.frame.size.width, view.frame.size.height);
+			}
+			
+			NSArray *statViewLabels = [NSArray arrayWithObjects:hitPoints, failedSavesLabel, healingSurges, nil];
+			for (UIView *view in statViewLabels)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y - 25, view.frame.size.width, view.frame.size.height);
+			}
+		} completion:^(BOOL finished) {
+			hpLabelTopConstraint.constant = 5;
+			hitPointsTopConstraint.constant = -5;
+			deathSavesTopConstraint.constant = -5;
+			healingSurgesTopConstraint.constant = -5;
+			damageButtonTopConstraint.constant = 5;
+			startButtonBottomConstraint.constant = 60;
+			remindersButtonBottomConstraint.constant = 60;
+			notesButtonBottomConstraint.constant = 60;
+			bannerViewBottomConstraint.constant = 0;
+			
+			bannerShowing = YES;
+		}];
+	}
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+	if (bannerShowing)
+	{
+		[UIView animateWithDuration:1 animations:^{
+			banner.frame = CGRectMake(0, banner.frame.origin.y + 50, banner.frame.size.width, banner.frame.size.height);
+			
+			NSArray *buttonViews = [NSArray arrayWithObjects:startTurnButton, remindersButton, notesButton, apButton, goldButton, expButton, ppButton, damageButton, healButton, tempHpButton, restButton, nil];
+			
+			for (UIView *view in buttonViews)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + 40, view.frame.size.width, view.frame.size.height);
+			}
+			
+			NSArray *statViewValues = [NSArray arrayWithObjects:hpLabel, failedSavesValueLabel, surgesLabel, nil];
+			for (UIView *view in statViewValues)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + 15, view.frame.size.width, view.frame.size.height);
+			}
+			
+			NSArray *statViewLabels = [NSArray arrayWithObjects:hitPoints, failedSavesLabel, healingSurges, nil];
+			for (UIView *view in statViewLabels)
+			{
+				view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y + 25, view.frame.size.width, view.frame.size.height);
+			}
+		} completion:^(BOOL finished) {
+			hpLabelTopConstraint.constant = 20;
+			hitPointsTopConstraint.constant = 0;
+			deathSavesTopConstraint.constant = 0;
+			healingSurgesTopConstraint.constant = 0;
+			damageButtonTopConstraint.constant = 20;
+			startButtonBottomConstraint.constant = 20;
+			remindersButtonBottomConstraint.constant = 20;
+			notesButtonBottomConstraint.constant = 20;
+			bannerViewBottomConstraint.constant = -50;
+			bannerShowing = NO;
+		}];
 	}
 }
 

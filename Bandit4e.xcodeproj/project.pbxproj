@@ -110,6 +110,7 @@
 		7EE6353D187516DB00F02C4B /* iPhoneSpotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */; };
 		7EE6353F1875170A00F02C4B /* iPhoneSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE6353E1875170A00F02C4B /* iPhoneSettings.png */; };
 		7EE80F6916CFE57B005D576D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE80F6816CFE57B005D576D /* QuartzCore.framework */; };
+		7EF8034A188C611300910C24 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF80349188C611300910C24 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -248,6 +249,7 @@
 		7EE6353C187516DB00F02C4B /* iPhoneSpotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneSpotlight.png; sourceTree = "<group>"; };
 		7EE6353E1875170A00F02C4B /* iPhoneSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhoneSettings.png; sourceTree = "<group>"; };
 		7EE80F6816CFE57B005D576D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7EF80349188C611300910C24 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EF8034A188C611300910C24 /* iAd.framework in Frameworks */,
 				7E594E3B188AD9FF004365EE /* StoreKit.framework in Frameworks */,
 				7EE80F6916CFE57B005D576D /* QuartzCore.framework in Frameworks */,
 				7ED04E1C16738F9F00BABBA1 /* UIKit.framework in Frameworks */,
@@ -376,6 +379,7 @@
 		7ED04E1A16738F9F00BABBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EF80349188C611300910C24 /* iAd.framework */,
 				7E594E3A188AD9FF004365EE /* StoreKit.framework */,
 				7EE80F6816CFE57B005D576D /* QuartzCore.framework */,
 				7ED04E1B16738F9F00BABBA1 /* UIKit.framework */,

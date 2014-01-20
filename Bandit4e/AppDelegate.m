@@ -89,8 +89,8 @@
 	characterList.characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
 	
 	// manually reset the app to not purchased
-	//[[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"com.bandit4e.full_version"];
-	//[[NSUserDefaults standardUserDefaults] synchronize];
+	[[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"com.bandit4e.full_version"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	
     return YES;
 }

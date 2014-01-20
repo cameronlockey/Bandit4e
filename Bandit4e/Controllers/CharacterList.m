@@ -22,7 +22,7 @@
 
 @implementation CharacterList
 
-@synthesize characters, managedObjectContext, purchaseButton, selectedCharacter, toolbar;
+@synthesize characters, managedObjectContext, purchaseButton, selectedCharacter, toolbar, adBanner;
 
 - (void)viewDidLoad
 {
@@ -44,13 +44,18 @@
 	
 	toolbar.barTintColor = [UIColor colorWithWhite:0.8 alpha:1];
 	toolbar.translucent = YES;
+	purchaseButton.enabled = NO;
 	
 	[[IAPBanditHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *_products) {
         if (success) {
             products = _products;
 			NSLog(@"have products in view controller: %@", products);
+			purchaseButton.enabled = YES;
         }
     }];
+	
+	bannerShowing = NO;
+	
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -325,6 +330,34 @@
  * ---------------------------------------------*/
 -(void)characterAddEditDidFinish
 {
+}
+
+/* IADDelegate Methods
+ * ---------------------------------------------*/
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+	if (!bannerShowing)
+	{
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1];
+		banner.frame = CGRectMake(0, banner.frame.origin.y - 50, banner.frame.size.width, banner.frame.size.height);
+		toolbar.frame = CGRectMake(0 , toolbar.frame.origin.y - 50, toolbar.frame.size.width, toolbar.frame.size.height);
+		[UIView commitAnimations];
+		bannerShowing = YES;
+	}
+}
+
+-(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+	if (bannerShowing)
+	{
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:1];
+		toolbar.frame = CGRectMake(0 , toolbar.frame.origin.y + 50, toolbar.frame.size.width, toolbar.frame.size.height);
+		banner.frame = CGRectMake(0, banner.frame.origin.y + 50, banner.frame.size.width, banner.frame.size.height);
+		[UIView commitAnimations];
+		bannerShowing = NO;
+	}
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Fragment. All rights reserved.
 //
 
+#import <iAd/iAd.h>
 #import <UIKit/UIKit.h>
 #import "CharacterAddEdit.h"
 #import "CLTurnQueue.h"
@@ -20,7 +21,7 @@
 
 @class Character;
 
-@interface Combat : UIViewController <CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, ReminderDelegate, UIAlertViewDelegate>
+@interface Combat : UIViewController <ADBannerViewDelegate, CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, ReminderDelegate, UIAlertViewDelegate>
 {
 	UILabel *actionPoints;
 	UILabel *experiencePoints;
@@ -31,6 +32,7 @@
 	//CustomBadge *endTurnBadge;
 	BOOL start;
 	UIImageView *banditTitle;
+	BOOL bannerShowing;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -67,6 +69,20 @@
 @property (weak, nonatomic) IBOutlet UIButton *startTurnButton;
 @property (weak, nonatomic) IBOutlet UIButton *remindersButton;
 @property (weak, nonatomic) IBOutlet UIButton *notesButton;
+@property (weak, nonatomic) IBOutlet ADBannerView *bannerView;
+
+/* !Constraint Outlets
+ * ---------------------------------------------*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startButtonBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *damageButtonTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *remindersButtonBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *notesButtonBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hpLabelTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *deathSavesTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hitPointsTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *healingSurgesTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bannerViewBottomConstraint;
+
 
 /* !Navigation Methods
  * ---------------------------------------------*/
