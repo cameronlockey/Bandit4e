@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+// app id
+#define APP_ID				796453985
+static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
+static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
+
+#define APP_STORE_URL		[NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, APP_ID]];
+
 // set up fonts
 #define LEAGUE(fontsize)	[UIFont fontWithName:@"League Gothic" size:fontsize]
 #define ARVIL(fontsize)		[UIFont fontWithName:@"Arvil" size:fontsize]

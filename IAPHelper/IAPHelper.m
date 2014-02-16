@@ -9,6 +9,8 @@
 // 1
 #import "IAPHelper.h"
 #import <StoreKit/StoreKit.h>
+#import "NSUserDefaults+MPSecureUserDefaults.h"
+#import "UIHelpers.h"
 
 NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurchasedNotification";
 
@@ -35,8 +37,9 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
         // Check for previously purchased products
         _purchasedProductIdentifiers = [NSMutableSet set];
         for (NSString * productIdentifier in _productIdentifiers) {
-            BOOL productPurchased = [[NSUserDefaults standardUserDefaults] boolForKey:productIdentifier];
-            if (productPurchased) {
+			BOOL valid = NO;
+            [[NSUserDefaults standardUserDefaults] secureBoolForKey:productIdentifier valid:&valid];
+            if (valid) {
                 [_purchasedProductIdentifiers addObject:productIdentifier];
                 NSLog(@"Previously purchased: %@", productIdentifier);
             } else {
@@ -149,6 +152,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
         NSLog(@"Transaction error: %@", transaction.error.localizedDescription);
+		[UIHelpers showAlertWithTitle:@"Failed Transaction" msg:transaction.error.localizedDescription];
     }
     
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
@@ -157,7 +161,7 @@ NSString *const IAPHelperProductPurchasedNotification = @"IAPHelperProductPurcha
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier {
     
     [_purchasedProductIdentifiers addObject:productIdentifier];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:productIdentifier];
+    [[NSUserDefaults standardUserDefaults] setSecureBool:YES forKey:productIdentifier];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:IAPHelperProductPurchasedNotification object:productIdentifier userInfo:nil];
     

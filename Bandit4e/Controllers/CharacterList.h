@@ -30,6 +30,8 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *purchaseButton;
 @property (weak, nonatomic) IBOutlet ADBannerView *adBanner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *leftSeparator;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightSeparator;
 
 @property (strong,nonatomic) Character *selectedCharacter;
 
@@ -37,6 +39,7 @@
 -(void)accessoryButton:(UIControl*)button withEvent:(UIEvent*)event;
 - (IBAction)showStore:(id)sender;
 - (IBAction)addNewCharacter:(id)sender;
+- (IBAction)rateApp:(id)sender;
 
 
 @end

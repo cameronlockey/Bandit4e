@@ -33,6 +33,7 @@
 	BOOL start;
 	UIImageView *banditTitle;
 	BOOL bannerShowing;
+	BOOL hasFullVersion;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -11,6 +11,7 @@
 #import "Combat.h"
 #import "Constants.h"
 #import "Note.h"
+#import "NSUserDefaults+MPSecureUserDefaults.h"
 #import "Reminder.h"
 #import "UIHelpers.h"
 
@@ -47,6 +48,7 @@
 	
 	start = YES;
 	bannerShowing = NO;
+	hasFullVersion = NO;
 	self.view.backgroundColor = VIEWBG;
 	self.navigationController.navigationBar.translucent = NO;
 	
@@ -204,6 +206,22 @@
 	[self updateCombatButton:ppButton Label:powerPoints Value:character.currentPp.stringValue];
 	
 	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 1;}];
+	
+	// check if user has full version
+	BOOL valid = FALSE;
+	hasFullVersion = [[NSUserDefaults standardUserDefaults] secureBoolForKey:@"com.bandit4e.full_version" valid: &valid];
+	if (!valid)
+	{
+		hasFullVersion = FALSE;
+	}
+	NSLog(@"User has full version: %@", (hasFullVersion) ? @"TRUE" : @"FALSE");
+	
+	if (hasFullVersion)
+	{
+		// remove ads
+		[bannerView removeFromSuperview];
+		bannerView = nil;
+	}
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -856,7 +874,7 @@
  * ---------------------------------------------*/
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-	if (!bannerShowing)
+	if (!bannerShowing && !hasFullVersion)
 	{
 		[UIView animateWithDuration:1 animations:^{
 			banner.frame = CGRectMake(0, banner.frame.origin.y - 50, banner.frame.size.width, banner.frame.size.height);
@@ -897,7 +915,7 @@
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-	if (bannerShowing)
+	if (bannerShowing && !hasFullVersion)
 	{
 		[UIView animateWithDuration:1 animations:^{
 			banner.frame = CGRectMake(0, banner.frame.origin.y + 50, banner.frame.size.width, banner.frame.size.height);

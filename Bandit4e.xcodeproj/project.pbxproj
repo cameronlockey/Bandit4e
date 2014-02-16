@@ -10,6 +10,7 @@
 		7E21F38B1884CFC500A9BCB3 /* sampreston_quick.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E21F38A1884CFC500A9BCB3 /* sampreston_quick.png */; };
 		7E21F3961885C46B00A9BCB3 /* bandit4e_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E21F3941885C46B00A9BCB3 /* bandit4e_title.png */; };
 		7E21F3971885C46B00A9BCB3 /* bandit4e_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E21F3951885C46B00A9BCB3 /* bandit4e_title@2x.png */; };
+		7E23ABE618AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E23ABE518AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.m */; };
 		7E39CE2316C9E1B300F5582D /* UIHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E39CE2216C9E1B300F5582D /* UIHelpers.m */; };
 		7E464C8316D94A5E00C37390 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E464C8216D94A5E00C37390 /* Constants.m */; };
 		7E4CBFA71837FF0F00F684C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E4CBFA61837FF0F00F684C3 /* Main.storyboard */; };
@@ -117,6 +118,8 @@
 		7E21F38A1884CFC500A9BCB3 /* sampreston_quick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sampreston_quick.png; sourceTree = "<group>"; };
 		7E21F3941885C46B00A9BCB3 /* bandit4e_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bandit4e_title.png; path = Images/bandit4e_title.png; sourceTree = "<group>"; };
 		7E21F3951885C46B00A9BCB3 /* bandit4e_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bandit4e_title@2x.png"; path = "Images/bandit4e_title@2x.png"; sourceTree = "<group>"; };
+		7E23ABE418AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+MPSecureUserDefaults.h"; sourceTree = "<group>"; };
+		7E23ABE518AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+MPSecureUserDefaults.m"; sourceTree = "<group>"; };
 		7E39CE2116C9E1B300F5582D /* UIHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHelpers.h; sourceTree = "<group>"; };
 		7E39CE2216C9E1B300F5582D /* UIHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHelpers.m; sourceTree = "<group>"; };
 		7E464C8116D94A5E00C37390 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -280,6 +283,16 @@
 			path = Bandit4e;
 			sourceTree = "<group>";
 		};
+		7E23ABE318AFD2270009D1A6 /* SecureNSUserDefaultsHelper */ = {
+			isa = PBXGroup;
+			children = (
+				7E23ABE418AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.h */,
+				7E23ABE518AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.m */,
+			);
+			name = SecureNSUserDefaultsHelper;
+			path = Bandit4e/SecureNSUserDefaultsHelper;
+			sourceTree = "<group>";
+		};
 		7E594E36188AD840004365EE /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +437,7 @@
 		7ED04E421673A30900BABBA1 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7E23ABE318AFD2270009D1A6 /* SecureNSUserDefaultsHelper */,
 				7E594E40188AFA17004365EE /* IAPBanditHelper */,
 				7E594E3C188AF97D004365EE /* IAPHelper */,
 				7EE31F541869FFA200237587 /* CLTurnQueue */,
@@ -729,6 +743,7 @@
 				7EE634DA1874D6DF00F02C4B /* ConditionAdd.m in Sources */,
 				7EE634D31874D69600F02C4B /* Notes.m in Sources */,
 				7EE634AE1874D63600F02C4B /* NoteCell.m in Sources */,
+				7E23ABE618AFD2270009D1A6 /* NSUserDefaults+MPSecureUserDefaults.m in Sources */,
 				7E39CE2316C9E1B300F5582D /* UIHelpers.m in Sources */,
 				7E464C8316D94A5E00C37390 /* Constants.m in Sources */,
 				7EE634D41874D69600F02C4B /* ReminderAdd.m in Sources */,

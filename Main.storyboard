@@ -983,7 +983,13 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem systemItem="flexibleSpace" id="XSi-xD-orw"/>
-                                    <barButtonItem title="About" id="zxg-Vq-LOO"/>
+                                    <barButtonItem title="Rate" id="TVa-9I-aUA">
+                                        <connections>
+                                            <action selector="rateApp:" destination="81i-NY-ymy" id="MoI-Ww-z7D"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="KgH-RY-onF"/>
+                                    <barButtonItem title="Feedback" id="zxg-Vq-LOO"/>
                                 </items>
                             </toolbar>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eho-Mg-VCa">
@@ -1016,7 +1022,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="adBanner" destination="Eho-Mg-VCa" id="o6P-eC-yPK"/>
+                        <outlet property="leftSeparator" destination="XSi-xD-orw" id="W3s-8D-XRg"/>
                         <outlet property="purchaseButton" destination="NaF-ND-bf2" id="hTb-3M-hYe"/>
+                        <outlet property="rightSeparator" destination="KgH-RY-onF" id="Q9F-Cz-V8v"/>
                         <outlet property="tableView" destination="p5v-vl-nXO" id="gX9-MK-Z1n"/>
                         <outlet property="toolbar" destination="DYd-z9-qtV" id="K7d-yG-Aci"/>
                         <segue destination="2tf-YV-huu" kind="push" identifier="EditCharacter" id="9hD-MS-mTq"/>

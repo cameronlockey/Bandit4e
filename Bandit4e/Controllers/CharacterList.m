@@ -13,6 +13,7 @@
 #import "Combat.h"
 #import "Constants.h"
 #import "CoreDataHelper.h"
+#import "NSUserDefaults+MPSecureUserDefaults.h"
 #import "Store.h"
 
 
@@ -22,7 +23,7 @@
 
 @implementation CharacterList
 
-@synthesize characters, managedObjectContext, purchaseButton, selectedCharacter, toolbar, adBanner;
+@synthesize characters, managedObjectContext, purchaseButton, selectedCharacter, toolbar, adBanner, leftSeparator, rightSeparator;
 
 - (void)viewDidLoad
 {
@@ -55,6 +56,7 @@
     }];
 	
 	bannerShowing = NO;
+	hasFullVersion = NO;
 	
 }
 
@@ -71,14 +73,26 @@
 	[UIView animateWithDuration:0.25 animations:^{banditTitle.alpha = 1;}];
 	
 	// check if user has full version
-	hasFullVersion = [[NSUserDefaults standardUserDefaults] boolForKey:@"com.bandit4e.full_version"];
+	BOOL valid = FALSE;
+	hasFullVersion = [[NSUserDefaults standardUserDefaults] secureBoolForKey:@"com.bandit4e.full_version" valid: &valid];
+	if (!valid)
+	{
+		hasFullVersion = FALSE;
+	}
 	NSLog(@"User has full version: %@", (hasFullVersion) ? @"TRUE" : @"FALSE");
 	
 	if (hasFullVersion)
 	{
+		// update the toolbar
 		NSMutableArray *items = [toolbar.items mutableCopy];
 		[items removeObject: purchaseButton];
+		[items removeObject: leftSeparator];
 		toolbar.items = items;
+		
+		// remove ads
+		[adBanner removeFromSuperview];
+		adBanner = nil;
+		toolbar.frame = CGRectMake(0 , self.view.frame.size.height - toolbar.frame.size.height, toolbar.frame.size.width, toolbar.frame.size.height);
 	}
 }
 
@@ -88,7 +102,7 @@
 }
 
 -(void)readDataForTable
-{	
+{
 	// Force table refresh
 	// Grab the data
 	characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
@@ -119,6 +133,11 @@
 	{
 		[self performSegueWithIdentifier:@"ShowStore" sender:self];
 	}
+}
+
+- (IBAction)rateApp:(id)sender
+{
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, APP_ID]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -336,7 +355,7 @@
  * ---------------------------------------------*/
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-	if (!bannerShowing)
+	if (!bannerShowing && !hasFullVersion)
 	{
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:1];
@@ -349,7 +368,7 @@
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-	if (bannerShowing)
+	if (bannerShowing && !hasFullVersion)
 	{
 		[UIView beginAnimations:nil context:nil];
 		[UIView setAnimationDuration:1];

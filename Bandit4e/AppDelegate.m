@@ -13,6 +13,7 @@
 #import "CharacterList.h"
 #import "CoreDataHelper.h"
 #import "Constants.h"
+#import "NSUserDefaults+MPSecureUserDefaults.h"
 #import "IAPBanditHelper.h"
 #import "UIHelpers.h"
 
@@ -59,13 +60,15 @@
 	[[UITextField appearance] setTintColor:[UIColor darkGrayColor]];
 
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-	
-	[IAPBanditHelper sharedInstance];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[self customizeAppearance];
+	
+	[NSUserDefaults setSecret:@"horseradishmcduck!%"];
+	
+	[IAPBanditHelper sharedInstance];
 		
     UINavigationController *navigationController = (UINavigationController*) self.window.rootViewController;
 	CharacterList *characterList = (CharacterList*)navigationController.topViewController;
@@ -89,8 +92,8 @@
 	characterList.characters = [CoreDataHelper getObjectsForEntity:@"Character" withSortKey:@"name" andSortAscending:YES andContext:self.managedObjectContext];
 	
 	// manually reset the app to not purchased
-	[[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"com.bandit4e.full_version"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	[[NSUserDefaults standardUserDefaults] setSecureBool:FALSE forKey:@"com.bandit4e.full_version"];
+	[[NSUserDefaults standardUserDefaults] synchronize];	
 	
     return YES;
 }
