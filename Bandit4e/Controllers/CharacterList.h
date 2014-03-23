@@ -21,6 +21,7 @@
 	NSArray *products;
 	BOOL hasFullVersion;
 	BOOL bannerShowing;
+	UIColor *gray;
 }
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -40,6 +41,7 @@
 - (IBAction)showStore:(id)sender;
 - (IBAction)addNewCharacter:(id)sender;
 - (IBAction)rateApp:(id)sender;
+//- (IBAction)leaveFeedback:(id)sender;
 
 
 @end

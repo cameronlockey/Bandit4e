@@ -137,6 +137,7 @@
 		7E6360681881D88200A48BDA /* edit-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-icon@2x.png"; sourceTree = "<group>"; };
 		7E750F6416E0EDD500A3374C /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
 		7E750F6516E0EDD500A3374C /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
+		7EA7B2BF18CD404D00C0437F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7ED04E1716738F9F00BABBA1 /* Bandit4e.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bandit4e.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ED04E1B16738F9F00BABBA1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7ED04E1D16738F9F00BABBA1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -392,6 +393,7 @@
 		7ED04E1A16738F9F00BABBA1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EA7B2BF18CD404D00C0437F /* MessageUI.framework */,
 				7EF80349188C611300910C24 /* iAd.framework */,
 				7E594E3A188AD9FF004365EE /* StoreKit.framework */,
 				7EE80F6816CFE57B005D576D /* QuartzCore.framework */,
@@ -845,7 +847,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -860,7 +862,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

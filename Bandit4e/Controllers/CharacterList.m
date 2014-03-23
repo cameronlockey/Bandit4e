@@ -30,12 +30,12 @@
     [super viewDidLoad];
 	
 	self.title = @"";
-	
 	self.navigationController.navigationBar.translucent = NO;
-	
 	self.tableView.rowHeight = 80;
 	self.view.backgroundColor = TABLEBG;
 	self.tableView.backgroundColor = TABLEBG;
+	
+	gray = GRAY;
 	
 	UIImage *titleImage = [UIImage imageNamed:@"bandit4e_title.png"];
 	float x = (self.view.frame.size.width / 2) - (titleImage.size.width/2);
@@ -140,6 +140,11 @@
 	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, APP_ID]]];
 }
 
+- (IBAction)leaveFeedback:(id)sender
+{	
+	// implement when the button can open up the feedback page in bandit4e.com
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -195,15 +200,15 @@
 	}
 		
 	name.font = MISSION(27.0f);
-	name.textColor = GRAY;
-	name.highlightedTextColor = GRAY;
+	name.textColor = gray;
+	name.highlightedTextColor = gray;
 	name.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
 	name.layer.shadowOffset = CGSizeMake(0,1);
 	name.layer.shadowRadius = 0;
 	name.layer.shadowOpacity = 1;
 	
 	raceClass.font = ARVIL(22.0f);
-	raceClass.textColor = GRAY;
+	raceClass.textColor = gray;
 	raceClass.highlightedTextColor = [UIColor colorWithWhite:0.4 alpha:1.0];
 	raceClass.layer.shadowColor = [[UIColor colorWithWhite:1.0f alpha:0.6f] CGColor];
 	raceClass.layer.shadowOffset = CGSizeMake(0,1);
@@ -378,5 +383,31 @@
 		bannerShowing = NO;
 	}
 }
+
+//#pragma mark -
+//#pragma mark - MFMailComposeViewControllerDelegate
+//-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+//{
+//	switch (result)
+//    {
+//        case MFMailComposeResultCancelled:
+//            NSLog(@"Mail cancelled");
+//            break;
+//        case MFMailComposeResultSaved:
+//            NSLog(@"Mail saved");
+//            break;
+//        case MFMailComposeResultSent:
+//            NSLog(@"Mail sent");
+//            break;
+//        case MFMailComposeResultFailed:
+//            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    // Close the Mail Interface
+//    [self dismissViewControllerAnimated:YES completion:NULL];
+//}
 
 @end

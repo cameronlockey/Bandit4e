@@ -157,8 +157,7 @@
 	tempHpButton.clipsToBounds = NO;
 	
 	// create reminder badges
-	NSMutableArray *startReminders = [NSMutableArray arrayWithArray:[character.reminders allObjects]];
-	startEndTurnBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", startReminders.count]
+	startEndTurnBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]
 								   withStringColor:[UIColor whiteColor]
 									withInsetColor:[UIColor colorWithRed:0.04 green:0.64 blue:0 alpha:1.0]
 									withBadgeFrame:NO
@@ -796,6 +795,8 @@
 {
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[turnQueue collectQueues];
+	[startEndTurnBadge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]];
+	NSLog(@"reminders did finish");
 }
 
 /* !CharacterAddEditDelegate Methods

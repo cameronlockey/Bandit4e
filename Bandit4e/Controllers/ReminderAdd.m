@@ -47,6 +47,7 @@
 	if (reminder)
 	{
 		reminderField.text = reminder.text;
+		turnSwitch.on = reminder.showAtStart.boolValue;
 	}
 	
 	[reminderField becomeFirstResponder];

@@ -50,12 +50,12 @@
 	[[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class], nil] setTintColor:[UIColor colorWithRed:0.29 green:0.58 blue:0.78 alpha:1]];
 	
 	// UIBarButtonItems
-	[[UIBarButtonItem appearance] setTitleTextAttributes: @{
+	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes: @{
 						 NSForegroundColorAttributeName : [UIColor whiteColor],
 									NSFontAttributeName : [UIFont fontWithName:@"Arvil" size:24],
 								  NSShadowAttributeName : textShadow
-						 }
-												forState:UIControlStateNormal];
+						 } forState:UIControlStateNormal];
+
 	[[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 	[[UITextField appearance] setTintColor:[UIColor darkGrayColor]];
 
