@@ -1263,10 +1263,10 @@
                                 </connections>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfG-XV-S18">
-                                <rect key="frame" x="136" y="105" width="51" height="31"/>
+                                <rect key="frame" x="136" y="120" width="51" height="31"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="LOSE HEALING SURGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDe-4a-PNB">
-                                <rect key="frame" x="20" y="130" width="280" height="21"/>
+                                <rect key="frame" x="20" y="165" width="280" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>

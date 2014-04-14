@@ -14,7 +14,7 @@
 
 @implementation CLTurnQueue
 
-@synthesize managedObjectContext, character, startReminders, endReminders, alertQueue, currentReminder;
+@synthesize managedObjectContext, character, startReminders, endReminders, alertQueue, currentReminder, delegate;
 
 /* !Instance Methods
  * ---------------------------------------------*/
@@ -28,6 +28,7 @@
 		self.endReminders = [NSMutableArray new];
 		self.alertQueue = [NSMutableArray new];
 		self.currentReminder = nil;
+		index = 0;
 	}
 	return self;
 }
@@ -75,14 +76,12 @@
 	}
 	else
 	{
-		NSInteger index = [alertQueue indexOfObject:currentReminder];
-				
-		if ( index < [alertQueue count]-1 )
+		if ( alertQueue.count > 0 && index <= [alertQueue indexOfObject:alertQueue.lastObject] )
 		{
-			index++;
 			currentReminder = [alertQueue objectAtIndex:index];
 			currentReminder.alert = [[UIAlertView alloc] initWithTitle:currentReminder.text message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"Remove", @"OK", nil];
 			[currentReminder.alert show];
+			index++;
 		}
 	}
 	
@@ -105,17 +104,19 @@
 	return FALSE;
 }
 
--(void) dismissReminder:(Reminder *)reminder
+-(void) dismissReminder
 {
-	NSLog(@"removing reminder: %@", reminder);
-	// Remove it from our collection of reminders
-	if (currentReminder.showAtStart.intValue == 1)
-		[startReminders removeObject:currentReminder];
-	else if (currentReminder.showAtStart.intValue == 0)
-		[endReminders removeObject:currentReminder];
+	NSLog(@"index of currentReminder: %i", index);
+	NSLog(@"alert queue: %@", alertQueue);
+	[alertQueue removeObjectAtIndex:index];
 	
 	// Delete the item in core data
 	[managedObjectContext deleteObject:currentReminder];
+	
+	// Commit the deletion in core data
+	NSError *error;
+	if (![managedObjectContext save:&error])
+		NSLog(@"Failed to delete reminder with error: %@", error.domain);
 }
 
 /* !Class Methods
@@ -125,11 +126,12 @@
 	return [[CLTurnQueue alloc] init];
 }
 
-+(CLTurnQueue*)queueWithManagedObjectContext:(NSManagedObjectContext *)context andCharacter:(Character *)character
++(CLTurnQueue*)queueWithManagedObjectContext:(NSManagedObjectContext *)context Character:(Character *)character Delegate:(id)delegate
 {
 	CLTurnQueue *queue = [CLTurnQueue new];
 	queue.managedObjectContext = context;
 	queue.character = character;
+	queue.delegate = delegate;
 	[queue collectQueues];
 	return queue;
 }
@@ -140,9 +142,14 @@
 {
 	if (buttonIndex == 0)
 	{
-		[self dismissReminder:currentReminder];
+		[self dismissReminder];
 	}
 	[self showNextAlert];
+	
+	if (alertQueue.count == 0 || index == [alertQueue indexOfObject:alertQueue.lastObject])
+	{
+		[delegate turnQueueDidFinish];
+	}
 }
 
 @end

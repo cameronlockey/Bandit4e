@@ -156,17 +156,20 @@
 	[tempHpButton addSubview:tempBadge];
 	tempHpButton.clipsToBounds = NO;
 	
-	// create reminder badges
-	startEndTurnBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]
+	// create reminder badge
+	reminderBadge = [CustomBadge customBadgeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]
 								   withStringColor:[UIColor whiteColor]
 									withInsetColor:[UIColor colorWithRed:0.04 green:0.64 blue:0 alpha:1.0]
 									withBadgeFrame:NO
 							   withBadgeFrameColor:[UIColor whiteColor]
 										 withScale:1.0
 									   withShining:NO];
-	startEndTurnBadge.frame = CGRectMake(remindersButton.frame.size.width-startEndTurnBadge.frame.size.width*0.83, (-1*(startEndTurnBadge.frame.size.height*0.25)), startEndTurnBadge.frame.size.width, startEndTurnBadge.frame.size.height);
-	[remindersButton addSubview:startEndTurnBadge];
+	reminderBadge.frame = CGRectMake(remindersButton.frame.size.width-reminderBadge.frame.size.width*0.83, (-1*(reminderBadge.frame.size.height*0.25)), reminderBadge.frame.size.width, reminderBadge.frame.size.height);
+	[remindersButton addSubview:reminderBadge];
 	remindersButton.clipsToBounds = NO;
+	
+	if (character.reminders.count < 1)
+		reminderBadge.hidden = YES;
 	
 	// if no tempHP, set hidden
 	if (character.tempHp.intValue < 1)
@@ -176,7 +179,7 @@
 	[self refreshCharacter];
 	
 	// queue up reminders
-	turnQueue = [CLTurnQueue queueWithManagedObjectContext:managedObjectContext andCharacter:character];
+	turnQueue = [CLTurnQueue queueWithManagedObjectContext:managedObjectContext Character:character Delegate:self];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -271,26 +274,26 @@
 		iconView.image = icon;
 		[button addSubview:iconView];
 	}
-	
-	// create value label
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, y+5, 75, 30)];
-	label.backgroundColor = [UIColor clearColor];
-	label.textColor = GRAY;
-	label.font = LEAGUE(32.0f);
-	label.textAlignment = NSTextAlignmentCenter;
-	[UIHelpers applyTextShadow:label];
-	if (button.enabled == NO) {
-		label.layer.opacity = 0.5;
-		button.titleLabel.layer.opacity = 0.5;
-		if (icon ==  nil) {
-			labelText = @"0";
+	else
+	{
+		// create value label
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, y+5, 75, 30)];
+		label.backgroundColor = [UIColor clearColor];
+		label.textColor = GRAY;
+		label.font = LEAGUE(32.0f);
+		label.textAlignment = NSTextAlignmentCenter;
+		[UIHelpers applyTextShadow:label];
+		if (button.enabled == NO) {
+			label.layer.opacity = 0.5;
+			button.titleLabel.layer.opacity = 0.5;
+			if (icon == nil) {
+				labelText = @"0";
+			}
 		}
+		if (labelText != nil)
+			label.text = labelText;
+		[button addSubview:label];
 	}
-	if (labelText != nil)
-		label.text = labelText;
-	[button addSubview:label];
-	
-	
 }
 
 -(void)updateCombatButton:(UIButton *)button Label:(UILabel *)label Value:(NSString *)value
@@ -409,6 +412,16 @@
 	
 }
 
+-(void)updateReminders
+{
+	[turnQueue collectQueues];
+	[reminderBadge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]];
+	if (character.reminders.count > 0)
+		reminderBadge.hidden = NO;
+	else
+		reminderBadge.hidden = YES;
+}
+
 /* !Interaction Handler Methods
  * ---------------------------------------------*/
 - (IBAction)toggleTurn:(id)sender
@@ -493,15 +506,11 @@
 {
 	// handle dying or dead
 	if (IS_DYING || IS_DEAD)
-	{
-		[self handleDying];
-	}
-	else
-	{
-		// show startTurn alerts
-		if (turnQueue.haveStartReminders)
-			[turnQueue presentQueue:1];
-	}
+	[self handleDying];
+	
+	// show startTurn alerts
+	if (turnQueue.haveStartReminders)
+		[turnQueue presentQueue:1];
 }
 
 -(void)endTurn
@@ -683,24 +692,24 @@
  * ---------------------------------------------*/
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	switch (alertView.tag) {
-		case 1:
-			if (buttonIndex == 1) {
+	if (buttonIndex == 1)
+	{
+		switch (alertView.tag) {
+			case 1:
 				[self useActionPoint];
-			}			
-			break;
-		case 2:
-			[self usePowerPoints:[alertView textFieldAtIndex:0].text.intValue];
-			break;
-		case 3:
-			[self gainTempHp:[alertView textFieldAtIndex:0].text.intValue];
-			break;
-		case 4:
-			if (buttonIndex == 1)
-				[self addFailedDeathSave];			
-			break;
-		default:
-			break;
+				break;
+			case 2:
+				[self usePowerPoints:[alertView textFieldAtIndex:0].text.intValue];
+				break;
+			case 3:
+				[self gainTempHp:[alertView textFieldAtIndex:0].text.intValue];
+				break;
+			case 4:
+				[self addFailedDeathSave];
+				break;
+			default:
+				break;
+		}
 	}
 }
 
@@ -793,10 +802,8 @@
  * ---------------------------------------------*/
 -(void)remindersDidFinish
 {
-	[self dismissViewControllerAnimated:YES completion:NULL];
-	[turnQueue collectQueues];
-	[startEndTurnBadge autoBadgeSizeWithString:[NSString stringWithFormat:@"%i", character.reminders.count]];
-	NSLog(@"reminders did finish");
+	[self updateReminders];
+	[self dismissViewControllerAnimated:YES completion:NULL];	
 }
 
 /* !CharacterAddEditDelegate Methods
@@ -954,6 +961,11 @@
 	}
 }
 
-
+/* !CLTurnQueueDelegate Methods
+ * ---------------------------------------------*/
+- (void)turnQueueDidFinish
+{
+	[self updateReminders];
+}
 
 @end

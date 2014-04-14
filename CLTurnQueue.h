@@ -11,7 +11,12 @@
 @class Character;
 @class Reminder;
 
+@protocol CLTurnQueueDelegate;
+
 @interface CLTurnQueue : NSObject <UIAlertViewDelegate>
+{
+	NSInteger index;
+}
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) Character *character;
@@ -19,15 +24,22 @@
 @property (strong,nonatomic) NSMutableArray *endReminders;
 @property (strong,nonatomic) NSMutableArray *alertQueue;
 @property (strong,nonatomic) Reminder *currentReminder;
+@property (strong,nonatomic) id <CLTurnQueueDelegate> delegate;
 
 +(CLTurnQueue*)new;
-+(CLTurnQueue*)queueWithManagedObjectContext:(NSManagedObjectContext*)context andCharacter:(Character*)character;
++(CLTurnQueue*)queueWithManagedObjectContext:(NSManagedObjectContext*)context Character:(Character*)character Delegate:(UIViewController*)delegate;
 -(void)collectQueues;
 -(void)collectQueue:(int)start;
 -(void)presentQueue:(int)start;
 -(BOOL)showNextAlert;
 -(BOOL)haveStartReminders;
 -(BOOL)haveEndReminders;
--(void)dismissReminder:(Reminder*)reminder;
+-(void)dismissReminder;
+
+@end
+
+@protocol CLTurnQueueDelegate <NSObject>
+
+- (void) turnQueueDidFinish;
 
 @end

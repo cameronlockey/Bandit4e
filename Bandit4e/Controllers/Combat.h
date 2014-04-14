@@ -21,15 +21,14 @@
 
 @class Character;
 
-@interface Combat : UIViewController <ADBannerViewDelegate, CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, ReminderDelegate, UIAlertViewDelegate>
+@interface Combat : UIViewController <ADBannerViewDelegate, CharacterAddEditDelegate, DamageDelegate, HealDelegate, ExperienceDelegate, GoldDelegate, NotesDelegate, ReminderDelegate, UIAlertViewDelegate, CLTurnQueueDelegate>
 {
 	UILabel *actionPoints;
 	UILabel *experiencePoints;
 	UILabel *gold;
 	UILabel *powerPoints;
 	CustomBadge *tempBadge;
-	CustomBadge *startEndTurnBadge;
-	//CustomBadge *endTurnBadge;
+	CustomBadge *reminderBadge;
 	BOOL start;
 	UIImageView *banditTitle;
 	BOOL bannerShowing;
@@ -97,6 +96,7 @@
 -(void)refreshCharacter;
 -(void)updateTempHpBadge;
 -(void)updateStatLabels;
+-(void)updateReminders;
 
 /* !Interaction Handler Methods
  * ---------------------------------------------*/

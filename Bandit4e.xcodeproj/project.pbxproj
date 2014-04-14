@@ -443,7 +443,6 @@
 				7E594E40188AFA17004365EE /* IAPBanditHelper */,
 				7E594E3C188AF97D004365EE /* IAPHelper */,
 				7EE31F541869FFA200237587 /* CLTurnQueue */,
-				7E750F6316E0EDC200A3374C /* CustomBadge */,
 				7E39CE2116C9E1B300F5582D /* UIHelpers.h */,
 				7E39CE2216C9E1B300F5582D /* UIHelpers.m */,
 				7ED4A09D1673D36400376255 /* BSKeyboardControls */,
@@ -451,6 +450,7 @@
 				7ED04E431673A33D00BABBA1 /* CoreDataHelper.m */,
 				7E464C8116D94A5E00C37390 /* Constants.h */,
 				7E464C8216D94A5E00C37390 /* Constants.m */,
+				7E750F6316E0EDC200A3374C /* CustomBadge */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -842,14 +842,14 @@
 		7ED04E3B16738FA000BABBA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5A4C432C-DBE0-41AC-AED1-D3DBF7FEE2C4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -857,14 +857,14 @@
 		7ED04E3C16738FA000BABBA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Cameron Lockey (BD32YEWV62)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bandit4e/Bandit4e-Prefix.pch";
 				INFOPLIST_FILE = "Bandit4e/Bandit4e-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5A4C432C-DBE0-41AC-AED1-D3DBF7FEE2C4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

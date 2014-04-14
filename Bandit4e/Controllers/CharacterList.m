@@ -125,7 +125,7 @@
 
 - (IBAction)addNewCharacter:(id)sender
 {
-	if (hasFullVersion)
+	if (hasFullVersion || characters.count < 1)
 	{
 		[self performSegueWithIdentifier:@"AddCharacter" sender:self];
 	}

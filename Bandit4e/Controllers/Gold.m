@@ -82,12 +82,12 @@
 		if (spendSwitch.on)
 		{
 			// spend gold
-			character.gold = numInt(character.gold.intValue - total);
+			character.gold = numInt(character.gold.intValue - amount);
 		}
 		else
 		{
 			// add gold
-			character.gold = numInt(character.gold.intValue + total);
+			character.gold = numInt(character.gold.intValue + amount);
 		}
 		//  Commit item to core data
 		[Constants save:managedObjectContext];
